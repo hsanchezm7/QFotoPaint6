@@ -298,6 +298,37 @@ void cb_ver_linea (int factual, int x, int y)
     imshow(foto[factual].nombre, res);
 }
 
+
+//---------------------------------------------------------------------------
+
+void cb_rectangulo (int factual, int x, int y)
+{
+    Mat im= foto[factual].img;  // Ojo: esto no es una copia, sino a la misma imagen
+    if (difum_pincel==0)
+        rectangle(im, Point(downx, downy), Point(x,y), color_pincel, radio_pincel*2+1);
+    else {
+        Mat res(im.size(), im.type(), color_pincel);
+        Mat cop(im.size(), im.type(), CV_RGB(0,0,0));
+        rectangle(cop, Point(downx, downy), Point(x,y), CV_RGB(255,255,255), radio_pincel*2+1);
+        blur(cop, cop, Size(difum_pincel*2+1, difum_pincel*2+1));
+        multiply(res, cop, res, 1.0/255.0);
+        bitwise_not(cop, cop);
+        multiply(im, cop, im, 1.0/255.0);
+        im= res + im;
+    }
+    imshow(foto[factual].nombre, im);
+    foto[factual].modificada= true;
+}
+
+//---------------------------------------------------------------------------
+
+void cb_ver_rectangulo (int factual, int x, int y)
+{
+    Mat res= foto[factual].img.clone();
+    rectangle(res, Point(downx, downy), Point(x,y), color_pincel, radio_pincel*2+1);
+    imshow(foto[factual].nombre, res);
+}
+
 //---------------------------------------------------------------------------
 
 void cb_seleccionar (int factual, int x, int y)
@@ -387,7 +418,17 @@ void callback (int event, int x, int y, int flags, void *_nfoto)
             ninguna_accion(factual, x, y);
         break;
 
-        // 2.3. Herramienta SELECCION
+    // 2.3. Herramienta RECTANGULO
+    case HER_RECTANGULO:
+        if (event==EVENT_LBUTTONUP)
+            cb_rectangulo(factual, x, y);
+        else if (event==EVENT_MOUSEMOVE && flags==EVENT_FLAG_LBUTTON)
+            cb_ver_rectangulo(factual, x, y);
+        else
+            ninguna_accion(factual, x, y);
+        break;
+
+    // 2.4. Herramienta SELECCION
     case HER_SELECCION:
         if (event==EVENT_LBUTTONUP)
             cb_seleccionar(factual, x, y);

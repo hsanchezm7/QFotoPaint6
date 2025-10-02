@@ -222,6 +222,11 @@ void MainWindow::on_toolButton_6_clicked()
     herr_actual= HER_SELECCION;
 }
 
+void MainWindow::on_toolButton_7_clicked()
+{
+    herr_actual = HER_RECTANGULO;
+}
+
 void MainWindow::on_actionInvertir_triggered()
 {
     int fa= foto_activa();
@@ -316,3 +321,11 @@ void MainWindow::on_actionImagen_media_triggered()
     mediadevideo mv(this);
     mv.exec();
 }
+
+
+void MainWindow::on_actionRect_ngulo_triggered()
+{
+    herr_actual= HER_RECTANGULO;
+    ui->toolButton_7->setChecked(true);
+}
+

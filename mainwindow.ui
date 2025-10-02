@@ -236,7 +236,7 @@ p, li { white-space: pre-wrap; }
      <bool>true</bool>
     </property>
     <property name="checked">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="autoExclusive">
      <bool>true</bool>
@@ -274,7 +274,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QToolButton" name="toolButton_6">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>250</x>
       <y>0</y>
       <width>41</width>
       <height>41</height>
@@ -296,6 +296,9 @@ p, li { white-space: pre-wrap; }
     <property name="checkable">
      <bool>true</bool>
     </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
     <property name="autoExclusive">
      <bool>true</bool>
     </property>
@@ -314,6 +317,32 @@ p, li { white-space: pre-wrap; }
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_7">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>0</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>...</string>
+    </property>
+    <property name="icon">
+     <iconset resource="recursos.qrc">
+      <normaloff>:/imagenes/rectangulo.png</normaloff>:/imagenes/rectangulo.png</iconset>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
@@ -360,6 +389,7 @@ p, li { white-space: pre-wrap; }
     </property>
     <addaction name="actionPunto"/>
     <addaction name="actionLinea"/>
+    <addaction name="actionRect_ngulo"/>
     <addaction name="actionSeleccionar"/>
    </widget>
    <widget class="QMenu" name="menuTransformar">
@@ -551,6 +581,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionImagen_media">
    <property name="text">
     <string>Imagen media...</string>
+   </property>
+  </action>
+  <action name="actionRect_ngulo">
+   <property name="text">
+    <string>Rectángulo</string>
    </property>
   </action>
  </widget>

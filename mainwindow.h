@@ -58,6 +58,8 @@ private slots:
     void on_actionNueva_imagen_triggered();
     void on_actionSalir_triggered();
     void on_toolButton_3_clicked();
+    void on_toolButton_7_clicked();
+    void on_actionRect_ngulo_triggered();
 };
 
 extern MainWindow *w;
