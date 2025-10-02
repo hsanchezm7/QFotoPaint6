@@ -291,6 +291,14 @@ void MainWindow::on_actionMedia_triggered()
     }
 }
 
+void MainWindow::on_actionMediana_triggered()
+{
+    if (foto_activa() !=- 1) {
+        suavizados sg(foto_activa(), 3, this);
+        sg.exec();
+    }
+}
+
 void MainWindow::on_actionMedia_ponderada_triggered()
 {
     if (foto_activa() != -1) {
@@ -328,4 +336,7 @@ void MainWindow::on_actionRect_ngulo_triggered()
     herr_actual= HER_RECTANGULO;
     ui->toolButton_7->setChecked(true);
 }
+
+
+
 

@@ -523,6 +523,8 @@ void ver_suavizado (int nfoto, int ntipo, int tamx, int tamy, bool guardar)
         GaussianBlur(foto[nfoto].img, img, Size(tamx, tamy), 0);
     else if (ntipo == 2)
         blur(foto[nfoto].img, img, Size(tamx, tamy));
+    else if (ntipo == 3)
+        medianBlur(foto[nfoto].img, img, tamx);
     imshow(foto[nfoto].nombre, img);
     if (guardar) {
         img.copyTo(foto[nfoto].img);

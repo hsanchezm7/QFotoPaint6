@@ -236,7 +236,7 @@ p, li { white-space: pre-wrap; }
      <bool>true</bool>
     </property>
     <property name="checked">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="autoExclusive">
      <bool>true</bool>
@@ -339,7 +339,7 @@ p, li { white-space: pre-wrap; }
      <bool>true</bool>
     </property>
     <property name="checked">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="autoExclusive">
      <bool>true</bool>
@@ -419,6 +419,7 @@ p, li { white-space: pre-wrap; }
      </property>
      <addaction name="actionGausiano"/>
      <addaction name="actionMedia"/>
+     <addaction name="actionMediana"/>
     </widget>
     <addaction name="menuSuavizado"/>
    </widget>
@@ -586,6 +587,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionRect_ngulo">
    <property name="text">
     <string>Rectángulo</string>
+   </property>
+  </action>
+  <action name="actionMediana">
+   <property name="text">
+    <string>Mediana...</string>
    </property>
   </action>
  </widget>
