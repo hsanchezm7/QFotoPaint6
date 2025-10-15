@@ -40,7 +40,7 @@ struct ventana {
 //    Enumerado con los distintos tipos posibles de herramientas
 //    que se pueden usar. Añadir nuevas aquí
 
-enum tipo_herramienta {HER_PUNTO, HER_LINEA, HER_SELECCION, HER_RECTANGULO};
+enum tipo_herramienta {HER_PUNTO, HER_LINEA, HER_SELECCION, HER_RECTANGULO, HER_ELIPSE};
 
 
 ///////////////////////////////////////////////////////////////////
@@ -152,6 +152,9 @@ void ver_suavizado (int nfoto, int ntipo, int tamx, int tamy,
 // Modifica la imagen en nfoto, aplicando un suavizado de tamaño dado. ntipo
 // puede ser: 1=GAUSIANO; 2=MEDIA. Si guardar==true se guarda la imagen, y
 // en otro caso solo se visualiza el resultado, pero sin guardar
+
+void ver_histograma (int nfoto, int ncanal, int nres);
+// Mostrar el histograma de una imagen del ncanal dado (3 = grises)
 
 void media_ponderada (int nf1, int nf2, int nueva, double peso);
 // Calcula la media ponderada entre la imagen nf1 y la nf2, según el peso dado,

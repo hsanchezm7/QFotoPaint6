@@ -255,17 +255,44 @@ void cb_punto (int factual, int x, int y)
     if (difum_pincel==0)
         circle(im, Point(x, y), radio_pincel, color_pincel, -1, LINE_AA);
     else {
-        Mat res(im.size(), im.type(), color_pincel);
-        Mat cop(im.size(), im.type(), CV_RGB(0,0,0));
-        circle(cop, Point(x, y), radio_pincel, CV_RGB(255,255,255), -1, LINE_AA);
+        int t = radio_pincel+difum_pincel;
+        int posx = t, posy = t;
+        Rect roi(x-t, y-t, 2*t+1, 2*t+1);
+
+        if (roi.x < 0) {
+            roi.width += roi.x;
+            posx += roi.x;
+            roi.x = 0;
+        }
+
+        if (roi.y < 0) {
+            roi.height += roi.y;
+            posy += roi.y;
+            roi.y = 0;
+        }
+
+        if (roi.x + roi.width > im.cols) {
+            roi.width = im.cols-roi.x;
+        }
+
+        if (roi.y + roi.height > im.rows) {
+            roi.height = im.rows - roi.y;
+        }
+
+        Mat trozo = im(roi);
+
+        Mat res(trozo.size(), im.type(), color_pincel);
+        Mat cop(trozo.size(), im.type(), CV_RGB(0,0,0));
+        circle(cop, Point(posx, posy), radio_pincel, CV_RGB(255,255,255), -1, LINE_AA);
         blur(cop, cop, Size(difum_pincel*2+1, difum_pincel*2+1));
         multiply(res, cop, res, 1.0/255.0);
         bitwise_not(cop, cop);
-        multiply(im, cop, im, 1.0/255.0);
-        im= res + im;
+        multiply(trozo, cop, trozo, 1.0/255.0);
+        trozo = res + trozo;
     }
+
     imshow(foto[factual].nombre, im);
-    foto[factual].modificada= true;
+    foto[factual].modificada = true;
 }
 
 //---------------------------------------------------------------------------
@@ -294,8 +321,38 @@ void cb_linea (int factual, int x, int y)
 void cb_ver_linea (int factual, int x, int y)
 {
     Mat res= foto[factual].img.clone();
-    line(res, Point(downx, downy), Point(x,y), color_pincel, radio_pincel*2+1);
+    line(res, Point(downx, downy), Point(x,y), color_pincel, radio_pincel*2-1);
     imshow(foto[factual].nombre, res);
+}
+
+//---------------------------------------------------------------------------
+
+void cb_ver_elipse (int factual, int x, int y)
+{
+    Mat res= foto[factual].img.clone();
+    ellipse(res, Point(downx, downy), Size(abs(x-downx),abs(y-downy)), 0, 0, 360, color_pincel, radio_pincel*2-1);
+    imshow(foto[factual].nombre, res);
+}
+
+//---------------------------------------------------------------------------
+
+void cb_elipse (int factual, int x, int y)
+{
+    Mat im= foto[factual].img;  // Ojo: esto no es una copia, sino a la misma imagen
+    if (difum_pincel==0)
+        ellipse(im, Point(downx, downy), Size(abs(x-downx),abs(y-downy)), 0, 0, 360, color_pincel, radio_pincel*2-1);
+    else {
+        Mat res(im.size(), im.type(), color_pincel);
+        Mat cop(im.size(), im.type(), CV_RGB(0,0,0));
+        ellipse(cop, Point(downx, downy), Size(abs(x-downx),abs(y-downy)), 0, 0, 360, CV_RGB(255, 255, 255), radio_pincel*2-1);;
+        blur(cop, cop, Size(difum_pincel*2+1, difum_pincel*2+1));
+        multiply(res, cop, res, 1.0/255.0);
+        bitwise_not(cop, cop);
+        multiply(im, cop, im, 1.0/255.0);
+        im= res + im;
+    }
+    imshow(foto[factual].nombre, im);
+    foto[factual].modificada= true;
 }
 
 
@@ -418,6 +475,16 @@ void callback (int event, int x, int y, int flags, void *_nfoto)
             ninguna_accion(factual, x, y);
         break;
 
+        // 2.3. Herramienta ELIPSE
+    case HER_ELIPSE:
+        if (event==EVENT_LBUTTONUP)
+            cb_elipse(factual, x, y);
+        else if (event==EVENT_MOUSEMOVE && flags==EVENT_FLAG_LBUTTON)
+            cb_ver_elipse(factual, x, y);
+        else
+            ninguna_accion(factual, x, y);
+        break;
+
     // 2.3. Herramienta RECTANGULO
     case HER_RECTANGULO:
         if (event==EVENT_LBUTTONUP)
@@ -531,6 +598,50 @@ void ver_suavizado (int nfoto, int ntipo, int tamx, int tamy, bool guardar)
         foto[nfoto].modificada= true;
     }
 }
+
+//---------------------------------------------------------------------------
+
+void ver_histograma (int nfoto, int ncanal, int nres)
+{
+    QImage imq = QImage(":/imagenes/histbase.png");
+    Mat imhist(imq.height(),imq.width(),CV_8UC4,imq.scanLine(0));
+    cvtColor(imhist, imhist, COLOR_RGBA2RGB);
+    // namedWindow("Imagen", WINDOW_NORMAL);
+    // imshow("Imagen", imhist);
+
+    Mat img = foto[nfoto].img;
+    Mat gris, hist;
+
+    cvtColor(img, gris, COLOR_BGR2GRAY);
+
+    int canales[1]= {0};
+    int bins[1]= {256};
+    float rango[2]= {0, 256};
+    const float *rangos[]= {rango};
+
+    Scalar color;
+    if (ncanal == 0) color = CV_RGB(0,0,255);
+    else if (ncanal == 1) color = CV_RGB(0,255,0);
+    else if (ncanal == 2) color = CV_RGB(255,0,0);
+    else color = CV_RGB(0,0,0);
+
+    if (ncanal == 3) {
+        calcHist(&gris, 1, canales, noArray(), hist, 1, bins, rangos);
+    } else {
+        calcHist(&img, 1, canales, noArray(), hist, 1, bins, rangos);
+    }
+
+    double vmin, vmax;
+    minMaxLoc(hist, &vmin, &vmax);
+
+    for (int i=0; i<256; i++) {
+        rectangle(imhist, Point(3+i*391.0/256,185),Point(3 + (i+1)*391.0/256, 185 - hist.at<float>(i)*182/vmax), color, -1);
+    }
+
+    crear_nueva(nres, imhist);
+}
+
+
 
 //---------------------------------------------------------------------------
 
