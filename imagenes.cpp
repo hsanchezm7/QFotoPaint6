@@ -641,8 +641,6 @@ void ver_histograma (int nfoto, int ncanal, int nres)
     crear_nueva(nres, imhist);
 }
 
-
-
 //---------------------------------------------------------------------------
 
 void media_ponderada (int nf1, int nf2, int nueva, double peso)
@@ -666,3 +664,8 @@ string Lt1(string cadena)
 }
 
 //---------------------------------------------------------------------------
+
+void copiar_a_nueva (int nfoto, int nres) {
+    Mat img = foto[nfoto].img(foto[nfoto].roi).clone();
+    crear_nueva(nres, img);
+}

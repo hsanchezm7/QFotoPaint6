@@ -67,6 +67,7 @@ private slots:
     void on_actionRojo_triggered();
     void on_actionVerde_triggered();
     void on_actionAzul_triggered();
+    void on_actionCopiar_a_nueva_triggered();
 };
 
 extern MainWindow *w;

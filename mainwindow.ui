@@ -415,6 +415,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="separator"/>
     <addaction name="menuVer_histogramas"/>
     <addaction name="menuOpciones"/>
+    <addaction name="actionCopiar_a_nueva"/>
    </widget>
    <widget class="QMenu" name="menuHerramientas">
     <property name="title">
@@ -651,6 +652,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionGrises">
    <property name="text">
     <string>Grises</string>
+   </property>
+  </action>
+  <action name="actionCopiar_a_nueva">
+   <property name="text">
+    <string>Copiar a nueva</string>
    </property>
   </action>
  </widget>

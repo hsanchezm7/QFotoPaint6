@@ -128,6 +128,9 @@ void invertir (int nfoto, int nres);
 // Invierte la imagen contenida en nfoto y la almacena en nres, que será una
 // nueva ventana
 
+void copiar_a_nueva (int nfoto, int nres);
+// Copiar el ROI de la foto actual a una imagen nueva
+
 void rotar_angulo (Mat imagen, Mat &imgRes, double angulo, double escala= 1.0, int modo= 0);
 // Rota la imagen contenida en imagen, en la cantidad grado (grados
 // de 0 a 360) y almacena el resultado en imgRes. La imagen de salida

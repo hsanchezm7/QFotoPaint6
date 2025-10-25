@@ -381,3 +381,10 @@ void MainWindow::on_actionAzul_triggered()
     }
 }
 
+
+void MainWindow::on_actionCopiar_a_nueva_triggered()
+{
+    if (foto_activa() != -1 && primera_libre() != -1) {
+        copiar_a_nueva(foto_activa(), primera_libre());
+    }
+}
