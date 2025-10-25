@@ -2,6 +2,7 @@
 
 #include "video.h"
 #include <math.h>
+#include <qdebug.h>
 
 ///////////////////////////////////////////////////////////////////
 /////////  VARIABLES GLOBALES PRIVADAS               //////////////
@@ -104,6 +105,24 @@ void media_a_nueva (int nfoto)
     Mat res(img_media.size(), CV_8UC3);
     img_media.convertTo(res, CV_8UC3, 1.0/frames_img_media);
     crear_nueva (nfoto, res);
+}
+
+//---------------------------------------------------------------------------
+
+void capturar_de_camara(int nres) {
+    VideoCapture cap(0);
+    if (!cap.isOpened()) {
+        qDebug() << "ERROR: no se ha podido abrir la cámara";
+        return;
+    }
+    Mat frame;
+    int tecla = 0;
+    while(cap.read(frame) && (tecla=waitKey(1))==-1) {
+        imshow("Pulse una tecla para capturar (ESC salir)", frame);
+    }
+    if(tecla!=27)
+        crear_nueva(nres, frame);
+    destroyWindow("Pulse una tecla para capturar (ESC salir)");
 }
 
 //---------------------------------------------------------------------------

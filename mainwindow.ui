@@ -384,6 +384,7 @@ p, li { white-space: pre-wrap; }
     </property>
     <addaction name="actionNueva_imagen"/>
     <addaction name="actionAbrir_imagen"/>
+    <addaction name="actionCapturar_de_c_mara"/>
     <addaction name="separator"/>
     <addaction name="actionGuardar"/>
     <addaction name="actionGuardar_como"/>
@@ -657,6 +658,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionCopiar_a_nueva">
    <property name="text">
     <string>Copiar a nueva</string>
+   </property>
+  </action>
+  <action name="actionCapturar_de_c_mara">
+   <property name="text">
+    <string>Capturar de cámara...</string>
    </property>
   </action>
  </widget>

@@ -11,6 +11,7 @@ using namespace cv;
 #include "brillocontraste.h"
 #include "dialognueva.h"
 #include "imagenes.h"
+#include "video.h"
 #include "mediadevideo.h"
 #include "mediaponderada.h"
 #include "rotaravideo.h"
@@ -388,3 +389,11 @@ void MainWindow::on_actionCopiar_a_nueva_triggered()
         copiar_a_nueva(foto_activa(), primera_libre());
     }
 }
+
+
+void MainWindow::on_actionCapturar_de_c_mara_triggered()
+{
+    if (primera_libre() != -1)
+        capturar_de_camara(primera_libre());
+}
+
