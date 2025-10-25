@@ -655,6 +655,43 @@ void media_ponderada (int nf1, int nf2, int nueva, double peso)
     crear_nueva(nueva, img);
 }
 
+void ajuste_lineal_hist (int nfoto, double pmin, double pmax, bool guardar)
+{
+    Mat img = foto[nfoto].img;
+    Mat gris, hist;
+
+    cvtColor(img, gris, COLOR_BGR2GRAY);
+
+    int canales[1]= {0};
+    int bins[1]= {256};
+    float rango[2]= {0, 256};
+    const float *rangos[]= {rango};
+
+    calcHist(&img, 1, canales, noArray(), hist, 1, bins, rangos);
+    normalize(hist, hist, 100, 0, NORM_L1);
+    int m = 0, M = 255;
+    double acum = 0;
+    for (int i=0; i<256 && acum<pmin; i++, m++) {
+        acum += hist.at<float>(i);
+    }
+    acum = 0;
+    for (int i=255; i>0 && acum<pmax; i--, M--) {
+        acum += hist.at<float>(i);
+    }
+    if (M<=m)
+        M = m+1;
+    Mat imres;
+    double a = 255.0/(M-m);
+    double b = -m*a;
+    img.convertTo(imres, img.type(), a, b);
+    imshow(foto[nfoto].nombre, imres);
+    if (guardar) {
+        imres.copyTo(img);
+        foto[nfoto].modificada = true;
+    }
+}
+
+
 //---------------------------------------------------------------------------
 
 string Lt1(string cadena)

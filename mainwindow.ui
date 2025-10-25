@@ -443,6 +443,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionBrillo_contraste"/>
     <addaction name="actionInvertir"/>
     <addaction name="menuRotar"/>
+    <addaction name="actionAjuste_lineal_del_histograma"/>
     <addaction name="actionMedia_ponderada"/>
    </widget>
    <widget class="QMenu" name="menuEfectos">
@@ -663,6 +664,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionCapturar_de_c_mara">
    <property name="text">
     <string>Capturar de cámara...</string>
+   </property>
+  </action>
+  <action name="actionAjuste_lineal_del_histograma">
+   <property name="text">
+    <string>Ajuste lineal del histograma...</string>
    </property>
   </action>
  </widget>
