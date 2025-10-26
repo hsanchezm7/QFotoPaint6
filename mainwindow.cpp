@@ -17,6 +17,7 @@ using namespace cv;
 #include "rotaravideo.h"
 #include "suavizados.h"
 #include "ajustelineal.h"
+#include "capturadevideo.h"
 
 QString FiltroImagen = "Todos los formatos (*.jpg *.jpeg *.jpe .jp2 *.tif *.tiff *.png *.gif *.bmp *.dib *.webp *.ppm);;Archivos JPG (*.jpg *.jpeg *.jpe);;Archivos TIF (*.tif *.tiff);;Archivos PNG (*.png);;Archivos WEBP (*.webp);;Archivos GIF (*.gif);;Archivos BMP (*.bmp *.dib);;Otros (*.*)";
 
@@ -404,6 +405,31 @@ void MainWindow::on_actionAjuste_lineal_del_histograma_triggered()
     if (foto_activa() != -1) {
         AjusteLineal al(foto_activa(), this);
         al.exec();
+    }
+}
+
+void MainWindow::on_toolButton_9_clicked() {
+    herr_actual = HER_ARCOIRIS;
+}
+
+
+void MainWindow::on_actionArco_ris_triggered()
+{
+    herr_actual= HER_ARCOIRIS;
+    ui->toolButton_9->setChecked(true);
+}
+
+
+void MainWindow::on_actionCapturar_de_v_deo_triggered()
+{
+    if (primera_libre() != -1) {
+        QString nombre = QFileDialog::getOpenFileName();
+        if(!nombre.isEmpty()) {
+            CapturaDeVideo cv(nombre.toLatin1().data(), this);
+            if (cv.isOpen()){
+                cv.exec();
+            }
+        }
     }
 }
 

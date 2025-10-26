@@ -14,7 +14,8 @@ TEMPLATE = app
 
 CONFIG += c++17
 
-SOURCES += main.cpp\
+SOURCES += main.cpp \
+    capturadevideo.cpp \
     ajustelineal.cpp \
     mainwindow.cpp \
     imagenes.cpp \
@@ -27,7 +28,8 @@ SOURCES += main.cpp\
     acercade.cpp \
     mediadevideo.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS += mainwindow.h \
+    capturadevideo.h \
     ajustelineal.h \
     imagenes.h \
     dialognueva.h \
@@ -39,7 +41,8 @@ HEADERS  += mainwindow.h \
     acercade.h \
     mediadevideo.h
 
-FORMS    += mainwindow.ui \
+FORMS += mainwindow.ui \
+    capturadevideo.ui \
     ajustelineal.ui \
     dialognueva.ui \
     brillocontraste.ui \

@@ -14,5 +14,6 @@
         <file>imagenes/icono.png</file>
         <file>imagenes/icono.ico</file>
         <file>imagenes/histbase.png</file>
+        <file>imagenes/arcoiris.png</file>
     </qresource>
 </RCC>

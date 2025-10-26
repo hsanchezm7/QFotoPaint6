@@ -249,11 +249,11 @@ void cb_close (int factual)
 
 //---------------------------------------------------------------------------
 
-void cb_punto (int factual, int x, int y)
+void cb_punto (int factual, int x, int y, Scalar color)
 {
     Mat im= foto[factual].img;  // Ojo: esto no es una copia, sino a la misma imagen
     if (difum_pincel==0)
-        circle(im, Point(x, y), radio_pincel, color_pincel, -1, LINE_AA);
+        circle(im, Point(x, y), radio_pincel, color, -1, LINE_AA);
     else {
         int t = radio_pincel+difum_pincel;
         int posx = t, posy = t;
@@ -281,7 +281,7 @@ void cb_punto (int factual, int x, int y)
 
         Mat trozo = im(roi);
 
-        Mat res(trozo.size(), im.type(), color_pincel);
+        Mat res(trozo.size(), im.type(), color);
         Mat cop(trozo.size(), im.type(), CV_RGB(0,0,0));
         circle(cop, Point(posx, posy), radio_pincel, CV_RGB(255,255,255), -1, LINE_AA);
         blur(cop, cop, Size(difum_pincel*2+1, difum_pincel*2+1));
@@ -426,6 +426,43 @@ void cb_ver_seleccion (int factual, int x, int y, bool foto_roi)
 
 //---------------------------------------------------------------------------
 
+Scalar color_arcoiris()
+{
+    static int estado = 0;
+    static Scalar colorAct = CV_RGB(255,0,0);
+    int inc = 8;
+    switch(estado) {
+        case 0:  // G++ green val[1]
+            colorAct.val[1] += inc;
+            if (colorAct.val[1] >= 255) estado++;
+            break;
+        case 1:  // R-- red val[2]
+            colorAct.val[2] -= inc;
+            if (colorAct.val[2] <= 0) estado++;
+            break;
+        case 2:  // B++ blue val[0]
+            colorAct.val[0] += inc;
+            if (colorAct.val[0] >= 255) estado++;
+            break;
+        case 3:  // G--
+            colorAct.val[1] -= inc;
+            if (colorAct.val[1] <= 0) estado++;
+            break;
+        case 4:  // R++
+            colorAct.val[2] += inc;
+            if (colorAct.val[2] >= 255) estado++;
+            break;
+        case 5:  // B--
+            colorAct.val[0] -= inc;
+            if (colorAct.val[0] <= 0) estado = 0;
+            break;
+    }
+
+    return colorAct;
+}
+
+//---------------------------------------------------------------------------
+
 void callback (int event, int x, int y, int flags, void *_nfoto)
 {
     int factual= (long long) _nfoto;
@@ -460,12 +497,20 @@ void callback (int event, int x, int y, int flags, void *_nfoto)
     // 2.1. Herramienta PUNTO
     case HER_PUNTO:
         if (flags==EVENT_FLAG_LBUTTON && event!=EVENT_LBUTTONUP)
-            cb_punto(factual, x, y);
+            cb_punto(factual, x, y, color_pincel);
         else
             ninguna_accion(factual, x, y);
         break;
 
-        // 2.2. Herramienta LINEA
+    // 2.2. Herramienta ARCOIRIS
+    case HER_ARCOIRIS:
+        if (flags==EVENT_FLAG_LBUTTON && event!=EVENT_LBUTTONUP)
+            cb_punto(factual, x, y, color_arcoiris());
+        else
+            ninguna_accion(factual, x, y);
+        break;
+
+    // 2.3. Herramienta LINEA
     case HER_LINEA:
         if (event==EVENT_LBUTTONUP)
             cb_linea(factual, x, y);
@@ -475,7 +520,7 @@ void callback (int event, int x, int y, int flags, void *_nfoto)
             ninguna_accion(factual, x, y);
         break;
 
-        // 2.3. Herramienta ELIPSE
+    // 2.4. Herramienta ELIPSE
     case HER_ELIPSE:
         if (event==EVENT_LBUTTONUP)
             cb_elipse(factual, x, y);
@@ -485,7 +530,7 @@ void callback (int event, int x, int y, int flags, void *_nfoto)
             ninguna_accion(factual, x, y);
         break;
 
-    // 2.3. Herramienta RECTANGULO
+    // 2.5. Herramienta RECTANGULO
     case HER_RECTANGULO:
         if (event==EVENT_LBUTTONUP)
             cb_rectangulo(factual, x, y);
@@ -495,7 +540,7 @@ void callback (int event, int x, int y, int flags, void *_nfoto)
             ninguna_accion(factual, x, y);
         break;
 
-    // 2.4. Herramienta SELECCION
+    // 2.6. Herramienta SELECCION
     case HER_SELECCION:
         if (event==EVENT_LBUTTONUP)
             cb_seleccionar(factual, x, y);
@@ -567,11 +612,15 @@ void rotar_exacto (int nfoto, int nres, int grado)
 
 //---------------------------------------------------------------------------
 
-void ver_brillo_contraste (int nfoto, double suma, double prod, bool guardar)
+void ver_brillo_contraste_gamma (int nfoto, double suma, double prod, double gamma, bool guardar)
 {
     assert(nfoto>=0 && nfoto<MAX_VENTANAS && foto[nfoto].usada);
     Mat img;
     foto[nfoto].img.convertTo(img, CV_8UC3, prod, suma);
+    Mat img32f;
+    img.convertTo(img32f, CV_32FC3, 1.0/255);
+    pow(img32f, 1.0/gamma, img32f);
+    img32f.convertTo(img, CV_8UC3, 255);
     imshow(foto[nfoto].nombre, img);
     if (guardar) {
         img.copyTo(foto[nfoto].img);
