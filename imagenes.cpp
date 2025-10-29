@@ -13,19 +13,21 @@
 
 ventana foto[MAX_VENTANAS];
 
-tipo_herramienta herr_actual= HER_PUNTO;
+tipo_herramienta herr_actual= DEFAULT_HER;
 
-int radio_pincel= 10;
+int radio_pincel= DEFAULT_RADIO_PINCEL;
 
 Scalar color_pincel= CV_RGB(255, 255, 255);
 
-int difum_pincel= 10;
+int difum_pincel=DEFAULT_DIFUM_PINCEL;
 
 bool preguntar_guardar= false;
 
 bool callback_inactivo= false;
 
 static int numpos= 0; // Número actual en el orden de posición de las ventanas
+
+int incremento_arcoiris = DEFAULT_INCREMENTO_ARCOIRIS;
 
 ///////////////////////////////////////////////////////////////////
 /////////  FUNCIONES DE MANEJO DE VENTANAS           //////////////
@@ -430,30 +432,29 @@ Scalar color_arcoiris()
 {
     static int estado = 0;
     static Scalar colorAct = CV_RGB(255,0,0);
-    int inc = 8;
     switch(estado) {
         case 0:  // G++ green val[1]
-            colorAct.val[1] += inc;
+            colorAct.val[1] += incremento_arcoiris;
             if (colorAct.val[1] >= 255) estado++;
             break;
         case 1:  // R-- red val[2]
-            colorAct.val[2] -= inc;
+            colorAct.val[2] -= incremento_arcoiris;
             if (colorAct.val[2] <= 0) estado++;
             break;
         case 2:  // B++ blue val[0]
-            colorAct.val[0] += inc;
+            colorAct.val[0] += incremento_arcoiris;
             if (colorAct.val[0] >= 255) estado++;
             break;
         case 3:  // G--
-            colorAct.val[1] -= inc;
+            colorAct.val[1] -= incremento_arcoiris;
             if (colorAct.val[1] <= 0) estado++;
             break;
         case 4:  // R++
-            colorAct.val[2] += inc;
+            colorAct.val[2] += incremento_arcoiris;
             if (colorAct.val[2] >= 255) estado++;
             break;
         case 5:  // B--
-            colorAct.val[0] -= inc;
+            colorAct.val[0] -= incremento_arcoiris;
             if (colorAct.val[0] <= 0) estado = 0;
             break;
     }

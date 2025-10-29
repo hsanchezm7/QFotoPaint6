@@ -21,6 +21,7 @@ public:
 protected:
     void changeEvent(QEvent *e);
     void closeEvent(QCloseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
 
 private:
     Ui::MainWindow *ui;
@@ -73,6 +74,7 @@ private slots:
     void on_actionCapturar_de_c_mara_triggered();
     void on_actionAjuste_lineal_del_histograma_triggered();
     void on_actionCapturar_de_v_deo_triggered();
+    void on_horizontalSlider_4_valueChanged(int value);
 };
 
 extern MainWindow *w;

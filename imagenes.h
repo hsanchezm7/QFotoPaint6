@@ -13,6 +13,8 @@ using namespace cv;
 #define MAX_VENTANAS 100
 // Número máximo de ventanas permitido
 
+// Constantes conocidas en tiempo de compilación
+
 #define DESP_X_HIJO 70
 #define DESP_Y_HIJO 50
 // Desplazamiento en X e Y de las ventanas hijas respecto de la ventana principal
@@ -42,6 +44,10 @@ struct ventana {
 
 enum tipo_herramienta {HER_PUNTO, HER_LINEA, HER_SELECCION, HER_RECTANGULO, HER_ELIPSE, HER_ARCOIRIS};
 
+constexpr tipo_herramienta DEFAULT_HER = HER_PUNTO;
+constexpr int DEFAULT_RADIO_PINCEL = 10;
+constexpr int DEFAULT_DIFUM_PINCEL = 10;
+constexpr int DEFAULT_INCREMENTO_ARCOIRIS = 10;
 
 ///////////////////////////////////////////////////////////////////
 /////////  VARIABLES PÚBLICAS                        //////////////
@@ -68,6 +74,10 @@ extern bool preguntar_guardar;
 
 extern bool callback_inactivo;
 // El callback de las ventanas está inactivo por estar ejecutando una herramienta
+
+extern int incremento_arcoiris;
+// Incremento del paso de color de la herramienta arcoíris
+
 
 ///////////////////////////////////////////////////////////////////
 /////////  FUNCIONES DE MANEJO DE VENTANAS           //////////////

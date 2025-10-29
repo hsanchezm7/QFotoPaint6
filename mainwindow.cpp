@@ -3,6 +3,7 @@
 #include <QFileDialog>
 #include <QColorDialog>
 #include <QMessageBox>
+#include <QMouseEvent>
 
 #include <opencv2/opencv.hpp>
 using namespace cv;
@@ -26,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->incrementoArcoirisWidget->hide();
 }
 
 MainWindow::~MainWindow()
@@ -37,6 +39,20 @@ void MainWindow::show()
 {
     QMainWindow::show();
     move(x(), 0);
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+    if (ui->incrementoArcoirisWidget->isVisible()) {
+        QPoint pos = event->pos();
+
+        // Si el ratón no está dentro del widget y tampoco sobre el botón
+        if (!ui->incrementoArcoirisWidget->geometry().contains(pos) &&
+            !ui->toolButton_9->geometry().contains(pos)) {
+            ui->incrementoArcoirisWidget->hide();
+            ui->toolButton_9->setDown(false);
+        }
+    }
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
@@ -410,6 +426,7 @@ void MainWindow::on_actionAjuste_lineal_del_histograma_triggered()
 
 void MainWindow::on_toolButton_9_clicked() {
     herr_actual = HER_ARCOIRIS;
+    ui->incrementoArcoirisWidget->setVisible(!ui->incrementoArcoirisWidget->isVisible());
 }
 
 
@@ -431,5 +448,11 @@ void MainWindow::on_actionCapturar_de_v_deo_triggered()
             }
         }
     }
+}
+
+
+void MainWindow::on_horizontalSlider_4_valueChanged(int value)
+{
+    incremento_arcoiris = value;
 }
 
