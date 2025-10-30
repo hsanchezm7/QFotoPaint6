@@ -75,6 +75,7 @@ private slots:
     void on_actionAjuste_lineal_del_histograma_triggered();
     void on_actionCapturar_de_v_deo_triggered();
     void on_horizontalSlider_4_valueChanged(int value);
+    void on_actionBajorrelieve_triggered();
 };
 
 extern MainWindow *w;

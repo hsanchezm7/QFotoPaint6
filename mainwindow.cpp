@@ -19,6 +19,7 @@ using namespace cv;
 #include "suavizados.h"
 #include "ajustelineal.h"
 #include "capturadevideo.h"
+#include "bajorrelieve.h"
 
 QString FiltroImagen = "Todos los formatos (*.jpg *.jpeg *.jpe .jp2 *.tif *.tiff *.png *.gif *.bmp *.dib *.webp *.ppm);;Archivos JPG (*.jpg *.jpeg *.jpe);;Archivos TIF (*.tif *.tiff);;Archivos PNG (*.png);;Archivos WEBP (*.webp);;Archivos GIF (*.gif);;Archivos BMP (*.bmp *.dib);;Otros (*.*)";
 
@@ -454,5 +455,14 @@ void MainWindow::on_actionCapturar_de_v_deo_triggered()
 void MainWindow::on_horizontalSlider_4_valueChanged(int value)
 {
     incremento_arcoiris = value;
+}
+
+
+void MainWindow::on_actionBajorrelieve_triggered()
+{
+    if (foto_activa() != -1 && primera_libre() != -1) {
+        Bajorrelieve br(foto_activa(), primera_libre(), this);
+        br.exec();
+    }
 }
 

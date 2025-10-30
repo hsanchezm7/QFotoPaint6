@@ -15,5 +15,9 @@
         <file>imagenes/icono.ico</file>
         <file>imagenes/histbase.png</file>
         <file>imagenes/arcoiris.png</file>
+        <file>imagenes/arena.jpg</file>
+        <file>imagenes/cielo.jpg</file>
+        <file>imagenes/madera.jpg</file>
+        <file>imagenes/gris.png</file>
     </qresource>
 </RCC>
