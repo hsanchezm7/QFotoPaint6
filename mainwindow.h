@@ -76,6 +76,8 @@ private slots:
     void on_actionCapturar_de_v_deo_triggered();
     void on_horizontalSlider_4_valueChanged(int value);
     void on_actionBajorrelieve_triggered();
+    void on_actionEscala_de_color_triggered();
+    void on_actionPinchar_estirar_triggered();
 };
 
 extern MainWindow *w;

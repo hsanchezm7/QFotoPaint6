@@ -20,6 +20,7 @@ using namespace cv;
 #include "ajustelineal.h"
 #include "capturadevideo.h"
 #include "bajorrelieve.h"
+#include "pincharestirar.h"
 
 QString FiltroImagen = "Todos los formatos (*.jpg *.jpeg *.jpe .jp2 *.tif *.tiff *.png *.gif *.bmp *.dib *.webp *.ppm);;Archivos JPG (*.jpg *.jpeg *.jpe);;Archivos TIF (*.tif *.tiff);;Archivos PNG (*.png);;Archivos WEBP (*.webp);;Archivos GIF (*.gif);;Archivos BMP (*.bmp *.dib);;Otros (*.*)";
 
@@ -463,6 +464,23 @@ void MainWindow::on_actionBajorrelieve_triggered()
     if (foto_activa() != -1 && primera_libre() != -1) {
         Bajorrelieve br(foto_activa(), primera_libre(), this);
         br.exec();
+    }
+}
+
+
+void MainWindow::on_actionEscala_de_color_triggered()
+{
+    if (foto_activa() != -1 && primera_libre() != -1) {
+        escala_color(foto_activa(), primera_libre());
+    }
+}
+
+
+void MainWindow::on_actionPinchar_estirar_triggered()
+{
+    if (foto_activa() != -1 && primera_libre() != -1) {
+        PincharEstirar pe(foto_activa(), primera_libre(), this);
+        pe.exec();
     }
 }
 

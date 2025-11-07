@@ -166,6 +166,12 @@ void ver_suavizado (int nfoto, int ntipo, int tamx, int tamy,
 // puede ser: 1=GAUSIANO; 2=MEDIA. Si guardar==true se guarda la imagen, y
 // en otro caso solo se visualiza el resultado, pero sin guardar
 
+void escala_color(int nfoto, int nres);
+// Convertir la imagen de entrada a escala a color del pincel
+
+void ver_pinchar_estirar(int nfoto, int nres, int cx, int cy, double grado, double radio, bool guardar=false);
+// Efecto pinchar/estirar
+
 void ver_histograma (int nfoto, int ncanal, int nres);
 // Mostrar el histograma de una imagen del ncanal dado (3 = grises)
 
