@@ -18,6 +18,7 @@ SOURCES += main.cpp \
     bajorrelieve.cpp \
     capturadevideo.cpp \
     ajustelineal.cpp \
+    inpaint.cpp \
     mainwindow.cpp \
     imagenes.cpp \
     dialognueva.cpp \
@@ -39,6 +40,7 @@ HEADERS += mainwindow.h \
     imagenes.h \
     dialognueva.h \
     brillocontraste.h \
+    inpaint.h \
     matsatlum.h \
     pincharestirar.h \
     starwars.h \
@@ -55,6 +57,7 @@ FORMS += mainwindow.ui \
     ajustelineal.ui \
     dialognueva.ui \
     brillocontraste.ui \
+    inpaint.ui \
     matsatlum.ui \
     pincharestirar.ui \
     starwars.ui \

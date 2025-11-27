@@ -572,6 +572,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionEscala_de_color"/>
     <addaction name="actionPinchar_estirar"/>
     <addaction name="actionBajorrelieve"/>
+    <addaction name="actionInpaint"/>
    </widget>
    <widget class="QMenu" name="menuV_deo">
     <property name="title">
@@ -818,6 +819,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionMatiz_Saturaci_n_Luminosidad">
    <property name="text">
     <string>Matiz/Saturación/Luminosidad...</string>
+   </property>
+  </action>
+  <action name="actionInpaint">
+   <property name="text">
+    <string>Inpaint...</string>
    </property>
   </action>
  </widget>
