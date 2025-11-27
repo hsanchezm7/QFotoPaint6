@@ -79,6 +79,7 @@ private slots:
     void on_actionEscala_de_color_triggered();
     void on_actionPinchar_estirar_triggered();
     void on_actionStar_Wars_triggered();
+    void on_actionMatiz_Saturaci_n_Luminosidad_triggered();
 };
 
 extern MainWindow *w;

@@ -795,6 +795,32 @@ void ver_pinchar_estirar(int nfoto, int nres, int cx, int cy, double grado, doub
 
 //---------------------------------------------------------------------------
 
+void ver_matsatlum (int nfoto, int matiz, double saturacion, double luminosidad,
+                   bool guardar)
+{
+    Mat hls;
+    cvtColor(foto[nfoto].img, hls, COLOR_BGR2HLS_FULL);
+    Mat canales[3];
+    split(hls, canales);
+    Mat hl6;
+    canales[0].convertTo(hl6, CV_16S, 1, matiz);
+    bitwise_and(hl6, 255, hl6);
+    hl6.convertTo(canales[0], CV_8U);
+    canales[1] *= luminosidad;
+    canales[2] *= saturacion;
+    merge(canales, 3, hls);
+    Mat res;
+    cvtColor(hls, res, COLOR_HLS2BGR_FULL);
+    imshow(foto[nfoto].nombre, res);
+    if (guardar) {
+        res.copyTo(foto[nfoto].img);
+        foto[nfoto].modificada= true;
+    }
+}
+
+//---------------------------------------------------------------------------
+
+
 void media_ponderada (int nf1, int nf2, int nueva, double peso)
 {
     assert(nf1>=0 && nf1<MAX_VENTANAS && foto[nf1].usada);

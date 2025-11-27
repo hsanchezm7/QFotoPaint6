@@ -160,6 +160,10 @@ void ver_brillo_contraste_gamma (int nfoto, double suma, double pro, double gamm
 // A(x,y)*prod + suma. Si guardar==true se guarda la imagen, y en otro caso
 // solo se visualiza el resultado, pero sin guardar
 
+void ver_matsatlum (int nfoto, int matiz, double saturacion, double luminosidad,
+                   bool guardar = false);
+// Ajuste de matiz/saturación/luminosidad
+
 void ver_suavizado (int nfoto, int ntipo, int tamx, int tamy,
                     bool guardar= false);
 // Modifica la imagen en nfoto, aplicando un suavizado de tamaño dado. ntipo
