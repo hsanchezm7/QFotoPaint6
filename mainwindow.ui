@@ -581,6 +581,7 @@ p, li { white-space: pre-wrap; }
       <string>Imagen a vídeo</string>
      </property>
      <addaction name="actionRotar_imagen"/>
+     <addaction name="actionStar_Wars"/>
     </widget>
     <widget class="QMenu" name="menuV_deo_a_imagen">
      <property name="title">
@@ -806,6 +807,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionPinchar_estirar">
    <property name="text">
     <string>Pinchar/estirar...</string>
+   </property>
+  </action>
+  <action name="actionStar_Wars">
+   <property name="text">
+    <string>Star Wars</string>
    </property>
   </action>
  </widget>

@@ -21,6 +21,7 @@ using namespace cv;
 #include "capturadevideo.h"
 #include "bajorrelieve.h"
 #include "pincharestirar.h"
+#include "starwars.h"
 
 QString FiltroImagen = "Todos los formatos (*.jpg *.jpeg *.jpe .jp2 *.tif *.tiff *.png *.gif *.bmp *.dib *.webp *.ppm);;Archivos JPG (*.jpg *.jpeg *.jpe);;Archivos TIF (*.tif *.tiff);;Archivos PNG (*.png);;Archivos WEBP (*.webp);;Archivos GIF (*.gif);;Archivos BMP (*.bmp *.dib);;Otros (*.*)";
 
@@ -481,6 +482,15 @@ void MainWindow::on_actionPinchar_estirar_triggered()
     if (foto_activa() != -1 && primera_libre() != -1) {
         PincharEstirar pe(foto_activa(), primera_libre(), this);
         pe.exec();
+    }
+}
+
+
+void MainWindow::on_actionStar_Wars_triggered()
+{
+    if (foto_activa() != -1) {
+        StarWars sw(foto_activa(), this);
+        sw.exec();
     }
 }
 

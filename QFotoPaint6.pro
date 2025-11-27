@@ -23,6 +23,7 @@ SOURCES += main.cpp \
     dialognueva.cpp \
     brillocontraste.cpp \
     pincharestirar.cpp \
+    starwars.cpp \
     suavizados.cpp \
     video.cpp \
     rotaravideo.cpp \
@@ -38,6 +39,7 @@ HEADERS += mainwindow.h \
     dialognueva.h \
     brillocontraste.h \
     pincharestirar.h \
+    starwars.h \
     suavizados.h \
     video.h \
     rotaravideo.h \
@@ -52,6 +54,7 @@ FORMS += mainwindow.ui \
     dialognueva.ui \
     brillocontraste.ui \
     pincharestirar.ui \
+    starwars.ui \
     suavizados.ui \
     rotaravideo.ui \
     mediaponderada.ui \

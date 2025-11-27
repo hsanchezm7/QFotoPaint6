@@ -35,4 +35,6 @@ void mostrar_camara (void);
 void capturar_de_camara(int nres);
 // Capturar una imagen de la cámara
 
+void star_wars(int nfoto, string nombre, int nframes, double fps, int codec, vector<string> texto, Scalar color, double escala, bool guardar = false);
+
 #endif // VIDEO_H
