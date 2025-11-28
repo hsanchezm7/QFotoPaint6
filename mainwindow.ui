@@ -500,6 +500,9 @@ p, li { white-space: pre-wrap; }
     <addaction name="separator"/>
     <addaction name="actionCerrar"/>
     <addaction name="actionSalir"/>
+    <addaction name="separator"/>
+    <addaction name="actionDeshacer"/>
+    <addaction name="actionRehacer"/>
    </widget>
    <widget class="QMenu" name="menuEdici_n">
     <property name="title">
@@ -833,6 +836,28 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="shortcut">
     <string>Ctrl+V</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ShortcutContext::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionDeshacer">
+   <property name="text">
+    <string>Deshacer</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ShortcutContext::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionRehacer">
+   <property name="text">
+    <string>Rehacer</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ShortcutContext::ApplicationShortcut</enum>

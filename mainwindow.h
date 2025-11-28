@@ -82,6 +82,8 @@ private slots:
     void on_actionMatiz_Saturaci_n_Luminosidad_triggered();
     void on_actionInpaint_triggered();
     void on_actionNueva_desde_portapapeles_triggered();
+    void on_actionDeshacer_triggered();
+    void on_actionRehacer_triggered();
 };
 
 extern MainWindow *w;

@@ -2,6 +2,7 @@
 #define IMAGENES_H
 
 #include <string>
+
 using namespace std;
 #include <opencv2/opencv.hpp>
 using namespace cv;
@@ -19,6 +20,8 @@ using namespace cv;
 #define DESP_Y_HIJO 50
 // Desplazamiento en X e Y de las ventanas hijas respecto de la ventana principal
 
+#define MAX_HIST_IMG 20
+// Desplazamiento en X e Y de las ventanas hijas respecto de la ventana principal
 
 ///////////////////////////////////////////////////////////////////
 /////////  TIPOS DE DATOS PROPIOS                    //////////////
@@ -29,13 +32,15 @@ using namespace cv;
 //    editada actualmente en la aplicación
 
 struct ventana {
-    bool usada;          // Indica si se está usando actualmente esta posición
-    bool modificada;     // Ha sido modificada después de abrirla o crearla
-    string nombre;       // Nombre de la ventana codificada en UTF8
-    string nombref;      // Nombre del fichero de imagen codificado en Latin1
-    int orden;           // Número de orden entre las ventanas abiertas
-    Rect roi;            // Región de interés seleccionada
-    Mat img;             // Imagen almacenada en esta posición
+    bool usada;             // Indica si se está usando actualmente esta posición
+    bool modificada;        // Ha sido modificada después de abrirla o crearla
+    string nombre;          // Nombre de la ventana codificada en UTF8
+    string nombref;         // Nombre del fichero de imagen codificado en Latin1
+    int orden;              // Número de orden entre las ventanas abiertas
+    Rect roi;               // Región de interés seleccionada
+    Mat img;                // Imagen almacenada en esta posición
+    vector<Mat> img_hist;   // Historial de imágenes
+    vector<Mat> undo_hist;  // Historial de deshacer
 };
 
 // ENUM tipo_herramienta
@@ -190,6 +195,12 @@ void media_ponderada (int nf1, int nf2, int nueva, double peso);
 
 void ajuste_lineal_hist (int nfoto, double pmin, double pmax, bool guardar=false);
 // Operación de ajuste lineal del histograma
+
+void guardar_estado (int nfoto);
+
+void deshacer (int nfoto);
+
+void rehacer (int nfoto);
 
 string Lt1(string cadena);
 // Convertir una cadena de UTF8 a Latin1

@@ -29,6 +29,8 @@ static int numpos= 0; // Número actual en el orden de posición de las ventanas
 
 int incremento_arcoiris = DEFAULT_INCREMENTO_ARCOIRIS;
 
+bool dibujando_activo = false; // Controla si un trazo continuo está en curso
+
 ///////////////////////////////////////////////////////////////////
 /////////  FUNCIONES DE MANEJO DE VENTANAS           //////////////
 ///////////////////////////////////////////////////////////////////
@@ -490,6 +492,18 @@ void callback (int event, int x, int y, int flags, void *_nfoto)
     if (event==EVENT_LBUTTONDOWN) {
         downx= x;
         downy= y;
+
+        // marcar inicio trazo
+        if (!dibujando_activo) {
+            guardar_estado(factual);
+            dibujando_activo = true;
+        }
+    }
+
+    if (event==EVENT_LBUTTONUP) {
+        // finalizar trazo
+        if (dibujando_activo)
+            dibujando_activo = false;
     }
 
     // 2. Según la herramienta actual
@@ -624,6 +638,7 @@ void ver_brillo_contraste_gamma (int nfoto, double suma, double prod, double gam
     img32f.convertTo(img, CV_8UC3, 255);
     imshow(foto[nfoto].nombre, img);
     if (guardar) {
+        guardar_estado(nfoto);
         img.copyTo(foto[nfoto].img);
         foto[nfoto].modificada= true;
     }
@@ -644,6 +659,7 @@ void ver_suavizado (int nfoto, int ntipo, int tamx, int tamy, bool guardar)
         medianBlur(foto[nfoto].img, img, tamx);
     imshow(foto[nfoto].nombre, img);
     if (guardar) {
+        guardar_estado(nfoto);
         img.copyTo(foto[nfoto].img);
         foto[nfoto].modificada= true;
     }
@@ -813,6 +829,7 @@ void ver_matsatlum (int nfoto, int matiz, double saturacion, double luminosidad,
     cvtColor(hls, res, COLOR_HLS2BGR_FULL);
     imshow(foto[nfoto].nombre, res);
     if (guardar) {
+        guardar_estado(nfoto);
         res.copyTo(foto[nfoto].img);
         foto[nfoto].modificada= true;
     }
@@ -864,6 +881,7 @@ void ajuste_lineal_hist (int nfoto, double pmin, double pmax, bool guardar)
     img.convertTo(imres, img.type(), a, b);
     imshow(foto[nfoto].nombre, imres);
     if (guardar) {
+        guardar_estado(nfoto);
         imres.copyTo(img);
         foto[nfoto].modificada = true;
     }
@@ -883,4 +901,61 @@ string Lt1(string cadena)
 void copiar_a_nueva (int nfoto, int nres) {
     Mat img = foto[nfoto].img(foto[nfoto].roi).clone();
     crear_nueva(nres, img);
+}
+
+void guardar_estado (int nfoto) {
+    ventana& v = foto[nfoto];
+
+    // guardar estado en la pila de deshacer
+    v.img_hist.push_back(v.img.clone());
+
+    // comprobar tamaño máximo de pila
+    if (v.img_hist.size() > MAX_HIST_IMG)
+        v.img_hist.erase(v.img_hist.begin());
+
+    // limpiar pila de imágenes para rehacer
+    if (!v.undo_hist.empty())
+        v.undo_hist.clear();
+
+    v.modificada = true;
+}
+
+void deshacer (int nfoto) {
+    ventana& v = foto[nfoto];
+
+    if (v.img_hist.empty()) {
+        qDebug() << "No hay más estados para deshacer.";
+        return;
+    }
+
+    // guardar estado para poder ir hacia delante
+    v.undo_hist.push_back(v.img.clone());
+
+    // recuperar y eliminar último estado guardado
+    v.img = v.img_hist.back().clone();
+    v.img_hist.pop_back();
+
+    if (v.undo_hist.size() > MAX_HIST_IMG) {
+        v.undo_hist.erase(v.undo_hist.begin());
+    }
+
+    imshow(v.nombre, v.img);
+}
+
+void rehacer (int nfoto) {
+    ventana& v = foto[nfoto];
+
+    if (v.undo_hist.empty()) {
+        qDebug() << "No hay más estados para rehacer.";
+        return;
+    }
+
+    // guardar estado en la pila de deshacer
+    v.img_hist.push_back(v.img.clone());
+
+    // recuperar y eliminar último estado de la pila de rehacer
+    v.img = v.undo_hist.back().clone();
+    v.undo_hist.pop_back();
+
+    imshow(v.nombre, v.img);
 }

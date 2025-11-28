@@ -7,7 +7,6 @@
 #include <QClipboard>
 #include <QMimeData>
 
-
 #include <opencv2/opencv.hpp>
 using namespace cv;
 
@@ -538,3 +537,19 @@ void MainWindow::on_actionNueva_desde_portapapeles_triggered()
                              "No se encontró ninguna imagen en el portapapeles.");
     }
 }
+
+void MainWindow::on_actionDeshacer_triggered()
+{
+    if (foto_activa() != -1) {
+        deshacer(foto_activa());
+    }
+}
+
+
+void MainWindow::on_actionRehacer_triggered()
+{
+    if (foto_activa() != -1) {
+        rehacer(foto_activa());
+    }
+}
+
