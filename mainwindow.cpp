@@ -4,6 +4,9 @@
 #include <QColorDialog>
 #include <QMessageBox>
 #include <QMouseEvent>
+#include <QClipboard>
+#include <QMimeData>
+
 
 #include <opencv2/opencv.hpp>
 using namespace cv;
@@ -511,5 +514,27 @@ void MainWindow::on_actionInpaint_triggered()
     if (foto_activa() != -1) {
         Inpaint ip(foto_activa(), this);
         ip.exec();
+    }
+}
+
+void MainWindow::on_actionNueva_desde_portapapeles_triggered()
+{
+    const QClipboard *clipboard = QGuiApplication::clipboard();
+    const QMimeData *mimeData = clipboard->mimeData();
+
+    if (mimeData->hasImage()) {
+        QImage img = qvariant_cast<QImage>(mimeData->imageData());
+
+        if (!img.isNull()) {
+            Mat mat = Mat(img.height(), img.width(), CV_8UC4, img.bits());
+            cvtColor(mat, mat, COLOR_RGBA2RGB);
+
+            int pl = comprobar_primera_libre();
+            if (pl != -1)
+                crear_nueva(pl, mat);
+        }
+    } else {
+        QMessageBox::warning(this, "Portapapeles vacío",
+                             "No se encontró ninguna imagen en el portapapeles.");
     }
 }

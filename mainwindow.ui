@@ -490,6 +490,7 @@ p, li { white-space: pre-wrap; }
      <string>Archivo</string>
     </property>
     <addaction name="actionNueva_imagen"/>
+    <addaction name="actionNueva_desde_portapapeles"/>
     <addaction name="actionAbrir_imagen"/>
     <addaction name="actionCapturar_de_c_mara"/>
     <addaction name="actionCapturar_de_v_deo"/>
@@ -824,6 +825,17 @@ p, li { white-space: pre-wrap; }
   <action name="actionInpaint">
    <property name="text">
     <string>Inpaint...</string>
+   </property>
+  </action>
+  <action name="actionNueva_desde_portapapeles">
+   <property name="text">
+    <string>Nueva desde portapapeles</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ShortcutContext::ApplicationShortcut</enum>
    </property>
   </action>
  </widget>
