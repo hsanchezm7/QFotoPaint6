@@ -1,0 +1,389 @@
+%%% style.tex %%%
+
+%%%%% --------------------------------------------- %%%%%
+%	   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS       %
+%%%%% --------------------------------------------- %%%%%
+
+
+\usepackage{amsmath,amsfonts,stmaryrd,amssymb} % Math packages
+\usepackage{fancyhdr}
+\usepackage{enumerate} % Custom item numbers for enumerations
+\usepackage[ruled]{algorithm2e} % Algorithms
+\usepackage[framemethod=tikz]{mdframed} % Custom boxed/framed environments
+
+\definecolor{codegray}{gray}{0.925}
+\let\colortexttt\texttt
+\renewcommand{\texttt}[1]{\colorbox{codegray}{\colortexttt{#1}}}
+
+\setcounter{tocdepth}{2}
+
+\usepackage{xcolor} % Colours
+\definecolor{mRed}{rgb}{0.8, 0, 0}
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{mCyan}{RGB}{0, 183, 235}
+\definecolor{mBlue}{rgb}{0.13,0.13,1}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings} % File listings, with syntax highlighting
+\lstset{
+	basicstyle=\ttfamily, % Typeset listings in monospace font
+	extendedchars=true,  % Soporta caracteres extendidos
+	literate={├}{{|-}}1 {─}{{-}}1 {●}{{$\bullet$}}1 {└}{{\texttt{\textbackslash}}}1 
+}
+\lstdefinestyle{CppQtStyle}{
+	backgroundcolor=\color{backgroundColour},   
+	commentstyle=\color{mGreen}\itshape,
+	keywordstyle=\color{mCyan}\bfseries,           % C++ keywords
+	keywordstyle=[2]\color{mViolet}\bfseries,      % Qt macros/signals/slots
+	keywordstyle=[3]\color{mOrange},               % basic types
+	numberstyle=\tiny\color{mGray},
+	stringstyle=\color{mPurple},
+	basicstyle=\fontfamily{pcr}\selectfont\small,
+	breakatwhitespace=false,         
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	escapeinside={\%*}{*)},
+	inputencoding=utf8,
+	extendedchars=true,
+	literate={á}{{\'a}}1 {ã}{{\~a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1,
+	numbersep=5pt,
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2,
+	language=C++,
+	morekeywords={signals, slots, Q_OBJECT, emit},
+	emph={main, connect, mapFromGlobal, setVisible, setDown}, % functions/methods to highlight
+	emphstyle=\color{red}\bfseries
+}
+
+\lstdefinestyle{BashStyle}{
+	backgroundcolor=\color{lightgray!10},
+	keywordstyle=\color{blue!80!black}\bfseries,
+	stringstyle=\color{red!70!black},         
+	basicstyle=\fontfamily{pcr}\selectfont\small,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=none,                  
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2,
+	language=bash,
+	extendedchars=true,
+	inputencoding=utf8
+}
+
+\lstdefinestyle{TextFileStyle}{
+	backgroundcolor=\color{lightgray!5},
+	basicstyle=\ttfamily\small,
+	numbers=none,
+	breaklines=true,
+	captionpos=b,
+	frame=single,
+	rulecolor=\color{gray!30},
+	showstringspaces=false,
+	tabsize=2,
+	language={}
+}
+
+\usepackage[most]{tcolorbox}
+
+% src: https://xyquadrat.ch/blog/latex-boxes/
+\tcbset {
+	base/.style={
+		arc=0mm, 
+		bottomtitle=0.5mm,
+		boxrule=0mm,
+		colbacktitle=black!10!white, 
+		coltitle=black, 
+		fonttitle=\bfseries, 
+		left=2.5mm,
+		leftrule=1mm,
+		right=3.5mm,
+		title={#1},
+		toptitle=0.75mm, 
+	}
+}
+
+\definecolor{brandblue}{rgb}{0.34, 0.7, 1}
+\newtcolorbox{mainbox}[1]{
+	colframe=brandblue, 
+	base={#1}
+}
+
+\newtcolorbox{subbox}[1]{
+	colframe=black!30!white,
+	base={#1}
+}
+
+\usepackage{colortbl} % Para \arrayrulecolor y colorear tablas
+\usepackage{alltt}
+\usepackage{array, multirow, tabularx, booktabs} % Tables
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{quotes,babel, positioning, shapes, shapes.geometric, arrows, calc, external, chains}
+% \usetikzlibrary{arrows.meta, positioning, chains, positioning, shapes.geometric, shadows}
+\usepackage{aeguill}
+\usepackage{tikzpeople}
+
+\usepackage{pgfplots}
+
+\usepackage[linktoc=none]{hyperref} % para enlaces. linktoc deshabilita indice
+\hypersetup{
+	colorlinks,
+	linkcolor=blue,
+	citecolor=blue,
+	urlcolor={blue!80!black}, % urls
+	pdftitle={Documentación QFotoPaint6},
+	pdfsubject={InfGraf},
+	pdfauthor={Hugo Sánchez Martínez}
+}
+
+\usepackage[spanish, es-nodecimaldot]{babel} % Paquete de español
+
+\setlength{\arrayrulewidth}{1.5\arrayrulewidth} % Table rule thickness
+
+% Cambiar título del ToC
+\addto\captionsspanish{
+	\renewcommand{\contentsname}
+	{Contenidos}%
+}
+
+\usepackage{listingsutf8}    % Soporte para caracteres UTF-8
+\usetikzlibrary{shadows,calc}
+
+\usepackage[inline]{enumitem}   
+\makeatletter
+% This command ignores the optional argument for itemize and enumerate lists
+\newcommand{\inlineitem}[1][]{%
+	\ifnum\enit@type=\tw@
+	{\descriptionlabel{#1}}
+	\hspace{\labelsep}%
+	\else
+	\ifnum\enit@type=\z@
+	\refstepcounter{\@listctr}\fi
+	\quad\@itemlabel\hspace{\labelsep}%
+	\fi}
+\makeatother
+
+\renewcommand{\footnoterule}{%
+	\vspace{1cm} % Espacio adicional antes de la línea
+	\hrule width 0.8\textwidth % Ajusta el ancho de la línea (80% del ancho del texto)
+	\vspace{2cm} % Espacio adicional después de la línea
+}
+
+
+%%%%% --------------------------------------------- %%%%%
+%	                 DOCUMENT MARGINS
+%%%%% --------------------------------------------- %%%%%
+
+\usepackage{geometry} % Required for adjusting page dimensions and margins
+
+\geometry{
+	a4paper, % Papaer size
+	margin={2cm,3cm},
+	headheight=14pt, % Header height
+	footskip=1cm, % Space from the bottom margin to the baseline of the footer
+	headsep=1.2cm, % Space from the top margin to the baseline of the header
+	%showframe, % Uncomment to show how the type block is set on the page
+}
+
+%%%%% --------------------------------------------- %%%%%
+%	                      FONTS                         %
+%%%%% --------------------------------------------- %%%%%
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage[
+protrusion=true,
+activate={true,nocompatibility},
+final,
+tracking=true,
+kerning=true,
+spacing=true,
+factor=1100]{microtype}
+\SetTracking{encoding={*}, shape=sc}{40}
+
+
+% Choose font:
+\usepackage{mathptmx} 	 % Times
+% \usepackage{mathpazo}  % Palatino
+% \usepackage{lmodern}	 % Upgraded LaTeX font
+
+%%%%% --------------------------------------------- %%%%%
+%	            COMMAND LINE ENVIRONMENT                %
+%%%%% --------------------------------------------- %%%%%
+
+% Usage:
+% \begin{commandline}
+	%	\begin{verbatim}
+		%		$ ls
+		%		
+		%		Applications	Desktop	...
+		%	\end{verbatim}
+	% \end{commandline}
+
+\mdfdefinestyle{commandline}{
+	leftmargin=10pt,
+	rightmargin=10pt,
+	innerleftmargin=15pt,
+	middlelinecolor=black!50!white,
+	middlelinewidth=2pt,
+	frametitlerule=false,
+	backgroundcolor=black!5!white,
+	frametitle={Bash},
+	frametitlefont={\normalfont\sffamily\color{white}\hspace{-1em}},
+	frametitlebackgroundcolor=black!50!white,
+	nobreak,
+}
+
+% Define a custom environment for command-line snapshots
+\newenvironment{commandline}{
+	\medskip
+	\begin{mdframed}[style=commandline]
+	}{
+	\end{mdframed}
+	\medskip
+}
+
+%%%%% --------------------------------------------- %%%%%
+%	             FILE CONTENTS ENVIRONMENT              %
+%%%%% --------------------------------------------- %%%%%
+
+% Usage:
+% \begin{file}[optional filename, defaults to "File"]
+	%	File contents, for example, with a listings environment
+	% \end{file}
+
+\mdfdefinestyle{file}{
+	innertopmargin=1.6\baselineskip,
+	innerbottommargin=0.8\baselineskip,
+	innerleftmargin=1.6\baselineskip,
+	topline=false, bottomline=false,
+	leftline=false, rightline=false,
+	leftmargin=2cm,
+	rightmargin=2cm,
+	singleextra={%
+		\draw[fill=black!10!white](P)++(0,-1.2em)rectangle(P-|O);
+		\node[anchor=north west]
+		at(P-|O){\ttfamily\mdfilename};
+		%
+		\def\l{3em}
+		\draw(O-|P)++(-\l,0)--++(\l,\l)--(P)--(P-|O)--(O)--cycle;
+		\draw(O-|P)++(-\l,0)--++(0,\l)--++(\l,0);
+	},
+	nobreak,
+}
+
+% Define a custom environment for file contents
+\newenvironment{file}[1][File]{ % Set the default filename to "File"
+	\medskip
+	\newcommand{\mdfilename}{#1}
+	\begin{mdframed}[style=file]
+	}{
+	\end{mdframed}
+	\medskip
+}
+
+%%%%% --------------------------------------------- %%%%%
+%	          NUMBERED QUESTIONS ENVIRONMENT            %
+%%%%% --------------------------------------------- %%%%%
+
+% Usage:
+% \begin{question}[optional title]
+	%	Question contents
+	% \end{question}
+
+\mdfdefinestyle{question}{
+	innertopmargin=1.2\baselineskip,
+	innerbottommargin=0.8\baselineskip,
+	roundcorner=5pt,
+	nobreak,
+	singleextra={%
+		\draw(P-|O)node[xshift=1em,anchor=west,fill=white,draw,rounded corners=5pt]{%
+			Question \theQuestion\questionTitle};
+	},
+}
+
+\newcounter{Question} % Stores the current question number that gets iterated with each new question
+
+% Define a custom environment for numbered questions
+\newenvironment{question}[1][\unskip]{
+	\bigskip
+	\stepcounter{Question}
+	\newcommand{\questionTitle}{~#1}
+	\begin{mdframed}[style=question]
+	}{
+	\end{mdframed}
+	\medskip
+}
+
+
+%%%%% --------------------------------------------- %%%%%
+%	              WARNING TEXT ENVIRONMENT              %
+%%%%% --------------------------------------------- %%%%%
+
+% Usage:
+% \begin{warn}[optional title, defaults to "Warning:"]
+	%	Contents
+	% \end{warn}
+
+\mdfdefinestyle{warning}{
+	topline=false, bottomline=false,
+	leftline=false, rightline=false,
+	nobreak,
+	singleextra={%
+		\draw(P-|O)++(-0.5em,0)node(tmp1){};
+		\draw(P-|O)++(0.5em,0)node(tmp2){};
+		\fill[black,rotate around={45:(P-|O)}](tmp1)rectangle(tmp2);
+		\node at(P-|O){\color{white}\scriptsize\bf !};
+		\draw[very thick](P-|O)++(0,-1em)--(O);%--(O-|P);
+	}
+}
+
+% Define a custom environment for warning text
+\newenvironment{warn}[1][Warning:]{ % Set the default warning to "Warning:"
+	\medskip
+	\begin{mdframed}[style=warning]
+		\noindent{\textbf{#1}}
+	}{
+	\end{mdframed}
+}
+
+
+%%%%% --------------------------------------------- %%%%%
+%                 INFORMATION ENVIRONMENT               %
+%%%%% --------------------------------------------- %%%%%
+
+% Usage:
+% \begin{info}[optional title, defaults to "Info:"]
+	% 	contents
+	% 	\end{info}
+
+\mdfdefinestyle{info}{%
+	topline=false, bottomline=false,
+	leftline=false, rightline=false,
+	nobreak,
+	singleextra={%
+		\fill[black](P-|O)circle[radius=0.4em];
+		\node at(P-|O){\color{white}\scriptsize\bf i};
+		\draw[very thick](P-|O)++(0,-0.8em)--(O);%--(O-|P);
+	}
+}
+
+% Define a custom environment for information
+\newenvironment{info}[1][Info:]{ % Set the default title to "Info:"
+	\medskip
+	\begin{mdframed}[style=info]
+		\noindent{\textbf{#1}}
+	}{
+	\end{mdframed}
+}
+

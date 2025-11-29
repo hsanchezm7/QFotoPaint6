@@ -1,0 +1,299 @@
+% !TeX spellcheck = es_ES
+%%% main.tex %%%
+
+\documentclass[11pt]{article}
+\include{style}
+
+\begin{document}
+
+\title{
+	\vspace{-5ex}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=72mm]{figures/umu-logo}
+	\end{figure}
+	
+	{\Large \textsc{Universidad de Murcia}}\\
+	{\Large Facultad de Informática}\\ [12.5ex]
+	{\Large \textsc{Prácticas de}\\ [1ex]}
+	{\Huge Informática Gráfica}\\ [1ex]
+	{\Large \textsc{4º de Grado en Ingeniería Informática}}\\
+	{\Large \textsc{Profesor: Ginés García Mateos}} \\
+	{\Large \textsc{Curso 2025/2026}} \\ 
+	\vspace{10ex}
+}
+
+\author{
+	{\Large Hugo Sánchez Martínez}\\[0.5ex]
+	24450997L\\
+	\texttt{hugo.s.m@um.es}\\
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\nouppercase{\rightmark} \hfill \textbf{\nouppercase{\leftmark}}}   % Encabezado en la página izquierda (even) sin mayúsculas
+\fancyhead[RO]{\nouppercase{\rightmark}}  % Encabezado en la página derecha (odd) sin mayúsculas
+\setlength{\headheight}{25pt}  % Ajusta la altura del encabezado
+\fancyfoot[R]{H. Sánchez}
+\fancyfoot[C]{\thepage}
+
+\date{\vspace{-10ex}}
+\maketitle
+\thispagestyle{empty} % Elimina el número de página de la portada
+\clearpage
+
+\thispagestyle{empty} % Elimina el número de página del ToC
+\tableofcontents
+\clearpage
+\thispagestyle{empty} % Elimina el número de página del ToC
+\listoffigures
+\clearpage
+\setcounter{page}{1}
+
+
+
+\thispagestyle{empty}
+
+\hrule
+\vspace{-5.4ex}
+\begin{abstract}
+\vspace{1ex}
+Este documento especifica la implementación de las prácticas de la asignatura de Informática Gráfica del último curso del grado en Ingeniería Informática de la Universidad de Murcia. \\
+
+Dicha práctica consiste en el desarrollo de una aplicación de procesamiento multimedia, basada en herramientas y funcionalidades presentes en aplicaciones de edición de imágenes y vídeo ya existentes. El objetivo de este documento es describir en detalle el proceso de desarrollo de la aplicación, explicando las funcionalidades implementadas durante la práctica.
+\vspace{0.5ex}
+\end{abstract}
+\hrule
+\vspace{4ex}
+
+\section{Introducción}
+
+\textbf{QFotoPaint} es una aplicación de escritorio para el procesamiento de imágenes y vídeo desarrollada en C++, utilizando el \textit{framework} Qt y la librería OpenCV. \\
+
+Inspirada en herramientas reales de edición como \textit{GIMP} o \textit{Photoshop}, QFotoPaint permite al usuario abrir, visualizar y editar múltiples imágenes simultáneamente, aplicando diferentes filtros, transformaciones y efectos de procesamiento digital de imagen de forma sencilla e intuitiva.
+
+\section{Requisitos}
+
+\noindent QFotoPaint requiere tener instalado un compilador compatible con el estándar C++17 o superior. \\
+
+Es necesario disponer del entorno de desarrollo Qt Creator, junto con el framework Qt y la librería OpenCV, correctamente configurados para compilar y ejecutar la aplicación. \\
+
+% TODO: mostrar como compilar desde \textit{source} usando qmake.
+
+\section{Tecnologías}
+
+\noindent Durante el desarrollo de QFotoPaint se han utilizado las siguientes tecnologías:
+
+\begin{itemize}
+	\item \textbf{Git}: Para el control de versiones y la gestión colaborativa del código fuente.
+	\item \textbf{Qt Creator}: Entorno de desarrollo integrado (IDE) empleado para la codificación, depuración y diseño de la interfaz gráfica.
+	\item \textbf{Qt Framework}: Biblioteca multiplataforma usada para la creación de la interfaz de usuario y la gestión de eventos.
+	\item \textbf{OpenCV}: Librería de visión por computador utilizada para el procesamiento, filtrado y transformación de imágenes y vídeo.
+	\item \textbf{qmake}: Herramienta de automatización utilizada para la configuración y compilación del proyecto Qt.
+\end{itemize}
+
+\clearpage
+
+\section{Desarrollo}
+
+\subsection{Información multimedia}
+
+\noindent
+Otra funcionalidad adicional es la de poder consultar información acerca de las imágenes abiertas. Datos como las dimensiones, el tipo o la relación de aspecto pueden ser útiles para el usuario. Para ello, es necesario crear una nueva clase, junto con un formulario, \texttt{InformacionMultimedia}.
+
+\begin{info}[Observación]
+	Se ha optado por representar todas las imágenes abiertas en lugar de únicamente la imagen seleccionada, debido a la simplicidad de la implementación, ya que basta con recorrer el arreglo de imágene \texttt{foto[]} de \texttt{struct ventana}.
+\end{info}
+
+\noindent
+Para la función completa, consultar anexo. \\
+
+% TODO: incluir en anexo
+
+El diálogo diseñado ha sido inspirado en el utilizado por el programa VLC para consultar estadísticas e información acerca de los \textit{streams} de los ficheros multimedia:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{figures/im_vlc}
+	\caption{Diálogo de información multimedia en VLC.}
+	\label{fig:im-vlc}
+\end{figure}
+
+El diseño se ha logrado usando un \texttt{QTabWidget} junto con un \texttt{QTreeWidget}. Para extender el contenido de éste al superior, se ha usado un \textit{layout} vertical. Esta implementación ofrece una gran comodidad a la hora añadir elementos a su nodo raíz en la clase \textit{src}.
+
+\clearpage
+
+\subsection{Ecualización del histograma}
+
+\subsubsection{Introducción}
+
+\noindent
+La ecualización de histogramas es un método utilizado para mejorar el contraste de una imagen, al expandir las zonas que concentran mucho contraste. Su objetivo principal es transformar una imagen de entrada en otra imagen cuyo histograma tiene una distribución uniforme, aunque luego veremos que esto no es exactamente así, pues los histogramas no son completamente planos. \cite{opencv_histogram_equalization_tutorial} \\
+
+La ecualización de histogramas no funciona igual en imágenes con un solo canal (imágenes de grises) que en imágenes a color. Para entender su funcionamiento, consideramos una imagen de grises \( X \), siendo \( n_i \) el número de ocurrencias para el nivel de grises \( i \). La probabilidad por tanto de que un píxel aleatorio tenga el valor de \( i \) es: 
+
+\[ p_X (i) = \frac{n_i}{n}, \quad 0 \leq i < L \]
+
+\noindent 
+siendo \( L \) el número total de niveles de grises en la imagen. \( p_X (i)\) es el valor del histograma para \( i \). \\
+
+\noindent
+Definimos también la distribución acumulada de píxeles en \( X \) para el valor \( i \).
+
+
+\[ \text{cdf}_X(i) = \sum_{j=0}^{i} p_X(j) \]
+
+Para que esta función pueda emplearse como transformación de intensidades, debe normalizarse de manera 
+que su valor máximo corresponda al nivel máximo de intensidad permitido (OpenCV usa 255). Es aquí donde empleamos el método que nos proporciona la librería de OpenCV \texttt{cv::equalizeHist}. \cite{opencv_equalizeHist_function}
+
+\begin{mainbox}{\large equalizeHist()}
+	\textbf{void cv::equalizeHist (InputArray src, OutputArray dst)}
+	
+	\vspace{2ex}
+	
+	Ecualiza el histograma de una imagen en escala de grises. \\
+	La función ecualiza el histograma de la imagen de entrada utilizando el siguiente algoritmo:
+	
+	\begin{itemize}
+		\item Calcular el histograma \(H\) para \texttt{src}.
+		\item Normalizar el histograma de manera que la suma de los bins sea 255.
+		\item Calcular el histograma acumulado:
+		
+		\[ H'_i = \sum_{0 \le j < i} H(j) \]
+		
+		\item Transformar la imagen utilizando \( H' \) como tabla de consulta:
+		
+		\[ \text{dst}(x,y) = H'(\text{src}(x,y)) \]
+	\end{itemize}
+	
+	El algoritmo normaliza el brillo y aumenta el contraste de la imagen.
+\end{mainbox}
+
+\clearpage
+
+\subsubsection{Implementación}
+
+\noindent
+El desarrollo de la ecualización del histograma está fuertemente basada en la del ajuste lineal
+realizado en clase. Según la documentación, la funcionalidad debe permitir al usuario dos modos:
+
+\begin{itemize}
+	\item \textbf{Conjunto:} La operación se aplica de manera conjunta sobre un grupo completo de canales. Concretamente, se realizará sobre un conjunto específico (valor en HSV y luminancia en YCrCb). Es necesario convertir a uno de estos modos ya que, como se especifica en la teoría, pueden aparecer resultados erróneos si usamos el canal RGB, el cual mezcla el color con el brillo. \cite{wikipedia_hist_eq}
+	
+	\item \textbf{Independiente:} Si la imagen de entrada consta de varios canales, cada uno se procesa por separado sin tener en cuenta a los demás.
+\end{itemize}
+
+\noindent
+Para implementar correctamente la funcionalidad, se ha optado por crear una nueva clase junto con un formulario, \texttt{EcualizacionHistograma}. El método implementado en \texttt{imagenes.cpp} es el siguiente:
+
+\begin{lstlisting}[style=CppQtStyle, caption={Implementación de la ecualización del histograma}, label={lst:ecualhist}]
+	// imagenes.cpp
+	void ecualizacion_hist(int nfoto, int modo, bool guardar) {
+	Mat img = foto[nfoto].img;
+	Mat imres;
+	
+	if (img.channels() == 1) {  // imagen de grises
+		equalizeHist(img, imres);
+	} else if (modo == 0) {  // modo conjunto
+		// convertir a HSV para separar luz del color
+		Mat hsv;
+		cvtColor(img, hsv, COLOR_BGR2HSV);
+		
+		vector<Mat> canales;
+		split(hsv, canales);
+		
+		equalizeHist(canales[2], canales[2]);
+		
+		merge(canales, hsv);
+		cvtColor(hsv, imres, COLOR_HSV2BGR);
+	} else {  // modo independiente
+		vector<Mat> canales;
+		split(img, canales);
+		
+		for (size_t i = 0; i < 3; ++i)
+		equalizeHist(canales[i], canales[i]);
+		
+		merge(canales, imres);
+	}
+	
+	...
+	
+}
+\end{lstlisting}
+
+Como se puede ver en las líneas 10-16 del código \ref{lst:ecualhist}, se realiza una conversión de modelo a HSV para separar la luminosidad de la crominancia.
+
+\section{Otras mejoras}
+
+\subsection{Incremento del paso en arcoíris}
+
+\noindent
+Como propuesta del profesor, se ha diseñado una solución para que el usuario sea capaz de modificar el ``\textit{paso}'' con
+el que se cambia de color del pincel en la herramienta ``Arcoíris''. Esta característica permitirá al usuario un mayor control 
+sobre apariencia del efecto. \\
+
+El ``paso'' se refiere a la velocidad de avance que en la secuencia de colores del espectro cada vez que se dibuja un píxel.  
+Un paso pequeño provoca que los colores cambien lentamente, generando transiciones suaves y graduales entre tonos consecutivos.  
+Por el contrario, un paso mayor acelera el cambio de color, produciendo un efecto más vivo. \\
+
+Para implementar esta funcionalidad, se ha definido un nuevo elemento \texttt{QWidget} en \texttt{mainwindow.ui}. Este elemento
+estará por defecto invisible, y su visibilidad cambiará al hacer \textit{click} sobre el botón de la herramienta. \\
+
+También se ha valorado la necesidad de ocultar el panel si se pierde el foco en él. Se ha tenido que recurrir a un 
+\textit{listener} de eventos de \texttt{QMouseEvent} ya que los paneles no proporcionan métodos \texttt{isHovered()}. 
+Esta decisión es muy poco eficiente, pero aún así se ha decidido implementar. 
+
+\begin{lstlisting}[style=CppQtStyle, caption={Mostrar/Ocultar panel al presionar la herramienta}]
+	// mainwindow.cpp
+	void MainWindow::on_toolButton_9_clicked() {
+		herr_actual = HER_ARCOIRIS;
+		ui->incrementoArcoirisWidget->setVisible(!ui->incrementoArcoirisWidget->isVisible());
+	}
+
+	...
+	
+	void MainWindow::mouseMoveEvent(QMouseEvent *event)	{
+		if (ui->incrementoArcoirisWidget->isVisible()) {
+			QPoint pos = event->pos();
+			
+			// Si el ratón no está dentro del widget y tampoco sobre el botón
+			if (!ui->incrementoArcoirisWidget->geometry().contains(pos) &&
+			!ui->toolButton_9->geometry().contains(pos)) {
+				ui->incrementoArcoirisWidget->hide();
+				ui->toolButton_9->setDown(false);
+			}
+		}
+	}
+\end{lstlisting}
+
+En la clase \texttt{imagenes} también se han realizado algunas modificaciones. La primera es la necesidad de tener una
+variable externa que se pueda utilizar en \texttt{mainwindow}, sustituyendo a la variable local \texttt{incremento}.
+
+\begin{lstlisting}[style=CppQtStyle, caption={Mostrar/Ocultar según las coordenadas del ratón}]
+	// imagenes.h
+	constexpr int DEFAULT_INCREMENTO_ARCOIRIS = 10;
+	extern int incremento_arcoiris;
+\end{lstlisting}
+
+\begin{lstlisting}[style=CppQtStyle, caption={Mostrar/Ocultar según las coordenadas del ratón}]
+	// imagenes.cpp
+	int incremento_arcoiris = DEFAULT_INCREMENTO_ARCOIRIS;
+\end{lstlisting}
+
+% TODO: Incluir modificacicones a MainWindow
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.7\linewidth]{figures/}
+%	\caption{}
+%	\label{fig:}
+%\end{figure}
+
+
+\section{Bitácora}
+
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
+
+
+\end{document}
