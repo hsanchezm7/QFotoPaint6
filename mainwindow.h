@@ -86,6 +86,7 @@ private slots:
     void on_actionRehacer_triggered();
     void on_actionInformaci_n_multimedia_triggered();
     void on_actionEcualizaci_n_del_histograma_triggered();
+    void on_actionCopiar_al_portapapeles_triggered();
 };
 
 extern MainWindow *w;

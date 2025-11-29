@@ -492,6 +492,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionNueva_imagen"/>
     <addaction name="actionNueva_desde_portapapeles"/>
     <addaction name="actionAbrir_imagen"/>
+    <addaction name="separator"/>
     <addaction name="actionCapturar_de_c_mara"/>
     <addaction name="actionCapturar_de_v_deo"/>
     <addaction name="separator"/>
@@ -501,8 +502,6 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionCerrar"/>
     <addaction name="actionSalir"/>
     <addaction name="separator"/>
-    <addaction name="actionDeshacer"/>
-    <addaction name="actionRehacer"/>
    </widget>
    <widget class="QMenu" name="menuEdici_n">
     <property name="title">
@@ -524,11 +523,17 @@ p, li { white-space: pre-wrap; }
      <addaction name="actionAzul"/>
      <addaction name="actionGrises"/>
     </widget>
+    <addaction name="actionDeshacer"/>
+    <addaction name="actionRehacer"/>
+    <addaction name="separator"/>
     <addaction name="actionSeleccionar_todo"/>
+    <addaction name="actionCopiar_a_nueva"/>
+    <addaction name="actionCopiar_al_portapapeles"/>
     <addaction name="separator"/>
     <addaction name="menuVer_histogramas"/>
+    <addaction name="separator"/>
     <addaction name="menuOpciones"/>
-    <addaction name="actionCopiar_a_nueva"/>
+    <addaction name="separator"/>
     <addaction name="actionInformaci_n_multimedia"/>
    </widget>
    <widget class="QMenu" name="menuHerramientas">
@@ -882,6 +887,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionEcualizaci_n_del_histograma">
    <property name="text">
     <string>Ecualización del histograma...</string>
+   </property>
+  </action>
+  <action name="actionCopiar_al_portapapeles">
+   <property name="text">
+    <string>Copiar al portapapeles</string>
    </property>
   </action>
  </widget>

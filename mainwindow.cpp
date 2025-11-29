@@ -573,3 +573,23 @@ void MainWindow::on_actionEcualizaci_n_del_histograma_triggered()
     }
 }
 
+
+void MainWindow::on_actionCopiar_al_portapapeles_triggered()
+{
+    int f_act = foto_activa();
+
+    if (f_act == -1)
+        return;
+
+    ventana &v = foto[f_act];
+
+    Mat roi = v.img(v.roi).clone();
+
+    Mat roiRGB;
+    cvtColor(roi, roiRGB, COLOR_BGR2RGB);
+
+     QImage img = QImage((const uchar*)roiRGB.data, roiRGB.cols, roiRGB.rows, roiRGB.step, QImage::Format_RGB888).copy();
+
+    QClipboard *clipboard = QGuiApplication::clipboard();
+    clipboard->setImage(img);
+}
