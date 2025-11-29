@@ -529,6 +529,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="menuVer_histogramas"/>
     <addaction name="menuOpciones"/>
     <addaction name="actionCopiar_a_nueva"/>
+    <addaction name="actionInformaci_n_multimedia"/>
    </widget>
    <widget class="QMenu" name="menuHerramientas">
     <property name="title">
@@ -861,6 +862,20 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="shortcutContext">
     <enum>Qt::ShortcutContext::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionMedia_info">
+   <property name="text">
+    <string>Información multimedia</string>
+   </property>
+  </action>
+  <action name="actionInformaci_n_multimedia">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/imagenes/info.png</normaloff>:/imagenes/info.png</iconset>
+   </property>
+   <property name="text">
+    <string>Información multimedia</string>
    </property>
   </action>
  </widget>

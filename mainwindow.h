@@ -84,6 +84,7 @@ private slots:
     void on_actionNueva_desde_portapapeles_triggered();
     void on_actionDeshacer_triggered();
     void on_actionRehacer_triggered();
+    void on_actionInformaci_n_multimedia_triggered();
 };
 
 extern MainWindow *w;

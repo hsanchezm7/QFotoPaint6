@@ -26,6 +26,7 @@ using namespace cv;
 #include "starwars.h"
 #include "matsatlum.h"
 #include "inpaint.h"
+#include "informacionmultimedia.h"
 
 QString FiltroImagen = "Todos los formatos (*.jpg *.jpeg *.jpe .jp2 *.tif *.tiff *.png *.gif *.bmp *.dib *.webp *.ppm);;Archivos JPG (*.jpg *.jpeg *.jpe);;Archivos TIF (*.tif *.tiff);;Archivos PNG (*.png);;Archivos WEBP (*.webp);;Archivos GIF (*.gif);;Archivos BMP (*.bmp *.dib);;Otros (*.*)";
 
@@ -550,6 +551,15 @@ void MainWindow::on_actionRehacer_triggered()
 {
     if (foto_activa() != -1) {
         rehacer(foto_activa());
+    }
+}
+
+
+void MainWindow::on_actionInformaci_n_multimedia_triggered()
+{
+    if (foto_activa() != -1) {
+        InformacionMultimedia im(foto_activa());
+        im.exec();
     }
 }
 
