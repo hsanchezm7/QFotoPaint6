@@ -850,6 +850,44 @@ void media_ponderada (int nf1, int nf2, int nueva, double peso)
     crear_nueva(nueva, img);
 }
 
+void ecualizacion_hist(int nfoto, int modo, bool guardar)
+{
+    Mat img = foto[nfoto].img;
+    Mat imres;
+
+    if (img.channels() == 1) {  // imagen de grises
+        equalizeHist(img, imres);
+    } else if (modo == 0) {  // modo conjunto
+        // convertir a HSV para separar luz del color
+        Mat hsv;
+        cvtColor(img, hsv, COLOR_BGR2HSV);
+
+        vector<Mat> canales;
+        split(hsv, canales);
+
+        equalizeHist(canales[2], canales[2]);
+
+        merge(canales, hsv);
+        cvtColor(hsv, imres, COLOR_HSV2BGR);
+    } else {  // modo independiente
+        vector<Mat> canales;
+        split(img, canales);
+
+        for (size_t i = 0; i < 3; ++i)
+            equalizeHist(canales[i], canales[i]);
+
+        merge(canales, imres);
+    }
+
+    imshow(foto[nfoto].nombre, imres);
+
+    if (guardar) {
+        guardar_estado(nfoto);
+        imres.copyTo(img);
+        foto[nfoto].modificada = true;
+    }
+}
+
 void ajuste_lineal_hist (int nfoto, double pmin, double pmax, bool guardar)
 {
     Mat img = foto[nfoto].img;

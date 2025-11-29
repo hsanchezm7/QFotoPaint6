@@ -558,6 +558,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionMatiz_Saturaci_n_Luminosidad"/>
     <addaction name="actionInvertir"/>
     <addaction name="menuRotar"/>
+    <addaction name="actionEcualizaci_n_del_histograma"/>
     <addaction name="actionAjuste_lineal_del_histograma"/>
     <addaction name="actionMedia_ponderada"/>
    </widget>
@@ -876,6 +877,11 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>Información multimedia</string>
+   </property>
+  </action>
+  <action name="actionEcualizaci_n_del_histograma">
+   <property name="text">
+    <string>Ecualización del histograma...</string>
    </property>
   </action>
  </widget>

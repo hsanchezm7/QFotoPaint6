@@ -27,6 +27,7 @@ using namespace cv;
 #include "matsatlum.h"
 #include "inpaint.h"
 #include "informacionmultimedia.h"
+#include "ecualizacionhistograma.h"
 
 QString FiltroImagen = "Todos los formatos (*.jpg *.jpeg *.jpe .jp2 *.tif *.tiff *.png *.gif *.bmp *.dib *.webp *.ppm);;Archivos JPG (*.jpg *.jpeg *.jpe);;Archivos TIF (*.tif *.tiff);;Archivos PNG (*.png);;Archivos WEBP (*.webp);;Archivos GIF (*.gif);;Archivos BMP (*.bmp *.dib);;Otros (*.*)";
 
@@ -560,6 +561,15 @@ void MainWindow::on_actionInformaci_n_multimedia_triggered()
     if (foto_activa() != -1) {
         InformacionMultimedia im(foto_activa());
         im.exec();
+    }
+}
+
+
+void MainWindow::on_actionEcualizaci_n_del_histograma_triggered()
+{
+    if (foto_activa() != -1) {
+        EcualizacionHistograma eh(foto_activa(), 0, this);
+        eh.exec();
     }
 }
 

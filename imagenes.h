@@ -193,6 +193,9 @@ void media_ponderada (int nf1, int nf2, int nueva, double peso);
 // nueva(x,y):= peso*nf1(x,y)+(1-peso)*nf2(x,y). La imagen nf2 se reescala al
 // tamaño de nf1
 
+void ecualizacion_hist(int nfoto, int modo, bool guardar=false);
+// Ecualización del histograma
+
 void ajuste_lineal_hist (int nfoto, double pmin, double pmax, bool guardar=false);
 // Operación de ajuste lineal del histograma
 
