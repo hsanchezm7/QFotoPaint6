@@ -123,23 +123,7 @@ void MainWindow::on_actionAbrir_imagen_triggered()
     }
 }
 
-void MainWindow::on_actionPunto_triggered()
-{
-    herr_actual= HER_PUNTO;
-    ui->toolButton_4->setChecked(true);
-}
 
-void MainWindow::on_actionLinea_triggered()
-{
-    herr_actual= HER_LINEA;
-    ui->toolButton_5->setChecked(true);
-}
-
-void MainWindow::on_actionSeleccionar_triggered()
-{
-    herr_actual= HER_SELECCION;
-    ui->toolButton_6->setChecked(true);
-}
 
 void MainWindow::on_toolButton_2_clicked()
 {
@@ -230,14 +214,15 @@ void MainWindow::on_actionSeleccionar_todo_triggered()
     }
 }
 
-void MainWindow::on_toolButton_3_clicked()
-{
-    on_actionGuardar_triggered();
-}
-
 void MainWindow::on_toolButton_4_clicked()
 {
     herr_actual= HER_PUNTO;
+}
+
+void MainWindow::on_actionPunto_triggered()
+{
+    herr_actual= HER_PUNTO;
+    ui->toolButton_4->setChecked(true);
 }
 
 void MainWindow::on_toolButton_5_clicked()
@@ -245,14 +230,72 @@ void MainWindow::on_toolButton_5_clicked()
     herr_actual= HER_LINEA;
 }
 
+void MainWindow::on_actionLinea_triggered()
+{
+    herr_actual= HER_LINEA;
+    ui->toolButton_5->setChecked(true);
+}
+
 void MainWindow::on_toolButton_6_clicked()
 {
     herr_actual= HER_SELECCION;
 }
 
+void MainWindow::on_actionSeleccionar_triggered()
+{
+    herr_actual= HER_SELECCION;
+    ui->toolButton_6->setChecked(true);
+}
+
+void MainWindow::on_toolButton_3_clicked()
+{
+    on_actionGuardar_triggered();
+}
+
+
 void MainWindow::on_toolButton_7_clicked()
 {
     herr_actual = HER_RECTANGULO;
+}
+
+void MainWindow::on_actionRect_ngulo_triggered()
+{
+    herr_actual= HER_RECTANGULO;
+    ui->toolButton_7->setChecked(true);
+}
+
+
+void MainWindow::on_toolButton_8_clicked()
+{
+    herr_actual = HER_ELIPSE;
+}
+
+void MainWindow::on_actionElipse_triggered()
+{
+    herr_actual= HER_ELIPSE;
+    ui->toolButton_8->setChecked(true);
+}
+
+void MainWindow::on_toolButton_9_clicked() {
+    herr_actual = HER_ARCOIRIS;
+    ui->incrementoArcoirisWidget->setVisible(!ui->incrementoArcoirisWidget->isVisible());
+}
+
+void MainWindow::on_actionArco_ris_triggered()
+{
+    herr_actual= HER_ARCOIRIS;
+    ui->toolButton_9->setChecked(true);
+}
+
+void MainWindow::on_actionSuavizado_triggered()
+{
+    herr_actual= HER_SUAVIZADO;
+    ui->toolButton_10->setChecked(true);
+}
+
+void MainWindow::on_toolButton_10_clicked()
+{
+    herr_actual= HER_SUAVIZADO;
 }
 
 void MainWindow::on_actionInvertir_triggered()
@@ -358,25 +401,6 @@ void MainWindow::on_actionImagen_media_triggered()
     mv.exec();
 }
 
-
-void MainWindow::on_actionRect_ngulo_triggered()
-{
-    herr_actual= HER_RECTANGULO;
-    ui->toolButton_7->setChecked(true);
-}
-
-
-void MainWindow::on_toolButton_8_clicked()
-{
-    herr_actual = HER_ELIPSE;
-}
-
-void MainWindow::on_actionElipse_triggered()
-{
-    herr_actual= HER_ELIPSE;
-    ui->toolButton_8->setChecked(true);
-}
-
 void MainWindow::on_actionGrises_triggered()
 {
     if (foto_activa() != -1 && primera_libre() != -1) {
@@ -432,19 +456,6 @@ void MainWindow::on_actionAjuste_lineal_del_histograma_triggered()
         al.exec();
     }
 }
-
-void MainWindow::on_toolButton_9_clicked() {
-    herr_actual = HER_ARCOIRIS;
-    ui->incrementoArcoirisWidget->setVisible(!ui->incrementoArcoirisWidget->isVisible());
-}
-
-
-void MainWindow::on_actionArco_ris_triggered()
-{
-    herr_actual= HER_ARCOIRIS;
-    ui->toolButton_9->setChecked(true);
-}
-
 
 void MainWindow::on_actionCapturar_de_v_deo_triggered()
 {
@@ -588,8 +599,9 @@ void MainWindow::on_actionCopiar_al_portapapeles_triggered()
     Mat roiRGB;
     cvtColor(roi, roiRGB, COLOR_BGR2RGB);
 
-     QImage img = QImage((const uchar*)roiRGB.data, roiRGB.cols, roiRGB.rows, roiRGB.step, QImage::Format_RGB888).copy();
+    QImage img = QImage((const uchar*)roiRGB.data, roiRGB.cols, roiRGB.rows, roiRGB.step, QImage::Format_RGB888).copy();
 
     QClipboard *clipboard = QGuiApplication::clipboard();
     clipboard->setImage(img);
 }
+

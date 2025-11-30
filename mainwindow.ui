@@ -280,7 +280,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QToolButton" name="toolButton_6">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>370</x>
       <y>0</y>
       <width>41</width>
       <height>41</height>
@@ -335,7 +335,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>...</string>
+     <string/>
     </property>
     <property name="icon">
      <iconset resource="recursos.qrc">
@@ -361,7 +361,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>...</string>
+     <string/>
     </property>
     <property name="icon">
      <iconset resource="recursos.qrc">
@@ -390,7 +390,7 @@ p, li { white-space: pre-wrap; }
      <bool>false</bool>
     </property>
     <property name="text">
-     <string>A</string>
+     <string/>
     </property>
     <property name="icon">
      <iconset resource="recursos.qrc">
@@ -475,6 +475,35 @@ p, li { white-space: pre-wrap; }
      </item>
     </layout>
    </widget>
+   <widget class="QToolButton" name="toolButton_10">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>0</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="recursos.qrc">
+      <normaloff>:/imagenes/suavizado.png</normaloff>:/imagenes/suavizado.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -545,6 +574,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionLinea"/>
     <addaction name="actionRect_ngulo"/>
     <addaction name="actionElipse"/>
+    <addaction name="actionSuavizado"/>
     <addaction name="actionSeleccionar"/>
    </widget>
    <widget class="QMenu" name="menuTransformar">
@@ -892,6 +922,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionCopiar_al_portapapeles">
    <property name="text">
     <string>Copiar al portapapeles</string>
+   </property>
+  </action>
+  <action name="actionSuavizado">
+   <property name="text">
+    <string>Suavizado</string>
    </property>
   </action>
  </widget>

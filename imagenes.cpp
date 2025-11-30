@@ -466,6 +466,96 @@ Scalar color_arcoiris()
 
 //---------------------------------------------------------------------------
 
+void cb_suavizar (int factual, int x, int y)
+{
+    Mat &im = foto[factual].img;
+
+    if (difum_pincel < 1) return;
+
+    int t = radio_pincel;
+    int posx = t, posy = t;
+    Rect roi(x-t, y-t, 2*t+1, 2*t+1);
+
+    if (roi.x < 0) {
+        roi.width += roi.x;
+        posx += roi.x;
+        roi.x = 0;
+    }
+    if (roi.y < 0) {
+        roi.height += roi.y;
+        posy += roi.y;
+        roi.y = 0;
+    }
+    if (roi.x + roi.width > im.cols) {
+        roi.width = im.cols - roi.x;
+    }
+    if (roi.y + roi.height > im.rows) {
+        roi.height = im.rows - roi.y;
+    }
+
+    if (roi.width <= 0 || roi.height <= 0) return;
+
+    Mat trozo = im(roi);
+
+    Mat borrosa;
+    medianBlur(trozo, borrosa, difum_pincel*2+1);
+
+    Mat mask(roi.size(), CV_8UC1, Scalar(0));
+    circle(mask, Point(posx, posy), radio_pincel, Scalar(255), -1);
+
+    borrosa.copyTo(trozo, mask);
+
+    imshow(foto[factual].nombre, im);
+    foto[factual].modificada = true;
+}
+
+//---------------------------------------------------------------------------
+
+void cb_ver_suavizado (int factual, int x, int y)
+{
+    Mat res = foto[factual].img.clone();
+
+    if (difum_pincel > 0) {
+        int t = radio_pincel;
+        int posx = t, posy = t;
+        Rect roi(x-t, y-t, 2*t+1, 2*t+1);
+
+        if (roi.x < 0) {
+            roi.width += roi.x;
+            posx += roi.x;
+            roi.x = 0;
+        }
+        if (roi.y < 0) {
+            roi.height += roi.y;
+            posy += roi.y;
+            roi.y = 0;
+        }
+        if (roi.x + roi.width > res.cols) {
+            roi.width = res.cols - roi.x;
+        }
+        if (roi.y + roi.height > res.rows) {
+            roi.height = res.rows - roi.y;
+        }
+
+        if (roi.width > 0 && roi.height > 0) {
+            Mat trozo = res(roi);
+
+            Mat borrosa;
+            medianBlur(trozo, borrosa, difum_pincel*2+1);
+
+            Mat mask(roi.size(), CV_8UC1, Scalar(0));
+            circle(mask, Point(posx, posy), radio_pincel, Scalar(255), -1);
+
+            borrosa.copyTo(trozo, mask);
+        }
+    }
+
+    circle(res, Point(x, y), radio_pincel, CV_RGB(200, 200, 200), 1);
+    imshow(foto[factual].nombre, res);
+}
+
+//---------------------------------------------------------------------------
+
 void callback (int event, int x, int y, int flags, void *_nfoto)
 {
     int factual= (long long) _nfoto;
@@ -555,7 +645,18 @@ void callback (int event, int x, int y, int flags, void *_nfoto)
             ninguna_accion(factual, x, y);
         break;
 
-    // 2.6. Herramienta SELECCION
+    // 2.6. Herramienta SUAVIZADO
+    case HER_SUAVIZADO:
+        if (event == EVENT_LBUTTONDOWN)
+            cb_suavizar(factual, x, y);
+        else if (event == EVENT_MOUSEMOVE) {
+            if (flags == EVENT_FLAG_LBUTTON)
+                cb_suavizar(factual, x, y);
+            else cb_ver_suavizado(factual, x, y);
+        }
+        break;
+
+    // 2.7. Herramienta SELECCION
     case HER_SELECCION:
         if (event==EVENT_LBUTTONUP)
             cb_seleccionar(factual, x, y);
