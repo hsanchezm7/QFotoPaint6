@@ -21,7 +21,7 @@ using namespace cv;
 // Desplazamiento en X e Y de las ventanas hijas respecto de la ventana principal
 
 #define MAX_HIST_IMG 20
-// Desplazamiento en X e Y de las ventanas hijas respecto de la ventana principal
+// Máximo de acciones guardas en el historial para deshacer/rehacer
 
 ///////////////////////////////////////////////////////////////////
 /////////  TIPOS DE DATOS PROPIOS                    //////////////

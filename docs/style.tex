@@ -28,12 +28,14 @@
 
 \usepackage{listings} % File listings, with syntax highlighting
 \lstset{
+    aboveskip=12pt,
+    belowskip=12pt,
 	basicstyle=\ttfamily, % Typeset listings in monospace font
 	extendedchars=true,  % Soporta caracteres extendidos
-	literate={├}{{|-}}1 {─}{{-}}1 {●}{{$\bullet$}}1 {└}{{\texttt{\textbackslash}}}1 
+	literate={├}{{|-}}1 {─}{{-}}1 {●}{{$\bullet$}}1 {└}{{\texttt{\textbackslash}}}1
 }
 \lstdefinestyle{CppQtStyle}{
-	backgroundcolor=\color{backgroundColour},   
+	backgroundcolor=\color{backgroundColour},
 	commentstyle=\color{mGreen}\itshape,
 	keywordstyle=\color{mCyan}\bfseries,           % C++ keywords
 	keywordstyle=[2]\color{mViolet}\bfseries,      % Qt macros/signals/slots
@@ -41,7 +43,7 @@
 	numberstyle=\tiny\color{mGray},
 	stringstyle=\color{mPurple},
 	basicstyle=\fontfamily{pcr}\selectfont\small,
-	breakatwhitespace=false,         
+	breakatwhitespace=false,
 	breaklines=true,
 	captionpos=b,
 	keepspaces=true,
@@ -51,7 +53,7 @@
 	extendedchars=true,
 	literate={á}{{\'a}}1 {ã}{{\~a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1,
 	numbersep=5pt,
-	showspaces=false,                
+	showspaces=false,
 	showstringspaces=false,
 	showtabs=false,
 	tabsize=2,
@@ -64,13 +66,13 @@
 \lstdefinestyle{BashStyle}{
 	backgroundcolor=\color{lightgray!10},
 	keywordstyle=\color{blue!80!black}\bfseries,
-	stringstyle=\color{red!70!black},         
+	stringstyle=\color{red!70!black},
 	basicstyle=\fontfamily{pcr}\selectfont\small,
 	breakatwhitespace=false,
 	breaklines=true,
 	captionpos=b,
 	keepspaces=true,
-	numbers=none,                  
+	numbers=none,
 	showspaces=false,
 	showstringspaces=false,
 	showtabs=false,
@@ -98,23 +100,23 @@
 % src: https://xyquadrat.ch/blog/latex-boxes/
 \tcbset {
 	base/.style={
-		arc=0mm, 
+		arc=0mm,
 		bottomtitle=0.5mm,
 		boxrule=0mm,
-		colbacktitle=black!10!white, 
-		coltitle=black, 
-		fonttitle=\bfseries, 
+		colbacktitle=black!10!white,
+		coltitle=black,
+		fonttitle=\bfseries,
 		left=2.5mm,
 		leftrule=1mm,
 		right=3.5mm,
 		title={#1},
-		toptitle=0.75mm, 
+		toptitle=0.75mm,
 	}
 }
 
 \definecolor{brandblue}{rgb}{0.34, 0.7, 1}
 \newtcolorbox{mainbox}[1]{
-	colframe=brandblue, 
+	colframe=brandblue,
 	base={#1}
 }
 
@@ -159,7 +161,7 @@
 \usepackage{listingsutf8}    % Soporte para caracteres UTF-8
 \usetikzlibrary{shadows,calc}
 
-\usepackage[inline]{enumitem}   
+\usepackage[inline]{enumitem}
 \makeatletter
 % This command ignores the optional argument for itemize and enumerate lists
 \newcommand{\inlineitem}[1][]{%
@@ -225,7 +227,7 @@ factor=1100]{microtype}
 % \begin{commandline}
 	%	\begin{verbatim}
 		%		$ ls
-		%		
+		%
 		%		Applications	Desktop	...
 		%	\end{verbatim}
 	% \end{commandline}

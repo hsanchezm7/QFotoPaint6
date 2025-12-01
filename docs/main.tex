@@ -7,26 +7,26 @@
 \begin{document}
 
 \title{
-	\vspace{-5ex}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=72mm]{figures/umu-logo}
-	\end{figure}
-	
-	{\Large \textsc{Universidad de Murcia}}\\
-	{\Large Facultad de Informática}\\ [12.5ex]
-	{\Large \textsc{Prácticas de}\\ [1ex]}
-	{\Huge Informática Gráfica}\\ [1ex]
-	{\Large \textsc{4º de Grado en Ingeniería Informática}}\\
-	{\Large \textsc{Profesor: Ginés García Mateos}} \\
-	{\Large \textsc{Curso 2025/2026}} \\ 
-	\vspace{10ex}
+\vspace{-5ex}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=72mm]{figures/umu-logo}
+\end{figure}
+
+{\Large \textsc{Universidad de Murcia}}\\
+{\Large Facultad de Informática}\\ [12.5ex]
+{\Large \textsc{Prácticas de}\\ [1ex]}
+{\Huge Informática Gráfica}\\ [1ex]
+{\Large \textsc{4º de Grado en Ingeniería Informática}}\\
+{\Large \textsc{Profesor: Ginés García Mateos}} \\
+{\Large \textsc{Curso 2025/2026}} \\
+\vspace{10ex}
 }
 
 \author{
-	{\Large Hugo Sánchez Martínez}\\[0.5ex]
-	24450997L\\
-	\texttt{hugo.s.m@um.es}\\
+    {\Large Hugo Sánchez Martínez}\\[0.5ex]
+    24450997L\\
+    \texttt{hugo.s.m@um.es}\\
 }
 
 \pagestyle{fancy}
@@ -50,212 +50,619 @@
 \clearpage
 \setcounter{page}{1}
 
-
-
 \thispagestyle{empty}
 
 \hrule
 \vspace{-5.4ex}
 \begin{abstract}
-\vspace{1ex}
-Este documento especifica la implementación de las prácticas de la asignatura de Informática Gráfica del último curso del grado en Ingeniería Informática de la Universidad de Murcia. \\
+    \vspace{1ex}
+    Este documento especifica la implementación de las prácticas de la asignatura de Informática Gráfica del último curso del grado en Ingeniería Informática de la Universidad de Murcia. \\
 
-Dicha práctica consiste en el desarrollo de una aplicación de procesamiento multimedia, basada en herramientas y funcionalidades presentes en aplicaciones de edición de imágenes y vídeo ya existentes. El objetivo de este documento es describir en detalle el proceso de desarrollo de la aplicación, explicando las funcionalidades implementadas durante la práctica.
-\vspace{0.5ex}
+    Dicha práctica consiste en el desarrollo de una aplicación de procesamiento
+    multimedia, basada en herramientas y funcionalidades presentes en aplicaciones
+    de edición de imágenes y vídeo ya existentes. El objetivo de este documento es
+    describir en detalle el proceso de desarrollo de la aplicación, explicando las
+    funcionalidades implementadas durante la práctica. \vspace{0.5ex}
 \end{abstract}
 \hrule
 \vspace{4ex}
 
 \section{Introducción}
 
-\textbf{QFotoPaint} es una aplicación de escritorio para el procesamiento de imágenes y vídeo desarrollada en C++, utilizando el \textit{framework} Qt y la librería OpenCV. \\
+  \textbf{QFotoPaint} es una aplicación de escritorio para el procesamiento de imágenes y vídeo desarrollada en C++, utilizando el \textit{framework} Qt y la librería OpenCV. \\
 
-Inspirada en herramientas reales de edición como \textit{GIMP} o \textit{Photoshop}, QFotoPaint permite al usuario abrir, visualizar y editar múltiples imágenes simultáneamente, aplicando diferentes filtros, transformaciones y efectos de procesamiento digital de imagen de forma sencilla e intuitiva.
+  Inspirada en herramientas reales de edición como \textit{GIMP} o
+  \textit{Photoshop}, QFotoPaint permite al usuario abrir, visualizar y editar
+  múltiples imágenes simultáneamente, aplicando diferentes filtros,
+  transformaciones y efectos de procesamiento digital de imagen de forma sencilla
+  e intuitiva.
 
 \section{Requisitos}
 
-\noindent QFotoPaint requiere tener instalado un compilador compatible con el estándar C++17 o superior. \\
+  \noindent QFotoPaint requiere tener instalado un compilador compatible con el estándar C++17 o superior. \\
 
-Es necesario disponer del entorno de desarrollo Qt Creator, junto con el framework Qt y la librería OpenCV, correctamente configurados para compilar y ejecutar la aplicación. \\
+  Es necesario disponer del entorno de desarrollo Qt Creator, junto con el
+  framework Qt y la librería OpenCV, correctamente configurados para compilar y
+  ejecutar la aplicación. \\
 
-% TODO: mostrar como compilar desde \textit{source} usando qmake.
+  %\begin{warn}[Observación]
+  %    La aplicación ha sido diseñada, desarrollada y validada específicamente para su compilación y ejecución en entornos Microsoft Windows. Actualmente, no se garantiza compatibilidad con otros sistemas operativos, incluidos Linux, macOS o variantes similares
+  %\end{warn}
+
+  % TODO: mostrar como compilar desde \textit{source} usando qmake.
 
 \section{Tecnologías}
 
-\noindent Durante el desarrollo de QFotoPaint se han utilizado las siguientes tecnologías:
+  \noindent Durante el desarrollo de QFotoPaint se han utilizado las siguientes tecnologías:
 
-\begin{itemize}
-	\item \textbf{Git}: Para el control de versiones y la gestión colaborativa del código fuente.
-	\item \textbf{Qt Creator}: Entorno de desarrollo integrado (IDE) empleado para la codificación, depuración y diseño de la interfaz gráfica.
-	\item \textbf{Qt Framework}: Biblioteca multiplataforma usada para la creación de la interfaz de usuario y la gestión de eventos.
-	\item \textbf{OpenCV}: Librería de visión por computador utilizada para el procesamiento, filtrado y transformación de imágenes y vídeo.
-	\item \textbf{qmake}: Herramienta de automatización utilizada para la configuración y compilación del proyecto Qt.
-\end{itemize}
+  \begin{itemize}
+      \item \textbf{Git}: Para el control de versiones y la gestión colaborativa del código fuente.
+      \item \textbf{Qt Creator}: Entorno de desarrollo integrado (IDE) empleado para la codificación, depuración y diseño de la interfaz gráfica.
+      \item \textbf{Qt Framework}: Biblioteca multiplataforma usada para la creación de la interfaz de usuario y la gestión de eventos.
+      \item \textbf{OpenCV}: Librería de visión por computador utilizada para el procesamiento, filtrado y transformación de imágenes y vídeo.
+      \item \textbf{qmake}: Herramienta de automatización utilizada para la configuración y compilación del proyecto Qt.
+  \end{itemize}
 
-\clearpage
+  \clearpage
 
-\section{Desarrollo}
+\section{Características generales}
 
-\subsection{Información multimedia}
+  El programa base proporcionado por los profesores de la asignatura cuenta con
+  un gran número de herramientas, de las cuales algunas han sido modificadas
+  durante el transcurso de las prácticas. Esta sección del documento tiene como
+  finalidad mostrar el uso y correcto funcionamiento de las principales
+  funcionalidades de la aplicación.
 
-\noindent
-Otra funcionalidad adicional es la de poder consultar información acerca de las imágenes abiertas. Datos como las dimensiones, el tipo o la relación de aspecto pueden ser útiles para el usuario. Para ello, es necesario crear una nueva clase, junto con un formulario, \texttt{InformacionMultimedia}.
+  \subsection{Menú Archivo}
 
-\begin{info}[Observación]
-	Se ha optado por representar todas las imágenes abiertas en lugar de únicamente la imagen seleccionada, debido a la simplicidad de la implementación, ya que basta con recorrer el arreglo de imágene \texttt{foto[]} de \texttt{struct ventana}.
-\end{info}
+      \subsubsection*{Nueva}
+          \noindent
+          Crea una nueva imagen, especificando el tamaño y el color de fondo.
 
-\noindent
-Para la función completa, consultar anexo. \\
+      \subsubsection*{Abrir}
+          \noindent
+          Lee una imagen de un archivo existente en formatos admitidos por OpenCV.
 
-% TODO: incluir en anexo
+      \subsubsection*{Guardar}
+          \noindent
+          Guarda la imagen actual sin requerir una nueva especificación de nombre.
 
-El diálogo diseñado ha sido inspirado en el utilizado por el programa VLC para consultar estadísticas e información acerca de los \textit{streams} de los ficheros multimedia:
+      \subsubsection*{Guardar como...}
+          \noindent
+          Guarda la imagen actual, permitiendo especificar un nuevo nombre de archivo.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.4\textwidth]{figures/im_vlc}
-	\caption{Diálogo de información multimedia en VLC.}
-	\label{fig:im-vlc}
-\end{figure}
+      \subsubsection*{Cerrar}
+          \noindent
+          Cierra la imagen abierta, dando opción a guardar si ha sido modificada.
 
-El diseño se ha logrado usando un \texttt{QTabWidget} junto con un \texttt{QTreeWidget}. Para extender el contenido de éste al superior, se ha usado un \textit{layout} vertical. Esta implementación ofrece una gran comodidad a la hora añadir elementos a su nodo raíz en la clase \textit{src}.
+      \subsubsection*{Capturar de cámara}
+          \noindent
+          Captura una imagen de una cámara de vídeo conectada al ordenador.
 
-\clearpage
+      \subsubsection*{Capturar de vídeo}
+          \noindent
+          Abre un frame específico de un archivo de vídeo y permite previsualizar la posición.
 
-\subsection{Ecualización del histograma}
+      \subsubsection*{Salir}
+          \noindent
+          Termina el programa, liberando memoria y dando opción a guardar las imágenes modificadas.
 
-\subsubsection{Introducción}
+  \subsection{Menú Edición}
 
-\noindent
-La ecualización de histogramas es un método utilizado para mejorar el contraste de una imagen, al expandir las zonas que concentran mucho contraste. Su objetivo principal es transformar una imagen de entrada en otra imagen cuyo histograma tiene una distribución uniforme, aunque luego veremos que esto no es exactamente así, pues los histogramas no son completamente planos. \cite{opencv_histogram_equalization_tutorial} \\
+      \subsubsection*{Seleccionar todo}
+          \noindent
+          Selecciona la imagen completa como región de interés (ROI).
 
-La ecualización de histogramas no funciona igual en imágenes con un solo canal (imágenes de grises) que en imágenes a color. Para entender su funcionamiento, consideramos una imagen de grises \( X \), siendo \( n_i \) el número de ocurrencias para el nivel de grises \( i \). La probabilidad por tanto de que un píxel aleatorio tenga el valor de \( i \) es: 
+      \subsubsection*{Copiar a nueva}
+          \noindent
+          Crea una nueva imagen conteniendo solo la región de interés (ROI) seleccionada.
 
-\[ p_X (i) = \frac{n_i}{n}, \quad 0 \leq i < L \]
+      \subsubsection*{Ver histograma}
+          \noindent
+          Muestra el histograma de la imagen, ya sea en valor de gris o por canales (R, G, B).
 
-\noindent 
-siendo \( L \) el número total de niveles de grises en la imagen. \( p_X (i)\) es el valor del histograma para \( i \). \\
+      \subsubsection*{Opciones}
+          \noindent
+          Configura ajustes del programa como el color actual y la opción de preguntar si guardar.
 
-\noindent
-Definimos también la distribución acumulada de píxeles en \( X \) para el valor \( i \).
+  \subsection{Menú Herramientas}
 
+      \subsubsection*{Punto}
+          \noindent
+          Pinta puntos en la imagen con tamaño, color y nivel de difuminación dados.
 
-\[ \text{cdf}_X(i) = \sum_{j=0}^{i} p_X(j) \]
+      \subsubsection*{Línea}
+          \noindent
+          Pinta líneas en la imagen especificando un punto de inicio y otro de fin.
 
-Para que esta función pueda emplearse como transformación de intensidades, debe normalizarse de manera 
-que su valor máximo corresponda al nivel máximo de intensidad permitido (OpenCV usa 255). Es aquí donde empleamos el método que nos proporciona la librería de OpenCV \texttt{cv::equalizeHist}. \cite{opencv_equalizeHist_function}
+      \subsubsection*{Rectángulo}
+          \noindent
+          Pinta rectángulos (borde o relleno) en la imagen usando las esquinas especificadas.
 
-\begin{mainbox}{\large equalizeHist()}
-	\textbf{void cv::equalizeHist (InputArray src, OutputArray dst)}
-	
-	\vspace{2ex}
-	
-	Ecualiza el histograma de una imagen en escala de grises. \\
-	La función ecualiza el histograma de la imagen de entrada utilizando el siguiente algoritmo:
-	
-	\begin{itemize}
-		\item Calcular el histograma \(H\) para \texttt{src}.
-		\item Normalizar el histograma de manera que la suma de los bins sea 255.
-		\item Calcular el histograma acumulado:
-		
-		\[ H'_i = \sum_{0 \le j < i} H(j) \]
-		
-		\item Transformar la imagen utilizando \( H' \) como tabla de consulta:
-		
-		\[ \text{dst}(x,y) = H'(\text{src}(x,y)) \]
-	\end{itemize}
-	
-	El algoritmo normaliza el brillo y aumenta el contraste de la imagen.
-\end{mainbox}
+      \subsubsection*{Elipses}
+          \noindent
+          Pinta elipses (borde o relleno) seleccionando los extremos o el centro y el tamaño.
 
-\clearpage
+      \subsubsection*{Arco iris}
+          \noindent
+          Dibuja puntos cuyo color cambia automáticamente y rotativamente siguiendo una paleta de tipo arco iris.
 
-\subsubsection{Implementación}
+      \subsubsection*{Seleccionar}
 
-\noindent
-El desarrollo de la ecualización del histograma está fuertemente basada en la del ajuste lineal
-realizado en clase. Según la documentación, la funcionalidad debe permitir al usuario dos modos:
+          \noindent
+          Define una región de interés (ROI) rectangular para usar en operaciones posteriores.
 
-\begin{itemize}
-	\item \textbf{Conjunto:} La operación se aplica de manera conjunta sobre un grupo completo de canales. Concretamente, se realizará sobre un conjunto específico (valor en HSV y luminancia en YCrCb). Es necesario convertir a uno de estos modos ya que, como se especifica en la teoría, pueden aparecer resultados erróneos si usamos el canal RGB, el cual mezcla el color con el brillo. \cite{wikipedia_hist_eq}
-	
-	\item \textbf{Independiente:} Si la imagen de entrada consta de varios canales, cada uno se procesa por separado sin tener en cuenta a los demás.
-\end{itemize}
+  \subsection{Menú Transformar}
 
-\noindent
-Para implementar correctamente la funcionalidad, se ha optado por crear una nueva clase junto con un formulario, \texttt{EcualizacionHistograma}. El método implementado en \texttt{imagenes.cpp} es el siguiente:
+      \subsubsection*{Ajustar brillo/contraste/gama}
 
-\begin{lstlisting}[style=CppQtStyle, caption={Implementación de la ecualización del histograma}, label={lst:ecualhist}]
+          \noindent
+          Modifica la imagen alterando el brillo (suma), el contraste (multiplicación) y la gama.
+
+      \subsubsection*{Ajustar matiz/saturación/luminosidad}
+          \noindent
+          Realiza un ajuste de color usando HLS/HSV para modificar el matiz, la saturación y la luminosidad.
+
+      \subsubsection*{Ajuste lineal del histograma}
+          \noindent
+          Estira linealmente el histograma indicando el porcentaje de píxeles a descartar en los extremos.
+
+      \subsubsection*{Perspectiva}
+          \noindent
+          Realiza una transformación perspectiva mapeando 4 puntos origen a 4 puntos destino seleccionados por el usuario.
+
+      \subsubsection*{Convertir a escala de color}
+          \noindent
+          Convierte la imagen a escala de grises o a color según la opción seleccionada.
+
+      \subsubsection*{Media ponderada de dos imágenes}
+          \noindent
+          Calcula una nueva imagen como la media ponderada de dos imágenes, escalando si los tamaños no coinciden.
+
+  \subsection{Menú Efectos}
+
+      \subsubsection*{Suavizado}
+
+          \noindent Aplica un filtro de suavizado (gaussiano, media o mediana) según el tipo y tamaño indicados.
+
+      \subsubsection*{Bajorrelieve}
+          \noindent
+          Aplica un efecto de bajorrelieve a la imagen, seleccionando la dirección y cantidad del efecto.
+
+      \subsubsection*{Pinchar/estirar}
+          \noindent
+          Aplica transformaciones geométricas de pinchar o estirar una imagen indicando centro, radio y cantidad del efecto.
+
+      \subsubsection*{Inpaint}
+          \noindent
+          Aplica el algoritmo inpaint para borrar contenido de la imagen pintando sobre las zonas afectadas.
+
+          \clearpage
+
+\section{Desarrollo de las implementaciones}
+
+  El siguiente apartado documenta el trabajo de ampliación realizado sobre el
+  código base proporcionado. En contraste con las herramientas preexistentes,
+  esta sección detalla las funcionalidades adicionales ofertadas por el enunciado
+  de la práctica, explicando el diseño implementado, los cambios técnicos
+  realizados en la estructura del programa y la validación de su correcto
+  funcionamiento.
+
+  \subsection{Nueva imagen desde el portapapeles}
+
+      \noindent
+      Esta es una de las operaciones adicionales más sencillas. No es necesario manejar el API del portapapeles de Windows a bajo nivel, pues el
+      framework de Qt ofrece una clase ``\textit{wrapper}'' que permite acceder al portapapeles de forma sencilla y ofrece los métodos necesarios
+      para la funcionalidad que se desea implementar. \cite{qt_qclipboard} \\
+
+      Por simplicidad, se ha optado por no crear una nueva clase ni un nuevo
+      formulario, simplemente definimos una nueva \texttt{QAction} en el menú
+      ``Archivo'' y accedemos al portapapeles de la siguiente forma:
+
+      \begin{lstlisting}[style=CppQtStyle, caption={Acceso al portapapeles en Qt.}]
+	// mainwindow.cpp
+	void MainWindow::on_actionNueva_desde_portapapeles_triggered() {
+		const QClipboard *clipboard = QGuiApplication::clipboard();
+		const QMimeData *mimeData = clipboard->mimeData();
+
+		if (mimeData->hasImage()) {
+			QImage img = qvariant_cast<QImage>(mimeData->imageData());
+
+			if (!img.isNull()) {
+				Mat mat = Mat(img.height(), img.width(), CV_8UC4, img.bits());
+				cvtColor(mat, mat, COLOR_RGBA2RGB);
+
+				int pl = comprobar_primera_libre();
+				if (pl != -1)
+				crear_nueva(pl, mat);
+			}
+		} else {
+			QMessageBox::warning(this, "Portapapeles vacío",
+			"No se encontró ninguna imagen en el portapapeles.");
+		}
+	}
+\end{lstlisting}
+
+      \noindent
+      La aplicación lanzará un diálogo de advertencia si el portapapeles esta vacío o no
+      se ha encontrado una imagen en la última entrada del historial.
+
+      \clearpage
+
+  \subsection{Copiar al portapapeles}
+
+      \noindent
+      Siguiendo la dinámica de la anterior característica relacionada con el
+      portapapeles, esta funcionalidad permite al usuario copiar la imagen de la
+      ventana seleccionada al portapapeles. Esta operación no necesita la creación de
+      una nueva clase ni de un nuevo formulario, y se puede implementar en el propio
+      código de \texttt{mainwindow.cpp}.
+
+      \begin{lstlisting}[style=CppQtStyle, caption={Acceso al portapapeles en Qt.}]
+    // mainwindow.cpp
+    void MainWindow::on_actionCopiar_al_portapapeles_triggered() {
+        int f_act = foto_activa();
+
+        if (f_act == -1)
+            return;
+
+        ventana &v = foto[f_act];
+
+        Mat roi = v.img(v.roi).clone();
+
+        Mat roiRGB;
+        cvtColor(roi, roiRGB, COLOR_BGR2RGB);
+
+        QImage img = QImage((const uchar*)roiRGB.data, roiRGB.cols, roiRGB.rows, roiRGB.step, QImage::Format_RGB888).copy();
+
+        QClipboard *clipboard = QGuiApplication::clipboard();
+        clipboard->setImage(img);
+    }
+\end{lstlisting}
+
+      \noindent
+      Realizamos una conversión del modo BGR de OpenCV al modo de color RGB. Se ha intentado convertir al modo de color RGBA pero la imagen contenía errores a la hora de recuperarla. Para actualizar el portapapeles, se hace uso de la operación \texttt{setImage()} proporcionada por la clase \texttt{QClipboard} de Qt. \cite{opencv_histogram_equalization_tutorial}
+
+      \clearpage
+
+  \subsection{Deshacer última acción}
+
+      \subsubsection{Introducción}
+
+          \noindent
+          Los humanos cometemos numerosos errores y, como cualquier programa de usuario, QFotoPaint6 debería permitir al usuario deshacer los últimos cambios. Esta funcionalidad ha sido una de las más difíciles de implementar, ya que está diseñada de forma que se pueda revertir cualquier cambio cometido en la imagen, ya sea con un formulario o con una herramienta de edición. \\
+
+          Lo primero que nos viene a la mente es definir, para cada ventana (imagen)
+          abierta, una lista con el historial de acciones realizadas, para poder navegar
+          hacia una de ellas. Sin embargo, en vez de guardar la acción realizada, se
+          guarda el ``estado'' de la imagen. Para llevarlo a cabo, será necesario
+          modificar la estructura \texttt{ventana}, añadiendo un tipo de dato adecuado
+          para soportar las operaciones.
+
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.6\textwidth]{figures/ventana_undo}
+              \caption{Actualización de la estructura ventana con un vector \texttt{img\_hist}.}
+              \label{fig:ventana-undo}
+          \end{figure}
+
+      \subsubsection{Implementación}
+
+          Para implementarlo en código, modificamos en \texttt{imagenes.h}, añadiendo el
+          nuevo vector dinámico que actuará como pila, junto con una constante que
+          limitará el tamaño del historial:
+
+          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+	// imagenes.h
+	#define MAX_HIST_IMG 20 	// Tamaño del historial para deshacer
+	 ...
+	struct ventana {
+		bool usada;             // Indica si se está usando actualmente
+		bool modificada;        // Ha sido modificada después de abrirla o crearla
+		string nombre;          // Nombre de la ventana codificada en UTF8
+		string nombref;         // Nombre del fichero de imagen codificado en Latin1
+		int orden;              // Número de orden entre las ventanas abiertas
+		Rect roi;               // Región de interés seleccionada
+		Mat img;                // Imagen almacenada en esta posición
+		vector<Mat> img_hist;   // Historial de imágenes
+	};
+\end{lstlisting}
+
+          \clearpage
+
+          Es importante definir métodos que permitan implementar las acciones que
+          deseamos soportar. Para ello, se definen los métodos
+          \texttt{guardar\_estado()}:
+
+          \begin{lstlisting}[style=CppQtStyle]
+	// imagenes.cpp
+	void guardar_estado (int nfoto) {
+		ventana& v = foto[nfoto];
+
+		v.img_hist.push_back(v.img.clone());  // guardar estado en la pila de deshacer
+
+		if (v.img_hist.size() > MAX_HIST_IMG)	// comprobar tamaño máximo de pila
+			v.img_hist.erase(v.img_hist.begin());
+
+		v.modificada = true;
+	}
+\end{lstlisting}
+
+          \noindent
+          y \texttt{deshacer()}:
+
+          \begin{lstlisting}[style=CppQtStyle]
+	// imagenes.cpp
+	void deshacer (int nfoto) {
+		ventana& v = foto[nfoto];
+		 ...
+		// recuperar y eliminar último estado guardado
+		v.img = v.img_hist.back().clone();
+		v.img_hist.pop_back();
+
+		imshow(v.nombre, v.img);
+	}
+\end{lstlisting}
+
+          Para cada acción del menú, el paso a seguir es el mismo para una: guardar el
+          estado de la imagen en cada cambio de la ventana. Para ello, añadimos una
+          llamada a \texttt{guardar\_estado()} en cada condicional \texttt{if (guardar)}.
+          Un ejemplo es el siguiente:
+
+          \begin{lstlisting}[style=CppQtStyle]
+	void ver_brillo_contraste_gamma (int nfoto, double suma, double prod, double gamma, bool guardar) {
+		 ...
+		if (guardar) {
+			guardar_estado(nfoto);		// instrucción añadida
+			img.copyTo(foto[nfoto].img);
+			foto[nfoto].modificada= true;
+		}
+	}
+\end{lstlisting}
+
+          \clearpage
+
+          Sin embargo, si queremos que también funcione para las herramientas (punto,
+          línea, arcoíris), al funcionar con eventos, hay que controlar el inicio y fin
+          de ``dibujado''. Esto se logra con una variable \texttt{dibujando\_activo} que
+          se actualiza en el \textit{callback}, según los eventos
+          \texttt{EVENT\_LBUTTONDOWN} y \texttt{EVENT\_LBUTTONUP}.
+
+          \begin{lstlisting}[style=CppQtStyle]
+	void callback (int event, int x, int y, int flags, void *_nfoto) {
+		 ...
+		// 1.5. Se inicia la pulsación del ratón
+		if (event==EVENT_LBUTTONDOWN) {
+			downx= x;
+			downy= y;
+
+			if (!dibujando_activo) {	// marcar inicio trazo
+				guardar_estado(factual);
+				dibujando_activo = true;
+			}
+		}
+
+		if (event==EVENT_LBUTTONUP) {		// finalizar trazo
+			if (dibujando_activo)
+				dibujando_activo = false;
+		}
+	}
+\end{lstlisting}
+
+          \noindent
+          De esta forma, cuando el usuario usa, por ejemplo, la herramienta ``Punto'' y mantiene presionado el botón del ratón, solo se guardará un estado de la imagen: el previo a realizar la acción. Además, se ha asignado al QAction correspondiente el atajo de teclado \texttt{CTRL+Z}, aunque no funciona cuando el foco está en una de las ventanas de OpenCV.
+
+  \subsection{Información multimedia}
+
+      \subsubsection{Introducción}
+
+          \noindent
+          Otra funcionalidad adicional es la de poder consultar información acerca de las imágenes abiertas. Datos como las dimensiones, el tipo o la relación de aspecto pueden ser útiles para el usuario. Para ello, es necesario crear una nueva clase, junto con un formulario, \texttt{InformacionMultimedia}.
+
+          \begin{info}[Observación]
+              Se ha optado por representar todas las imágenes abiertas en lugar de únicamente la imagen seleccionada, debido a la simplicidad de la implementación, ya que basta con recorrer el arreglo de imágene \texttt{foto[]} de \texttt{struct ventana}.
+          \end{info}
+
+          El formulario diseñado ha sido inspirado en el utilizado por el programa VLC
+          para consultar estadísticas e información acerca de los \textit{streams} de los
+          ficheros multimedia.
+
+      \subsubsection{Implementación}
+
+          \noindent
+          El diálogo implementado tiene el siguiente aspecto:
+
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.3\textwidth]{figures/im}
+              \caption{Diálogo de información multimedia implementado en QFotoPaint6.}
+              \label{fig:im-vlc}
+          \end{figure}
+
+          El diseño se ha logrado usando un \texttt{QTabWidget} junto con un
+          \texttt{QTreeWidget}. Para extender el contenido de éste al superior, se ha
+          usado un \textit{layout} vertical. Esta implementación ofrece una gran
+          comodidad a la hora añadir elementos a su nodo raíz en la clase \textit{src}. A
+          nivel de código, esto se ha logrado de la siguiente forma:
+
+          \begin{itemize}
+              \item Se recorren todas las imágenes abiertas:
+
+                    \begin{lstlisting}[style=CppQtStyle, numbers=none]
+		for (size_t i = 0; i < MAX_VENTANAS; ++i) {
+			if (foto[i].img.empty()) continue;  ...  }
+\end{lstlisting}
+
+              \item Se crea un nodo raíz:
+                    \begin{lstlisting}[style=CppQtStyle, numbers=none]
+		QTreeWidgetItem *root = new QTreeWidgetItem(ui->treeWidget);
+\end{lstlisting}
+
+              \item Se van creando los nodos hijo, cada uno con una propiedad sobre la imagen:
+                    \begin{lstlisting}[style=CppQtStyle, numbers=none]
+		QTreeWidgetItem *itemCanales = new QTreeWidgetItem(root);
+		itemCanales->setText(0, QString("Canales de color: %1").arg(img.channels()));
+\end{lstlisting}
+
+          \end{itemize}
+
+          \noindent
+          Para ver el código en su totalidad, se remite al anexo de la implementación de la clase~\ref{sec:anexo-im}. \\
+
+          \clearpage
+
+  \subsection{Ecualización del histograma}
+
+      \subsubsection{Introducción}
+
+          \noindent
+          La ecualización de histogramas es un método utilizado para mejorar el contraste de una imagen, al expandir las zonas que concentran mucho contraste. Su objetivo principal es transformar una imagen de entrada en otra imagen cuyo histograma tiene una distribución uniforme, aunque luego veremos que esto no es exactamente así, pues los histogramas no son completamente planos. \cite{opencv_histogram_equalization_tutorial} \\
+
+          La ecualización de histogramas no funciona igual en imágenes con un solo canal
+          (imágenes de grises) que en imágenes a color. Para entender su funcionamiento,
+          consideramos una imagen de grises \( X \), siendo \( n_i \) el número de
+          ocurrencias para el nivel de grises \( i \). La probabilidad por tanto de que
+          un píxel aleatorio tenga el valor de \( i \) es:
+
+          \[ p_X (i) = \frac{n_i}{n}, \quad 0 \leq i < L \]
+
+          \noindent
+          siendo \( L \) el número total de niveles de grises en la imagen. \( p_X (i)\) es el valor del histograma para \( i \). \\
+
+          \noindent
+          Definimos también la distribución acumulada de píxeles en \( X \) para el valor \( i \).
+
+          \[ \text{cdf}_X(i) = \sum_{j=0}^{i} p_X(j) \]
+
+          Para que esta función pueda emplearse como transformación de intensidades, debe
+          normalizarse de manera que su valor máximo corresponda al nivel máximo de
+          intensidad permitido (OpenCV usa 255). Es aquí donde empleamos el método que
+          nos proporciona la librería de OpenCV \texttt{cv::equalizeHist}.
+          \cite{opencv_equalizeHist_function}
+
+          \begin{mainbox}{\large equalizeHist()}
+              \textbf{void cv::equalizeHist (InputArray src, OutputArray dst)}
+
+              \vspace{2ex}
+
+              Ecualiza el histograma de una imagen en escala de grises. \\ La función
+              ecualiza el histograma de la imagen de entrada utilizando el siguiente
+              algoritmo:
+
+              \begin{itemize}
+                  \item Calcular el histograma \(H\) para \texttt{src}.
+                  \item Normalizar el histograma de manera que la suma de los bins sea 255.
+                  \item Calcular el histograma acumulado:
+
+                        \[ H'_i = \sum_{0 \le j < i} H(j) \]
+
+                  \item Transformar la imagen utilizando \( H' \) como tabla de consulta:
+
+                        \[ \text{dst}(x,y) = H'(\text{src}(x,y)) \]
+              \end{itemize}
+
+              El algoritmo normaliza el brillo y aumenta el contraste de la imagen.
+          \end{mainbox}
+
+          \clearpage
+
+      \subsubsection{Implementación}
+
+          \noindent
+          El desarrollo de la ecualización del histograma está fuertemente basada en la del ajuste lineal
+          realizado en clase. Según la documentación, la funcionalidad debe permitir al usuario dos modos:
+
+          \begin{itemize}
+              \item \textbf{Conjunto:} La operación se aplica de manera conjunta sobre un grupo completo de canales. Concretamente, se realizará sobre un conjunto específico (valor en HSV y luminancia en YCrCb). Es necesario convertir a uno de estos modos ya que, como se especifica en la teoría, pueden aparecer resultados erróneos si usamos el canal RGB, el cual mezcla el color con el brillo. \cite{wikipedia_hist_eq}
+
+              \item \textbf{Independiente:} Si la imagen de entrada consta de varios canales, cada uno se procesa por separado sin tener en cuenta a los demás.
+          \end{itemize}
+
+          \noindent
+          Para implementar correctamente la funcionalidad, se ha optado por crear una nueva clase junto con un formulario, \texttt{EcualizacionHistograma}. El método implementado en \texttt{imagenes.cpp} es el siguiente:
+
+          \begin{lstlisting}[style=CppQtStyle, caption={Implementación de la ecualización del histograma}, label={lst:ecualhist}]
 	// imagenes.cpp
 	void ecualizacion_hist(int nfoto, int modo, bool guardar) {
 	Mat img = foto[nfoto].img;
 	Mat imres;
-	
+
 	if (img.channels() == 1) {  // imagen de grises
 		equalizeHist(img, imres);
 	} else if (modo == 0) {  // modo conjunto
 		// convertir a HSV para separar luz del color
 		Mat hsv;
 		cvtColor(img, hsv, COLOR_BGR2HSV);
-		
+
 		vector<Mat> canales;
 		split(hsv, canales);
-		
+
 		equalizeHist(canales[2], canales[2]);
-		
+
 		merge(canales, hsv);
 		cvtColor(hsv, imres, COLOR_HSV2BGR);
 	} else {  // modo independiente
 		vector<Mat> canales;
 		split(img, canales);
-		
+
 		for (size_t i = 0; i < 3; ++i)
 		equalizeHist(canales[i], canales[i]);
-		
+
 		merge(canales, imres);
 	}
-	
+
 	...
-	
+
 }
 \end{lstlisting}
 
-Como se puede ver en las líneas 10-16 del código \ref{lst:ecualhist}, se realiza una conversión de modelo a HSV para separar la luminosidad de la crominancia.
+          Como se puede ver en las líneas 10-16 del código \ref{lst:ecualhist}, se
+          realiza una conversión de modelo a HSV para separar la luminosidad de la
+          crominancia.
 
-\section{Otras mejoras}
+          \clearpage
 
-\subsection{Incremento del paso en arcoíris}
+\section{Mejoras adicionales no mencionadas en el enunciado}
 
-\noindent
-Como propuesta del profesor, se ha diseñado una solución para que el usuario sea capaz de modificar el ``\textit{paso}'' con
-el que se cambia de color del pincel en la herramienta ``Arcoíris''. Esta característica permitirá al usuario un mayor control 
-sobre apariencia del efecto. \\
+  \subsection{Incremento del paso en arcoíris}
 
-El ``paso'' se refiere a la velocidad de avance que en la secuencia de colores del espectro cada vez que se dibuja un píxel.  
-Un paso pequeño provoca que los colores cambien lentamente, generando transiciones suaves y graduales entre tonos consecutivos.  
-Por el contrario, un paso mayor acelera el cambio de color, produciendo un efecto más vivo. \\
+  \subsection{Introducción}
 
-Para implementar esta funcionalidad, se ha definido un nuevo elemento \texttt{QWidget} en \texttt{mainwindow.ui}. Este elemento
-estará por defecto invisible, y su visibilidad cambiará al hacer \textit{click} sobre el botón de la herramienta. \\
+      \noindent
+      Como propuesta del profesor, se ha diseñado una solución para que el usuario sea capaz de modificar el ``\textit{paso}'' con
+      el que se cambia de color del pincel en la herramienta ``Arcoíris''. Esta característica permitirá al usuario un mayor control
+      sobre apariencia del efecto. \\
 
-También se ha valorado la necesidad de ocultar el panel si se pierde el foco en él. Se ha tenido que recurrir a un 
-\textit{listener} de eventos de \texttt{QMouseEvent} ya que los paneles no proporcionan métodos \texttt{isHovered()}. 
-Esta decisión es muy poco eficiente, pero aún así se ha decidido implementar. 
+      El ``paso'' se refiere a la velocidad de avance que en la secuencia de colores
+      del espectro cada vez que se dibuja un píxel. Un paso pequeño provoca que los
+      colores cambien lentamente, generando transiciones suaves y graduales entre
+      tonos consecutivos. Por el contrario, un paso mayor acelera el cambio de color,
+      produciendo un efecto más vivo. \\
 
-\begin{lstlisting}[style=CppQtStyle, caption={Mostrar/Ocultar panel al presionar la herramienta}]
+  \subsection{Implementación}
+
+      Para implementar esta funcionalidad, se ha definido un nuevo elemento
+      \texttt{QWidget} en \texttt{mainwindow.ui}. Este elemento estará por defecto
+      invisible, y su visibilidad cambiará al hacer \textit{click} sobre el botón de
+      la herramienta. \\
+
+      También se ha valorado la necesidad de ocultar el panel si se pierde el foco en
+      él. Se ha tenido que recurrir a un \textit{listener} de eventos de
+      \texttt{QMouseEvent} ya que los paneles no proporcionan métodos
+      \texttt{isHovered()}. Esta decisión es muy poco eficiente, pero aún así se ha
+      decidido implementar.
+
+      \begin{lstlisting}[style=CppQtStyle, caption={Mostrar/Ocultar panel al presionar la herramienta}]
 	// mainwindow.cpp
 	void MainWindow::on_toolButton_9_clicked() {
 		herr_actual = HER_ARCOIRIS;
 		ui->incrementoArcoirisWidget->setVisible(!ui->incrementoArcoirisWidget->isVisible());
 	}
-
-	...
-	
+	 ...
 	void MainWindow::mouseMoveEvent(QMouseEvent *event)	{
 		if (ui->incrementoArcoirisWidget->isVisible()) {
 			QPoint pos = event->pos();
-			
+
 			// Si el ratón no está dentro del widget y tampoco sobre el botón
 			if (!ui->incrementoArcoirisWidget->geometry().contains(pos) &&
 			!ui->toolButton_9->geometry().contains(pos)) {
@@ -266,34 +673,122 @@ Esta decisión es muy poco eficiente, pero aún así se ha decidido implementar.
 	}
 \end{lstlisting}
 
-En la clase \texttt{imagenes} también se han realizado algunas modificaciones. La primera es la necesidad de tener una
-variable externa que se pueda utilizar en \texttt{mainwindow}, sustituyendo a la variable local \texttt{incremento}.
+      En la clase \texttt{imagenes} también se han realizado algunas modificaciones.
+      La primera es la necesidad de tener una variable externa que se pueda utilizar
+      en \texttt{mainwindow}, sustituyendo a la variable local \texttt{incremento}.
 
-\begin{lstlisting}[style=CppQtStyle, caption={Mostrar/Ocultar según las coordenadas del ratón}]
+      \begin{lstlisting}[style=CppQtStyle, numbers=none]
 	// imagenes.h
 	constexpr int DEFAULT_INCREMENTO_ARCOIRIS = 10;
 	extern int incremento_arcoiris;
 \end{lstlisting}
 
-\begin{lstlisting}[style=CppQtStyle, caption={Mostrar/Ocultar según las coordenadas del ratón}]
+      \begin{lstlisting}[style=CppQtStyle, numbers=none]
 	// imagenes.cpp
 	int incremento_arcoiris = DEFAULT_INCREMENTO_ARCOIRIS;
 \end{lstlisting}
 
-% TODO: Incluir modificacicones a MainWindow
+      % TODO: Incluir modificaciones a MainWindow
 
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=0.7\linewidth]{figures/}
-%	\caption{}
-%	\label{fig:}
-%\end{figure}
+      %\begin{figure}[H]
+      %	\centering
+      %	\includegraphics[width=0.7\linewidth]{figures/}
+      %	\caption{}
+      %	\label{fig:}
+      %\end{figure}
 
+      \clearpage
+
+  \subsection{Rehacer última acción}
+
+      \subsubsection{Introducción}
+
+          \noindent
+          Con el fin de completar la funcionalidad de deshacer las acciones realizadas, y con la base ya implementada para soportarla, se ha optado por ofrecer al usuario una forma de recuperar los cambios ``deshechos''. Esta operación es conocida con el nombre de rehacer o \textit{redo} en inglés. La idea es la misma que para la operación de ``deshacer'': modificar la estructura \texttt{ventana} con un nuevo tipo de dato que actúe exactamente igual que la pila implementada anteriormente en la figura~\ref{fig:ventana-undo}. La forma es la siguiente:
+
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.6\textwidth]{figures/ventana_redo}
+              \caption{Actualización de la estructura ventana con un vector \texttt{undo\_hist}.}
+              \label{fig:ventana-redo}
+          \end{figure}
+
+      \subsubsection{Implementación}
+
+          \noindent
+          A nivel de código:
+
+          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+	// imagenes.h
+	#define MAX_HIST_IMG 20 	// Tamaño del historial para deshacer/rehacer
+	 ...
+	struct ventana {
+		bool usada;             // Indica si se está usando actualmente
+		bool modificada;        // Ha sido modificada después de abrirla o crearla
+		string nombre;          // Nombre de la ventana codificada en UTF8
+		string nombref;         // Nombre del fichero de imagen codificado en Latin1
+		int orden;              // Número de orden entre las ventanas abiertas
+		Rect roi;               // Región de interés seleccionada
+		Mat img;                // Imagen almacenada en esta posición
+		vector<Mat> img_hist;   // Historial de imágenes
+		vector<Mat> undo_hist;  // Historial de deshacer
+	};
+\end{lstlisting}
+
+          \noindent
+          Debemos actualizar la operación deshacer para que, en cada cambio de estado, se guarde la imagen actual. De esta manera, la imagen no se pierde y se guarda en la nueva pila. También será necesario definir una nueva operación \texttt{rehacer()}.
+
+          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+    // imagenes.cpp
+    void deshacer (int nfoto) {
+        ventana& v = foto[nfoto];
+         ...
+        // guardar estado para poder ir hacia delante
+        v.undo_hist.push_back(v.img.clone());
+         ...
+        if (v.undo_hist.size() > MAX_HIST_IMG)
+            v.undo_hist.erase(v.undo_hist.begin());
+         ...
+    }
+
+    void rehacer (int nfoto) {
+        ventana& v = foto[nfoto];
+
+        if (v.undo_hist.empty()) {
+            qDebug() << "No hay más estados para rehacer.";
+            return;
+        }
+
+        // guardar estado en la pila de deshacer
+        v.img_hist.push_back(v.img.clone());
+
+        // recuperar y eliminar último estado de la pila de rehacer
+        v.img = v.undo_hist.back().clone();
+        v.undo_hist.pop_back();
+
+        imshow(v.nombre, v.img);
+    }
+\end{lstlisting}
+
+          \noindent
+          El atajo de teclado designado para el QAction correspondiente es \texttt{CTRL+Y}, el cual, a diferencia del atajo \texttt{CTRL+Z}, no se superpone con ningún otro y se puede ejecutar con el foco en imágenes de OpenCV.
+
+          \clearpage
 
 \section{Bitácora}
 
-\bibliographystyle{unsrt}
-\bibliography{bibliography}
+  \bibliographystyle{unsrt}
+  \bibliography{bibliography}
 
+  \clearpage
+
+  \appendix
+
+\section{Anexo}
+
+  \subsection{Código de la implementación de Información Multimedia}
+      \label{sec:anexo-im}
+
+      \lstinputlisting[style=CppQtStyle, caption={Código de \texttt{informacionmultimedia.cpp}}]{../informacionmultimedia.cpp}
 
 \end{document}
