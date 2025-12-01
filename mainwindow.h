@@ -89,6 +89,13 @@ private slots:
     void on_actionCopiar_al_portapapeles_triggered();
     void on_actionSuavizado_triggered();
     void on_toolButton_10_clicked();
+    void on_actionRGB_triggered();
+    void on_actionHLS_triggered();
+    void on_actionHSV_triggered();
+    void on_actionXYZ_triggered();
+    void on_actionYUV_triggered();
+    void on_actionYCrCb_triggered();
+    void on_actionCMYK_triggered();
 };
 
 extern MainWindow *w;

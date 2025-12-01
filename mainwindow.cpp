@@ -605,3 +605,52 @@ void MainWindow::on_actionCopiar_al_portapapeles_triggered()
     clipboard->setImage(img);
 }
 
+
+void MainWindow::on_actionRGB_triggered()
+{
+    if (foto_activa() != -1 && primera_libre() != -1)
+        convertir_a_modelo(foto_activa(), primera_libre(), MC_RGB);
+}
+
+
+void MainWindow::on_actionHLS_triggered()
+{
+    if (foto_activa() != -1 && primera_libre() != -1)
+        convertir_a_modelo(foto_activa(), primera_libre(), MC_HLS);
+}
+
+
+void MainWindow::on_actionHSV_triggered()
+{
+    if (foto_activa() != -1 && primera_libre() != -1)
+        convertir_a_modelo(foto_activa(), primera_libre(), MC_HSV);
+}
+
+
+void MainWindow::on_actionXYZ_triggered()
+{
+    if (foto_activa() != -1 && primera_libre() != -1)
+        convertir_a_modelo(foto_activa(), primera_libre(), MC_XYZ);
+}
+
+
+void MainWindow::on_actionYUV_triggered()
+{
+    if (foto_activa() != -1 && primera_libre() != -1)
+        convertir_a_modelo(foto_activa(), primera_libre(), MC_YUV);
+}
+
+
+void MainWindow::on_actionYCrCb_triggered()
+{
+    if (foto_activa() != -1 && primera_libre() != -1)
+        convertir_a_modelo(foto_activa(), primera_libre(), MC_YCrCb);
+}
+
+
+void MainWindow::on_actionCMYK_triggered()
+{
+    if (foto_activa() != -1 && primera_libre() != -1)
+        convertir_a_modelo(foto_activa(), primera_libre(), MC_CMYK);
+}
+

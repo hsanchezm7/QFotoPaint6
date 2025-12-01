@@ -1098,3 +1098,80 @@ void rehacer (int nfoto) {
 
     imshow(v.nombre, v.img);
 }
+
+void convertir_a_modelo(int nfoto, int nres, modelo_color mc)
+{
+    Mat img = foto[nfoto].img;
+    Mat res;
+
+    switch (mc) {
+    case MC_RGB:
+        cvtColor(img, res, COLOR_BGR2RGB);
+        break;
+
+    case MC_HSV:
+        cvtColor(img, res, COLOR_BGR2HSV);
+        break;
+
+    case MC_HLS:
+        cvtColor(img, res, COLOR_BGR2HLS);
+        break;
+
+    case MC_XYZ:
+        cvtColor(img, res, COLOR_BGR2XYZ);
+        break;
+
+    case MC_YUV:
+        cvtColor(img, res, COLOR_BGR2YUV);
+        break;
+
+    case MC_YCrCb:
+        cvtColor(img, res, COLOR_BGR2YCrCb);
+        break;
+
+    case MC_CMYK:
+    {
+        Mat f;
+        img.convertTo(f, CV_32F, 1.0/255.0);
+
+        // paso intermedio BGR -> CMYK
+        Mat cmy = Scalar(1.0, 1.0, 1.0) - f;
+
+        vector<Mat> p;
+        split(cmy, p);
+
+        // K = min(C', M', Y')
+        Mat K;
+        min(p[2], p[1], K);
+        min(K, p[0], K);
+
+        // CMY -> CMYK
+        Mat k_diff = 1.0 - K + 1e-4;
+
+        vector<Mat> cmyk = {
+            (p[2] - K) / k_diff * 255.0, // C = (C' - K) / (1-K)
+            (p[1] - K) / k_diff * 255.0, // M = (M' - K) / (1-K)
+            (p[0] - K) / k_diff * 255.0, // Y = (Y' - K) / (1-K)
+            K * 255.0
+        };
+
+        merge(cmyk, res);
+        res.convertTo(res, CV_8U);
+        break;
+    }
+
+
+    default:
+        res = img.clone();
+        break;
+    }
+
+    // separar canales
+    vector<Mat> canales;
+    split(res, canales);
+
+    // crear las nuevas imágenes
+    for (size_t i = 0; i < canales.size(); ++i) {
+        crear_nueva(nres+i, canales[i]);
+    }
+}

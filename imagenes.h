@@ -47,7 +47,16 @@ struct ventana {
 //    Enumerado con los distintos tipos posibles de herramientas
 //    que se pueden usar. Añadir nuevas aquí
 
-enum tipo_herramienta {HER_PUNTO, HER_LINEA, HER_SELECCION, HER_RECTANGULO, HER_ELIPSE, HER_ARCOIRIS, HER_SUAVIZADO};
+enum tipo_herramienta { HER_PUNTO, HER_LINEA, HER_SELECCION, HER_RECTANGULO, HER_ELIPSE, HER_ARCOIRIS, HER_SUAVIZADO };
+
+enum modelo_color {    MC_RGB, // Rojo, Verde, Azul
+    MC_HSV,     // Matiz, Saturación, Valor
+    MC_HLS,     // Matiz, Luminosidad, Saturación
+    MC_XYZ,     // CIE XYZ
+    MC_YUV,     // Luma, Crominancia U, Crominancia V
+    MC_YCrCb,   // Variante común usada en JPEG/MPEG
+    MC_CMYK,    // Cian, Magenta, Amarillo, Negro
+};
 
 constexpr tipo_herramienta DEFAULT_HER = HER_PUNTO;
 constexpr int DEFAULT_RADIO_PINCEL = 10;
@@ -199,11 +208,19 @@ void ecualizacion_hist(int nfoto, int modo, bool guardar=false);
 void ajuste_lineal_hist (int nfoto, double pmin, double pmax, bool guardar=false);
 // Operación de ajuste lineal del histograma
 
+void convertir_a_modelo (int nfoto, int nres, modelo_color mc);
+// Convierte la imagen a un espacio de color específico.
+// Genera 3 nuevas ventanas independientes, una para cada canal del modelo elegido
+
 void guardar_estado (int nfoto);
+// Guarda una copia profunda (clone) de la imagen actual en la pila de 'deshacer'.
+// Debe llamarse justo antes de aplicar cualquier modificación destructiva.
 
 void deshacer (int nfoto);
+// Recupera el último estado guardado de la imagen (CTRL+Z)
 
 void rehacer (int nfoto);
+// Vuelve a aplicar el último cambio deshecho (CTRL+Y)
 
 string Lt1(string cadena);
 // Convertir una cadena de UTF8 a Latin1

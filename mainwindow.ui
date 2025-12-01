@@ -589,6 +589,18 @@ p, li { white-space: pre-wrap; }
      <addaction name="actionRotar_180"/>
      <addaction name="actionRotar_91"/>
     </widget>
+    <widget class="QMenu" name="menuModelos_de_color">
+     <property name="title">
+      <string>Modelos de color</string>
+     </property>
+     <addaction name="actionRGB"/>
+     <addaction name="actionHLS"/>
+     <addaction name="actionHSV"/>
+     <addaction name="actionXYZ"/>
+     <addaction name="actionYUV"/>
+     <addaction name="actionYCrCb"/>
+     <addaction name="actionCMYK"/>
+    </widget>
     <addaction name="actionBrillo_contraste"/>
     <addaction name="actionMatiz_Saturaci_n_Luminosidad"/>
     <addaction name="actionInvertir"/>
@@ -596,6 +608,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionEcualizaci_n_del_histograma"/>
     <addaction name="actionAjuste_lineal_del_histograma"/>
     <addaction name="actionMedia_ponderada"/>
+    <addaction name="menuModelos_de_color"/>
    </widget>
    <widget class="QMenu" name="menuEfectos">
     <property name="title">
@@ -927,6 +940,41 @@ p, li { white-space: pre-wrap; }
   <action name="actionSuavizado">
    <property name="text">
     <string>Suavizado</string>
+   </property>
+  </action>
+  <action name="actionRGB">
+   <property name="text">
+    <string>RGB</string>
+   </property>
+  </action>
+  <action name="actionHLS">
+   <property name="text">
+    <string>HLS</string>
+   </property>
+  </action>
+  <action name="actionHSV">
+   <property name="text">
+    <string>HSV</string>
+   </property>
+  </action>
+  <action name="actionXYZ">
+   <property name="text">
+    <string>XYZ</string>
+   </property>
+  </action>
+  <action name="actionYUV">
+   <property name="text">
+    <string>YUV</string>
+   </property>
+  </action>
+  <action name="actionYCrCb">
+   <property name="text">
+    <string>YCrCb</string>
+   </property>
+  </action>
+  <action name="actionCMYK">
+   <property name="text">
+    <string>CMYK</string>
    </property>
   </action>
  </widget>
