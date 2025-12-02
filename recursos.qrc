@@ -21,5 +21,27 @@
         <file>imagenes/gris.png</file>
         <file>imagenes/info.png</file>
         <file>imagenes/suavizado.png</file>
+        <file>imagenes/colorscale/colorscale_bone.jpg</file>
+        <file>imagenes/colorscale/colorscale_cividis.jpg</file>
+        <file>imagenes/colorscale/colorscale_cool.jpg</file>
+        <file>imagenes/colorscale/colorscale_deepgreen.jpg</file>
+        <file>imagenes/colorscale/colorscale_hot.jpg</file>
+        <file>imagenes/colorscale/colorscale_hsv.jpg</file>
+        <file>imagenes/colorscale/colorscale_inferno.jpg</file>
+        <file>imagenes/colorscale/colorscale_jet.jpg</file>
+        <file>imagenes/colorscale/colorscale_magma.jpg</file>
+        <file>imagenes/colorscale/colorscale_ocean.jpg</file>
+        <file>imagenes/colorscale/colorscale_parula.jpg</file>
+        <file>imagenes/colorscale/colorscale_pink.jpg</file>
+        <file>imagenes/colorscale/colorscale_plasma.jpg</file>
+        <file>imagenes/colorscale/colorscale_rainbow.jpg</file>
+        <file>imagenes/colorscale/colorscale_spring.jpg</file>
+        <file>imagenes/colorscale/colorscale_summer.jpg</file>
+        <file>imagenes/colorscale/colorscale_turbo.jpg</file>
+        <file>imagenes/colorscale/colorscale_twilight.jpg</file>
+        <file>imagenes/colorscale/colorscale_twilight_shifted.jpg</file>
+        <file>imagenes/colorscale/colorscale_viridis.jpg</file>
+        <file>imagenes/colorscale/colorscale_winter.jpg</file>
+        <file>imagenes/colorscale/colorscale_autumn.jpg</file>
     </qresource>
 </RCC>
