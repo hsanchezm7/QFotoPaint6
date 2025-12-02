@@ -912,6 +912,32 @@ void ver_pinchar_estirar(int nfoto, int nres, int cx, int cy, double grado, doub
 
 //---------------------------------------------------------------------------
 
+void ver_rojoverdeazul(int nfoto, double r_mul, double r_add,
+                       double g_mul, double g_add,
+                       double b_mul, double b_add,
+                       bool guardar)
+{
+    Mat canales[3];
+    split(foto[nfoto].img, canales);
+
+    canales[0].convertTo(canales[0], -1, b_mul, b_add);
+    canales[1].convertTo(canales[1], -1, g_mul, g_add);
+    canales[2].convertTo(canales[2], -1, r_mul, r_add);
+
+    Mat res;
+    merge(canales, 3, res);
+
+    imshow(foto[nfoto].nombre, res);
+
+    if (guardar) {
+        guardar_estado(nfoto);
+        res.copyTo(foto[nfoto].img);
+        foto[nfoto].modificada = true;
+    }
+}
+
+//---------------------------------------------------------------------------
+
 void ver_matsatlum (int nfoto, int matiz, double saturacion, double luminosidad,
                    bool guardar)
 {
@@ -938,7 +964,6 @@ void ver_matsatlum (int nfoto, int matiz, double saturacion, double luminosidad,
 
 //---------------------------------------------------------------------------
 
-
 void media_ponderada (int nf1, int nf2, int nueva, double peso)
 {
     assert(nf1>=0 && nf1<MAX_VENTANAS && foto[nf1].usada);
@@ -950,6 +975,8 @@ void media_ponderada (int nf1, int nf2, int nueva, double peso)
     addWeighted(img, peso, cop, 1.0-peso, 0, img);
     crear_nueva(nueva, img);
 }
+
+//---------------------------------------------------------------------------
 
 void ecualizacion_hist(int nfoto, int modo, bool guardar)
 {
@@ -989,6 +1016,8 @@ void ecualizacion_hist(int nfoto, int modo, bool guardar)
     }
 }
 
+//---------------------------------------------------------------------------
+
 void ajuste_lineal_hist (int nfoto, double pmin, double pmax, bool guardar)
 {
     Mat img = foto[nfoto].img;
@@ -1025,7 +1054,6 @@ void ajuste_lineal_hist (int nfoto, double pmin, double pmax, bool guardar)
         foto[nfoto].modificada = true;
     }
 }
-
 
 //---------------------------------------------------------------------------
 

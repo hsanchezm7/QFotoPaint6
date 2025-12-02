@@ -124,7 +124,7 @@ void guardar_foto (int nfoto, string nombre= "");
 // Guarda en disco la imagen de nfoto, con el nombre dado. Si el nombre
 // es "", usa el nombre de la imagen en el array foto
 
-void cerrar_foto (int nfoto, bool destruir_ventana= true);
+void cerrar_foto (int nfoto, bool destruir_ventana=true);
 // Elimina la entrada en la posición nfoto. destruir_ventana indica si debe
 // destruirse la ventana de HighGUI (ya que si lo ha hecho el usuario, no
 // debe volver a hacerse)
@@ -155,7 +155,7 @@ void invertir (int nfoto, int nres);
 void copiar_a_nueva (int nfoto, int nres);
 // Copiar el ROI de la foto actual a una imagen nueva
 
-void rotar_angulo (Mat imagen, Mat &imgRes, double angulo, double escala= 1.0, int modo= 0);
+void rotar_angulo (Mat imagen, Mat &imgRes, double angulo, double escala=1.0, int modo=0);
 // Rota la imagen contenida en imagen, en la cantidad grado (grados
 // de 0 a 360) y almacena el resultado en imgRes. La imagen de salida
 // siempre está centrada.
@@ -169,13 +169,20 @@ void rotar_exacto (int nfoto, int nres, int grado);
 // y la almacena en nres. Se trata siempre de una rotación exacta
 
 void ver_brillo_contraste_gamma (int nfoto, double suma, double pro, double gamma,
-                           bool guardar= false);
+                           bool guardar=false);
 // Modifica la imagen en nfoto, tomando para cada píxel A(x,y) el valor:
 // A(x,y)*prod + suma. Si guardar==true se guarda la imagen, y en otro caso
 // solo se visualiza el resultado, pero sin guardar
 
+void ver_rojoverdeazul(int nfoto, double r_mul, double r_add,
+                       double g_mul, double g_add,
+                       double b_mul, double b_add,
+                       bool guardar=false);
+// Modifica (multiplicar/sumar) cada uno de los canales de forma independiente,
+// para poder hacer una transformación de color
+
 void ver_matsatlum (int nfoto, int matiz, double saturacion, double luminosidad,
-                   bool guardar = false);
+                   bool guardar=false);
 // Ajuste de matiz/saturación/luminosidad
 
 void ver_suavizado (int nfoto, int ntipo, int tamx, int tamy,

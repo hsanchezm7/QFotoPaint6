@@ -27,6 +27,7 @@ SOURCES += main.cpp \
     brillocontraste.cpp \
     matsatlum.cpp \
     pincharestirar.cpp \
+    rojoverdeazul.cpp \
     starwars.cpp \
     suavizados.cpp \
     video.cpp \
@@ -47,6 +48,7 @@ HEADERS += mainwindow.h \
     inpaint.h \
     matsatlum.h \
     pincharestirar.h \
+    rojoverdeazul.h \
     starwars.h \
     suavizados.h \
     video.h \
@@ -66,6 +68,7 @@ FORMS += mainwindow.ui \
     inpaint.ui \
     matsatlum.ui \
     pincharestirar.ui \
+    rojoverdeazul.ui \
     starwars.ui \
     suavizados.ui \
     rotaravideo.ui \

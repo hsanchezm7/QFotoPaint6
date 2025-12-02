@@ -602,6 +602,7 @@ p, li { white-space: pre-wrap; }
      <addaction name="actionCMYK"/>
     </widget>
     <addaction name="actionBrillo_contraste"/>
+    <addaction name="actionRojo_Verde_Azul"/>
     <addaction name="actionMatiz_Saturaci_n_Luminosidad"/>
     <addaction name="actionInvertir"/>
     <addaction name="menuRotar"/>
@@ -975,6 +976,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionCMYK">
    <property name="text">
     <string>CMYK</string>
+   </property>
+  </action>
+  <action name="actionRojo_Verde_Azul">
+   <property name="text">
+    <string>Rojo/Verde/Azul...</string>
    </property>
   </action>
  </widget>

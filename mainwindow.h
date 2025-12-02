@@ -96,6 +96,7 @@ private slots:
     void on_actionYUV_triggered();
     void on_actionYCrCb_triggered();
     void on_actionCMYK_triggered();
+    void on_actionRojo_Verde_Azul_triggered();
 };
 
 extern MainWindow *w;
