@@ -200,6 +200,9 @@ void ver_pinchar_estirar(int nfoto, int nres, int cx, int cy, double grado, doub
 void ver_histograma (int nfoto, int ncanal, int nres);
 // Mostrar el histograma de una imagen del ncanal dado (3 = grises)
 
+void perfilado(int nfoto, int radio, double porcentaje, bool guardar=false);
+// Mostrar perfilado de una imagen a partir de un radio y un porcentaje
+
 void ver_bajorrelieve(int nfoto, int nres, double angulo, double grado, int tamSobel, int ntextura, bool guardar=false);
 // Efecto de bajorrelieve
 

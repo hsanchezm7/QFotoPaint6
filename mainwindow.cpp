@@ -29,6 +29,7 @@ using namespace cv;
 #include "informacionmultimedia.h"
 #include "ecualizacionhistograma.h"
 #include "rojoverdeazul.h"
+#include "perfilado.h"
 
 QString FiltroImagen = "Todos los formatos (*.jpg *.jpeg *.jpe .jp2 *.tif *.tiff *.png *.gif *.bmp *.dib *.webp *.ppm);;Archivos JPG (*.jpg *.jpeg *.jpe);;Archivos TIF (*.tif *.tiff);;Archivos PNG (*.png);;Archivos WEBP (*.webp);;Archivos GIF (*.gif);;Archivos BMP (*.bmp *.dib);;Otros (*.*)";
 
@@ -471,7 +472,6 @@ void MainWindow::on_actionCapturar_de_v_deo_triggered()
     }
 }
 
-
 void MainWindow::on_horizontalSlider_4_valueChanged(int value)
 {
     incremento_arcoiris = value;
@@ -661,6 +661,15 @@ void MainWindow::on_actionRojo_Verde_Azul_triggered()
     if (foto_activa() != -1) {
         RojoVerdeAzul rva(foto_activa(), this);
         rva.exec();
+    }
+}
+
+
+void MainWindow::on_actionPerfilado_triggered()
+{
+    if (foto_activa() != -1) {
+        Perfilado pf(foto_activa(), this);
+        pf.exec();
     }
 }
 

@@ -626,6 +626,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="menuSuavizado"/>
     <addaction name="actionEscala_de_color"/>
     <addaction name="actionPinchar_estirar"/>
+    <addaction name="actionPerfilado"/>
     <addaction name="actionBajorrelieve"/>
     <addaction name="actionInpaint"/>
    </widget>
@@ -981,6 +982,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionRojo_Verde_Azul">
    <property name="text">
     <string>Rojo/Verde/Azul...</string>
+   </property>
+  </action>
+  <action name="actionPerfilado">
+   <property name="text">
+    <string>Perfilado...</string>
    </property>
   </action>
  </widget>

@@ -810,6 +810,38 @@ void ver_histograma (int nfoto, int ncanal, int nres)
 
 //---------------------------------------------------------------------------
 
+void perfilado(int nfoto, int radio, double porcentaje, bool guardar)
+{
+    Mat img = foto[nfoto].img;
+    Mat res;
+
+    Mat lap, img16, suma;
+
+    // tamaño del kernel
+    int ksize = 2 * radio + 1;
+
+    // calcular laplaciana
+    Laplacian(img, lap, CV_16S, ksize);
+
+    img.convertTo(img16, CV_16S);
+
+    double factor = porcentaje / 100.0;
+
+    suma = img16 - (factor * lap);
+
+    suma.convertTo(res, CV_8U);
+
+    imshow(foto[nfoto].nombre, res);
+
+    if (guardar) {
+        guardar_estado(nfoto);
+        res.copyTo(img);
+        foto[nfoto].modificada = true;
+    }
+}
+
+//---------------------------------------------------------------------------
+
 void ver_bajorrelieve(int nfoto, int nres, double angulo, double grado, int tamSobel, int ntextura, bool guardar) {
     QString nombres[4] = {":/imagenes/arena.jpg",
                           ":/imagenes/cielo.jpg",
