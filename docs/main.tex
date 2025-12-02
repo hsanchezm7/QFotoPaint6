@@ -71,11 +71,10 @@
 
   \textbf{QFotoPaint} es una aplicación de escritorio para el procesamiento de imágenes y vídeo desarrollada en C++, utilizando el \textit{framework} Qt y la librería OpenCV. \\
 
-  Inspirada en herramientas reales de edición como \textit{GIMP} o
-  \textit{Photoshop}, QFotoPaint permite al usuario abrir, visualizar y editar
-  múltiples imágenes simultáneamente, aplicando diferentes filtros,
-  transformaciones y efectos de procesamiento digital de imagen de forma sencilla
-  e intuitiva.
+  Inspirada en herramientas reales de edición como \textit{GIMP} o \textit{Adobe
+      Photoshop}, QFotoPaint permite al usuario abrir, visualizar y editar múltiples
+  imágenes simultáneamente, aplicando diferentes filtros, transformaciones y
+  efectos de procesamiento digital de imagen de forma sencilla e intuitiva.
 
 \section{Requisitos}
 
@@ -485,26 +484,26 @@
           comodidad a la hora añadir elementos a su nodo raíz en la clase \textit{src}. A
           nivel de código, esto se ha logrado de la siguiente forma:
 
-          \begin{itemize}
+          \begin{enumerate}
               \item Se recorren todas las imágenes abiertas:
 
                     \begin{lstlisting}[style=CppQtStyle, numbers=none]
-		for (size_t i = 0; i < MAX_VENTANAS; ++i) {
-			if (foto[i].img.empty()) continue;  ...  }
+    for (size_t i = 0; i < MAX_VENTANAS; ++i) {
+        if (foto[i].img.empty()) continue;  ...  }
 \end{lstlisting}
 
               \item Se crea un nodo raíz:
                     \begin{lstlisting}[style=CppQtStyle, numbers=none]
-		QTreeWidgetItem *root = new QTreeWidgetItem(ui->treeWidget);
+    QTreeWidgetItem *root = new QTreeWidgetItem(ui->treeWidget);
 \end{lstlisting}
 
               \item Se van creando los nodos hijo, cada uno con una propiedad sobre la imagen:
                     \begin{lstlisting}[style=CppQtStyle, numbers=none]
-		QTreeWidgetItem *itemCanales = new QTreeWidgetItem(root);
+	QTreeWidgetItem *itemCanales = new QTreeWidgetItem(root);
 		itemCanales->setText(0, QString("Canales de color: %1").arg(img.channels()));
 \end{lstlisting}
 
-          \end{itemize}
+          \end{enumerate}
 
           \noindent
           Para ver el código en su totalidad, se remite al anexo de la implementación de la clase~\ref{sec:anexo-im}. \\
@@ -622,37 +621,353 @@
 
           \clearpage
 
+  \subsection{Modelos de color}
+
+      \subsubsection{Introducción}
+
+          \noindent
+          Los modelos de color son representaciones matemáticas que describen cómo se codifican, combinan y reproducen los colores en distintos sistemas físicos o digitales, asignando valores numéricos a componentes fundamentales como RGB en pantallas o CMYK en impresión. \\
+
+          \noindent
+          A continuación se describen brevemente los
+          modelos que se van a implementar para esta funcionalidad:
+
+          \begin{itemize}
+              \item \textbf{RGB}: \textit{Red, Green, Blue} --- Rojo, Verde y Azul.
+
+              \item \textbf{HSV}: \textit{Hue, Saturation, Value} --- Matiz, Saturación y Valor.
+
+              \item \textbf{HLS}: \textit{Hue, Lightness, Saturation} --- Matiz, Luminosidad y Saturación.
+
+              \item \textbf{XYZ}: Espacio definido por la CIE, donde X, Y y Z son componentes tricromáticos normalizados.
+
+              \item \textbf{YUV}: \textit{Y} (Luma), \textit{U} y \textit{V} (componentes de crominancia).
+
+              \item \textbf{YCrCb}: Variante derivada de YUV; \textit{Y} (Luma), \textit{Cr} (Crominancia roja), \textit{Cb} (Crominancia azul).
+
+              \item \textbf{CMYK}: \textit{Cyan, Magenta, Yellow, Key (Black)} --- Cian, Magenta, Amarillo y Negro.
+          \end{itemize}
+
+      \subsubsection{Conversión a CMYK}
+
+          A diferencia del resto de modelos mencionados, OpenCV no ofrece una operación
+          para convertir al modelo de color CMYK de forma directa (no existe un
+          \texttt{COLOR\_BGR2CMYK}). Para ello, tendremos que realizar la conversión de
+          forma manual. \\
+
+          La conversión de un modelo RGB (en realidad BGR, ya que usamos OpenCV) a CMYK
+          implica primero transformar los valores de intensidad luminosa \(R, G, B \in
+          [0,1]\) a sus complementos sustractivos \(C', M', Y'\). El vector de entrada en
+          RGB se denota como: \cite{eswiki:164414514}
+
+          \[ t_{\text{RGB}} = \{R,\, G,\, B\} \]
+
+          \noindent
+          La conversión inicial a CMY aplica complementos directos:
+
+          \[ t_{\text{CMY}} = \{C',\, M',\, Y'\} = \{1 - R,\; 1 - G,\; 1 - B\} \]
+
+          En el modelo CMYK se introduce un cuarto componente \(K\) (negro). El objetivo
+          típico es maximizar el uso de tinta negra y minimizar la de CMY, lo cual mejora
+          la estabilidad del color y reduce el consumo total de tinta. Para obtener CMYK
+          se evalúa primero el mínimo entre los componentes CMY intermedios:
+
+          \[ K = \min\{C',\, M',\, Y'\} \]
+
+          \noindent
+          Si el mínimo es igual a 1, se define:
+
+          \[ t_{\text{CMYK}} = \{0,\, 0,\, 0,\, 1\} \]
+
+          En caso contrario, cada componente de color se normaliza restando \(K\) y
+          escalando por el rango restante \(1-K\). Así, la fórmula general queda:
+
+          \[
+              t_{\text{CMYK}} =
+              \left\{
+              \frac{C' - K}{1 - K},\;
+              \frac{M' - K}{1 - K},\;
+              \frac{Y' - K}{1 - K},\;
+              K
+              \right\}
+          \]
+
+      \subsubsection{Implementación}
+
+          Esta funcionalidad se ha implementado mediante QActions en el menú, en lugar de
+          crear un formulario, debido a su sencillez. En primer lugar, definimos un nuevo
+          \texttt{enum} en \texttt{imagenes.h}, que declarará los modelos de color
+          soportados para convertir, junto con el prototipo de la función que contendrá
+          la lógica de conversión:
+
+          \begin{lstlisting}[style=CppQtStyle, caption={Declaracion de enum \texttt{modelo\_color}.}, label={lst:imagenes-mc}]
+    enum modelo_color {
+        MC_RGB,     // Rojo, Verde, Azul
+        MC_HSV,     // Matiz, Saturación, Valor
+        MC_HLS,     // Matiz, Luminosidad, Saturación
+        MC_XYZ,     // CIE XYZ
+        MC_YUV,     // Luma, Crominancia U, Crominancia V
+        MC_YCrCb,   // Variante común usada en JPEG/MPEG
+        MC_CMYK,    // Cian, Magenta, Amarillo, Negro
+    };
+     ...
+    void convertir_a_modelo (int nfoto, int nres, modelo_color mc);
+    // Convierte la imagen a un espacio de color específico. Genera 3 o 4
+    // nuevas ventanas independientes, una para cada canal del modelo elegido
+\end{lstlisting}
+
+          Finalmente, realizamos la implementación de la función
+          \texttt{convertir\_a\_modelo()}. Para realizar la conversión, basta con un
+          \textit{switch} del parámetro de la función \texttt{mc} y usar la operación
+          \texttt{cvtColor()} de OpenCV. Para consultar el código completo, se remite al
+          anexo de la implementación del método~\ref{sec:anexo-convertir-a-modelo}.
+
+          \begin{lstlisting}[style=CppQtStyle, caption={Declaracion de enum \texttt{modelo\_color}.}, label={lst:imagenes-mc}]
+          // imagenes.cpp
+          void convertir_a_modelo(int nfoto, int nres, modelo_color mc) {
+               ...
+              switch (mc) {
+              case MC_RGB:
+                  cvtColor(img, res, COLOR_BGR2RGB);
+                  break;
+
+              case MC_HSV:
+                  cvtColor(img, res, COLOR_BGR2HSV);
+                  break;
+               ...
+              case MC_CMYK:
+                   ...
+                  break;
+
+              default:
+                  res = img.clone();
+                  break;
+              }
+
+              vector<Mat> canales;
+              split(res, canales);
+
+              for (size_t i = 0; i < canales.size(); ++i)
+                  crear_nueva(nres+i, canales[i])
+          }
+      \end{lstlisting}
+
+          \clearpage
+
+  \subsection{Perfilado}
+
+      \subsubsection{Introducción}
+
+          \noindent
+          El perfilado o \textit{sharpening} es una técnica de procesamiento de imágenes utilizada para mejorar la acutancia (percepción de nitidez) mediante el aumento del contraste local en los bordes. \cite{enwiki:1317014229} \\
+
+          Existen varias aproximaciones para implementar este efecto. Sin embargo, vamos
+          a tomar de modelo la idea presentada en la teoría de la asignatura, que usa la
+          segunda derivada de la imagen, utilizando el operador laplaciano. Los bordes en
+          una imagen se caracterizan por cambios bruscos en la intensidad.
+          Matemáticamente, estos cambios pueden detectarse mediante derivadas. Mientras
+          que la primera derivada alcanza un máximo o mínimo en el borde, la segunda
+          derivada cruza por cero (\textit{zero-crossing}) en el punto de transición del
+          borde. \cite{enwiki:1320845251} \\
+
+          Sea \(f(x,y)\) la función de intensidad de la imagen original,e l operador
+          Laplaciano, denotado como \(\nabla^2\), es un operador diferencial isotrópico
+          (invariante a la rotación) definido como la suma de las segundas derivadas
+          parciales: \cite{opencv_laplaceoperator}
+
+          \[ \nabla^2 f(x,y) = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} \]
+
+          En el dominio discreto, este operador se aproxima mediante la convolución de la
+          imagen \(I\) con un núcleo (kernel) \(K\). En nuestra aplicación, el usuario
+          ajustará el kernel según el valor de \texttt{radio}. Un kernel común de \(3
+          \times 3\) para la Laplaciana es:
+
+          \[
+              K = \begin{bmatrix}
+                  0 & 1  & 0 \\
+                  1 & -4 & 1 \\
+                  0 & 1  & 0
+              \end{bmatrix}
+          \]
+
+          La imagen final perfilada $g(x,y)$ se obtiene restando una fracción de la
+          imagen Laplaciana a la imagen original. Esto tiene el efecto de resaltar las
+          transiciones de intensidad:
+
+          \[
+              g(x,y) = f(x,y) - c \cdot \nabla^2 f(x,y)
+          \]
+
+          \noindent
+          Donde:
+
+          \begin{itemize}
+              \item \(\nabla^2 f(x,y)\) es el resultado de aplicar la función \texttt{cv::Laplacian}.
+
+              \item \(c\) es un factor de ponderación controlado por el usuario (porcentaje).
+          \end{itemize}
+
+      \subsubsection{Implementación }
+
+          La implementación en C++ se ha llevado a cabo tomando de ejemplo la porción de
+          código de las diapositivas de teoría. Como para cualquier nueva función, se
+          define su prototipo en \texttt{imagenes.h}:
+
+          \begin{lstlisting}[style=CppQtStyle, caption={Declaracion de enum \texttt{modelo\_color}.}, label={lst:imagenes-mc}]
+    void perfilado(int nfoto, int radio, double porcentaje, bool guardar=false);
+    // Mostrar perfilado de una imagen a partir de un radio y un porcentaje
+\end{lstlisting}
+
+          \clearpage
+
+          \begin{enumerate}
+              \item \textbf{Cálculo de la laplaciana con signo:}
+                    Como se ha mencionado, el operador laplaciano busca cambios bruscos entre los valores de los píxeles (bordes). Sin embargo, en QFotoPaint6 trabajamos por defecto con el formato \texttt{CV\_8U} de OpenCV, es decir, enteros sin signo o \textit{unsigned}. No podemos calcular la laplaciana sobre este formato ya que los valores negativos se truncarían a 0, por lo que realizamos un cambio de tipo para trabajar sobre una profundidad de 16 bits con signo:
+
+                    \begin{lstlisting}[style=CppQtStyle, caption={Declaracion de enum \texttt{modelo\_color}.}, label={lst:imagenes-mc}]
+    Laplacian(img, lap, CV_16S, ksize);
+    img.convertTo(img16, CV_16S);
+\end{lstlisting}
+
+              \item \textbf{Operación aritmética:}
+                    Para realizar la resta $Img - c \cdot Lap$, la imagen original también debe convertirse temporalmente a 16 bits (\texttt{CV\_16S}) para evitar desbordamientos, aunque al final se vuelve al formato de origen \texttt{CV\_8U}.
+
+                    \begin{lstlisting}[style=CppQtStyle, caption={Declaracion de enum \texttt{modelo\_color}.}, label={lst:imagenes-mc}]
+    img.convertTo(img16, CV_16S);
+    double factor = porcentaje / 100.0;
+    suma = img16 - (factor * lap);
+    suma.convertTo(res, CV_8U);
+\end{lstlisting}
+          \end{enumerate}
+
+          \noindent
+          Para ver el código completo, se remite al anexo de la implementación de la
+          función~\ref{sec:anexo-perfilado}.
+
+          \clearpage
+
+  \subsection{Ajuste de los canales rojo, verde y azul}
+
+      \noindent
+      Esta funcionalidad permite la manipulación individual de los componentes
+      cromáticos primarios de la imagen (rojo, verde y azul). Mediante operaciones
+      lineales puntuales, el usuario puede corregir la imagen y aplicar efectos
+      artísticos modificando la ganancia y el desplazamiento de cada canal.
+
+      \subsubsection{Introducción}
+
+          \noindent
+          La operación se basa en la transformación lineal básica de intensidad. Para
+          cada píxel $(x,y)$ en un canal específico $c$ (donde $c \in \{R, G, B\}$), la
+          nueva intensidad $g_c(x,y)$ se calcula a partir de la intensidad original
+          $f_c(x,y)$ mediante la ecuación lineal: \cite{opencv_basic_linear_transform}
+
+          \begin{equation}
+              g_c(x,y) = \alpha_c \cdot f_c(x,y) + \beta_c
+          \end{equation}
+
+          \noindent
+          Donde los parámetros controlados por el usuario actúan de la siguiente manera:
+
+          \begin{itemize}
+              \item \textbf{Ganancia ($\alpha_c$):} Corresponde al contraste del canal. Un valor $\alpha > 1$ expande el rango dinámico (aclara los tonos claros, oscurece los oscuros), mientras que $0 < \alpha < 1$ lo comprime. Matemáticamente es una operación multiplicativa.
+              \item \textbf{Desplazamiento ($\beta_c$):} Corresponde al brillo del canal. Un valor positivo suma luminosidad uniforme a todo el canal, mientras que un valor negativo la sustrae.
+          \end{itemize}
+
+          \noindent
+          El objetivo de esta funcionalidad es realizar la operación de forma independiente para los tres canales.
+
+      \subsubsection{Implementación}
+
+          \noindent
+          Definimos el prototipo de nuestra función en \texttt{imagenes.h} con los parámetros necesarios para realizar el cálculo:
+
+          \begin{lstlisting}[style=CppQtStyle, caption={Declaracion de enum \texttt{modelo\_color}.}, label={lst:imagenes-mc}]
+    void ver_rojoverdeazul(int nfoto,
+                   double r_mul, double r_add,
+                   double g_mul, double g_add,
+                   double b_mul, double b_add,
+                   bool guardar=false);
+    // Modifica (multiplicar/sumar) cada uno de los canales de forma
+    // independiente, para poder hacer una transformación de color
+\end{lstlisting}
+
+          \noindent
+          La implementación en C++ en el fichero \texttt{imagenes.cpp} tendrá el siguiente flujo de trabajo:
+
+          \begin{enumerate}
+              \item \textbf{Separación de Canales:} Dado que las imágenes se almacenan en formato entrelazado BGR en OpenCV, primero se separan los planos de color utilizando la función \texttt{cv::split}.
+
+                    \begin{lstlisting}[style=CppQtStyle]
+    Mat canales[3];
+    split(foto[nfoto].img, canales);
+\end{lstlisting}
+
+                    \clearpage
+
+              \item \textbf{Transformación Lineal:} Se aplica la transformación utilizando el método nativo \texttt{cv::Mat::convertTo}. Esta operación, que ya ha sido usada anteriormente, permite ajustar los valores \texttt{alpha} y \texttt{beta} por parámetros. Internamente, ocurre lo siguiente: \cite{opencv_convertTo_function}
+                    \begin{itemize}
+                        \item Realiza la operación $pixel \cdot \alpha + \beta$ de forma vectorizada.
+                        \item Gestiona automáticamente la saturación si el resultado matemático supera 255 o
+                              es menor a 0, manteniendo el tipo de dato \texttt{CV\_8U}.
+                    \end{itemize}
+
+                    \begin{lstlisting}[style=CppQtStyle]
+    canales[0].convertTo(canales[0], -1, b_mul, b_add);
+    canales[1].convertTo(canales[1], -1, g_mul, g_add);
+    canales[2].convertTo(canales[2], -1, r_mul, r_add);
+\end{lstlisting}
+
+              \item \textbf{Fusión:} Finalmente, los canales procesados se recombinan en una única imagen utilizando \texttt{cv::merge}.
+
+                    \begin{lstlisting}[style=CppQtStyle]
+    Mat res;
+    merge(canales, 3, res);
+\end{lstlisting}
+
+          \end{enumerate}
+
+          La interfaz de usuario (clase \texttt{Perfilado}) convierte los valores de los
+          \textit{sliders} (enteros) a los coeficientes flotantes necesarios, dividiendo
+          por un factor de escala (100.0) para el parámetro $\alpha$, permitiendo así
+          precisión decimal en la multiplicación. \\
+
+          \noindent
+           Para ver el código en su totalidad, se remite al anexo de la implementación de la clase~\ref{sec:anexo-ver-rojoverdeazul}. \\
+
+          \clearpage
+
 \section{Mejoras adicionales no mencionadas en el enunciado}
 
   \subsection{Incremento del paso en arcoíris}
 
-  \subsection{Introducción}
+      \subsubsection{Introducción}
 
-      \noindent
-      Como propuesta del profesor, se ha diseñado una solución para que el usuario sea capaz de modificar el ``\textit{paso}'' con
-      el que se cambia de color del pincel en la herramienta ``Arcoíris''. Esta característica permitirá al usuario un mayor control
-      sobre apariencia del efecto. \\
+          \noindent
+          Como propuesta del profesor, se ha diseñado una solución para que el usuario sea capaz de modificar el ``\textit{paso}'' con
+          el que se cambia de color del pincel en la herramienta ``Arcoíris''. Esta característica permitirá al usuario un mayor control
+          sobre apariencia del efecto. \\
 
-      El ``paso'' se refiere a la velocidad de avance que en la secuencia de colores
-      del espectro cada vez que se dibuja un píxel. Un paso pequeño provoca que los
-      colores cambien lentamente, generando transiciones suaves y graduales entre
-      tonos consecutivos. Por el contrario, un paso mayor acelera el cambio de color,
-      produciendo un efecto más vivo. \\
+          El ``paso'' se refiere a la velocidad de avance que en la secuencia de colores
+          del espectro cada vez que se dibuja un píxel. Un paso pequeño provoca que los
+          colores cambien lentamente, generando transiciones suaves y graduales entre
+          tonos consecutivos. Por el contrario, un paso mayor acelera el cambio de color,
+          produciendo un efecto más vivo. \\
 
-  \subsection{Implementación}
+      \subsubsection{Implementación}
 
-      Para implementar esta funcionalidad, se ha definido un nuevo elemento
-      \texttt{QWidget} en \texttt{mainwindow.ui}. Este elemento estará por defecto
-      invisible, y su visibilidad cambiará al hacer \textit{click} sobre el botón de
-      la herramienta. \\
+          Para implementar esta funcionalidad, se ha definido un nuevo elemento
+          \texttt{QWidget} en \texttt{mainwindow.ui}. Este elemento estará por defecto
+          invisible, y su visibilidad cambiará al hacer \textit{click} sobre el botón de
+          la herramienta. \\
 
-      También se ha valorado la necesidad de ocultar el panel si se pierde el foco en
-      él. Se ha tenido que recurrir a un \textit{listener} de eventos de
-      \texttt{QMouseEvent} ya que los paneles no proporcionan métodos
-      \texttt{isHovered()}. Esta decisión es muy poco eficiente, pero aún así se ha
-      decidido implementar.
+          También se ha valorado la necesidad de ocultar el panel si se pierde el foco en
+          él. Se ha tenido que recurrir a un \textit{listener} de eventos de
+          \texttt{QMouseEvent} ya que los paneles no proporcionan métodos
+          \texttt{isHovered()}. Esta decisión es muy poco eficiente, pero aún así se ha
+          decidido implementar.
 
-      \begin{lstlisting}[style=CppQtStyle, caption={Mostrar/Ocultar panel al presionar la herramienta}]
+          \begin{lstlisting}[style=CppQtStyle, caption={Mostrar/Ocultar panel al presionar la herramienta}]
 	// mainwindow.cpp
 	void MainWindow::on_toolButton_9_clicked() {
 		herr_actual = HER_ARCOIRIS;
@@ -673,31 +988,31 @@
 	}
 \end{lstlisting}
 
-      En la clase \texttt{imagenes} también se han realizado algunas modificaciones.
-      La primera es la necesidad de tener una variable externa que se pueda utilizar
-      en \texttt{mainwindow}, sustituyendo a la variable local \texttt{incremento}.
+          En la clase \texttt{imagenes} también se han realizado algunas modificaciones.
+          La primera es la necesidad de tener una variable externa que se pueda utilizar
+          en \texttt{mainwindow}, sustituyendo a la variable local \texttt{incremento}.
 
-      \begin{lstlisting}[style=CppQtStyle, numbers=none]
+          \begin{lstlisting}[style=CppQtStyle, numbers=none]
 	// imagenes.h
 	constexpr int DEFAULT_INCREMENTO_ARCOIRIS = 10;
 	extern int incremento_arcoiris;
 \end{lstlisting}
 
-      \begin{lstlisting}[style=CppQtStyle, numbers=none]
+          \begin{lstlisting}[style=CppQtStyle, numbers=none]
 	// imagenes.cpp
 	int incremento_arcoiris = DEFAULT_INCREMENTO_ARCOIRIS;
 \end{lstlisting}
 
-      % TODO: Incluir modificaciones a MainWindow
+          % TODO: Incluir modificaciones a MainWindow
 
-      %\begin{figure}[H]
-      %	\centering
-      %	\includegraphics[width=0.7\linewidth]{figures/}
-      %	\caption{}
-      %	\label{fig:}
-      %\end{figure}
+          %\begin{figure}[H]
+          %	\centering
+          %	\includegraphics[width=0.7\linewidth]{figures/}
+          %	\caption{}
+          %	\label{fig:}
+          %\end{figure}
 
-      \clearpage
+          \clearpage
 
   \subsection{Rehacer última acción}
 
@@ -790,5 +1105,154 @@
       \label{sec:anexo-im}
 
       \lstinputlisting[style=CppQtStyle, caption={Código de \texttt{informacionmultimedia.cpp}}]{../informacionmultimedia.cpp}
+
+  \subsection{Código de la implementación de convertir\_a\_modelo()}
+      \label{sec:anexo-convertir-a-modelo}
+
+      \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+           // imagenes.cpp
+           void convertir_a_modelo(int nfoto, int nres, modelo_color mc)
+           {
+               Mat img = foto[nfoto].img;
+               Mat res;
+
+               switch (mc) {
+               case MC_RGB:
+                   cvtColor(img, res, COLOR_BGR2RGB);
+                   break;
+
+               case MC_HSV:
+                   cvtColor(img, res, COLOR_BGR2HSV);
+                   break;
+
+               case MC_HLS:
+                   cvtColor(img, res, COLOR_BGR2HLS);
+                   break;
+
+               case MC_XYZ:
+                   cvtColor(img, res, COLOR_BGR2XYZ);
+                   break;
+
+               case MC_YUV:
+                   cvtColor(img, res, COLOR_BGR2YUV);
+                   break;
+
+               case MC_YCrCb:
+                   cvtColor(img, res, COLOR_BGR2YCrCb);
+                   break;
+
+               case MC_CMYK:
+               {
+                   Mat f;
+                   img.convertTo(f, CV_32F, 1.0/255.0);
+
+                   // paso intermedio BGR -> CMYK
+                   Mat cmy = Scalar(1.0, 1.0, 1.0) - f;
+
+                   vector<Mat> p;
+                   split(cmy, p);
+
+                   // K = min(C', M', Y')
+                   Mat K;
+                   min(p[2], p[1], K);
+                   min(K, p[0], K);
+
+                   // CMY -> CMYK
+                   Mat k_diff = 1.0 - K + 1e-4;
+
+                   vector<Mat> cmyk = {
+                       (p[2] - K) / k_diff * 255.0, // C = (C' - K) / (1-K)
+                       (p[1] - K) / k_diff * 255.0, // M = (M' - K) / (1-K)
+                       (p[0] - K) / k_diff * 255.0, // Y = (Y' - K) / (1-K)
+                       K * 255.0
+                   };
+
+                   merge(cmyk, res);
+                   res.convertTo(res, CV_8U);
+                   break;
+               }
+
+
+               default:
+                   res = img.clone();
+                   break;
+               }
+
+               // separar canales
+               vector<Mat> canales;
+               split(res, canales);
+
+               // crear las nuevas imágenes
+               for (size_t i = 0; i < canales.size(); ++i) {
+                   crear_nueva(nres+i, canales[i]);
+               }
+           }
+       \end{lstlisting}
+
+  \subsection{Código de la implementación de perfilado()}
+      \label{sec:anexo-perfilado}
+
+      \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+                 // imagenes.cpp
+                 void perfilado(int nfoto, int radio, double porcentaje, bool guardar)
+                 {
+                     Mat img = foto[nfoto].img;
+                     Mat res;
+
+                     Mat lap, img16, suma;
+
+                     // tamaño del kernel
+                     int ksize = 2 * radio + 1;
+
+                     // calcular laplaciana
+                     Laplacian(img, lap, CV_16S, ksize);
+
+                     img.convertTo(img16, CV_16S);
+
+                     double factor = porcentaje / 100.0;
+
+                     suma = img16 - (factor * lap);
+
+                     suma.convertTo(res, CV_8U);
+
+                     imshow(foto[nfoto].nombre, res);
+
+                     if (guardar) {
+                         guardar_estado(nfoto);
+                         res.copyTo(img);
+                         foto[nfoto].modificada = true;
+                     }
+                 }
+             \end{lstlisting}
+
+           \subsection{Código de la implementación de ver\_rojoverdeazul()}
+                 \label{sec:anexo-ver-rojoverdeazul}
+
+                 \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+                            // imagenes.cpp
+                            void ver_rojoverdeazul(int nfoto, double r_mul, double r_add,
+                                                   double g_mul, double g_add,
+                                                   double b_mul, double b_add,
+                                                   bool guardar)
+                            {
+                                Mat canales[3];
+                                split(foto[nfoto].img, canales);
+
+                                canales[0].convertTo(canales[0], -1, b_mul, b_add);
+                                canales[1].convertTo(canales[1], -1, g_mul, g_add);
+                                canales[2].convertTo(canales[2], -1, r_mul, r_add);
+
+                                Mat res;
+                                merge(canales, 3, res);
+
+                                imshow(foto[nfoto].nombre, res);
+
+                                if (guardar) {
+                                    guardar_estado(nfoto);
+                                    res.copyTo(foto[nfoto].img);
+                                    foto[nfoto].modificada = true;
+                                }
+                            }
+                        \end{lstlisting}
 
 \end{document}
