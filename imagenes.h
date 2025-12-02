@@ -222,6 +222,9 @@ void convertir_a_modelo (int nfoto, int nres, modelo_color mc);
 // Convierte la imagen a un espacio de color específico.
 // Genera 3 nuevas ventanas independientes, una para cada canal del modelo elegido
 
+void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar=false);
+// Aplica un mapa de color de OpenCV a una imagen (convertir a color falso)
+
 void guardar_estado (int nfoto);
 // Guarda una copia profunda (clone) de la imagen actual en la pila de 'deshacer'.
 // Debe llamarse justo antes de aplicar cualquier modificación destructiva.

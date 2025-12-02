@@ -610,6 +610,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionAjuste_lineal_del_histograma"/>
     <addaction name="actionMedia_ponderada"/>
     <addaction name="menuModelos_de_color"/>
+    <addaction name="actionColor_falso"/>
    </widget>
    <widget class="QMenu" name="menuEfectos">
     <property name="title">
@@ -987,6 +988,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionPerfilado">
    <property name="text">
     <string>Perfilado...</string>
+   </property>
+  </action>
+  <action name="actionColor_falso">
+   <property name="text">
+    <string>Aplicar mapa de color...</string>
    </property>
   </action>
  </widget>

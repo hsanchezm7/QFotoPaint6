@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ColorFalso</class>
+ <widget class="QDialog" name="ColorFalso">
+  <property name="windowModality">
+   <enum>Qt::WindowModality::WindowModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>275</width>
+    <height>108</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Aplicar mapa de color</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="spacing">
+    <number>12</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>GroupBox</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QComboBox" name="comboBox">
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>0</height>
+         </size>
+        </property>
+        <item>
+         <property name="text">
+          <string>Otoño</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_autumn.jpg</normaloff>:/imagenes/colorscale/colorscale_autumn.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Hueso</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_bone.jpg</normaloff>:/imagenes/colorscale/colorscale_bone.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Jet</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_jet.jpg</normaloff>:/imagenes/colorscale/colorscale_jet.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Invierno</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_winter.jpg</normaloff>:/imagenes/colorscale/colorscale_winter.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Arcoíris</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_rainbow.jpg</normaloff>:/imagenes/colorscale/colorscale_rainbow.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Océano</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_ocean.jpg</normaloff>:/imagenes/colorscale/colorscale_ocean.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Verano</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_summer.jpg</normaloff>:/imagenes/colorscale/colorscale_summer.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Primavera</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_spring.jpg</normaloff>:/imagenes/colorscale/colorscale_spring.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Frío</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_cool.jpg</normaloff>:/imagenes/colorscale/colorscale_cool.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>HSV</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_hsv.jpg</normaloff>:/imagenes/colorscale/colorscale_hsv.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Rosa</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_pink.jpg</normaloff>:/imagenes/colorscale/colorscale_pink.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Hot</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_hot.jpg</normaloff>:/imagenes/colorscale/colorscale_hot.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Parula</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_parula.jpg</normaloff>:/imagenes/colorscale/colorscale_parula.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Magma</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_magma.jpg</normaloff>:/imagenes/colorscale/colorscale_magma.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Inferno</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_inferno.jpg</normaloff>:/imagenes/colorscale/colorscale_inferno.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Plasma</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_plasma.jpg</normaloff>:/imagenes/colorscale/colorscale_plasma.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Viridis</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_viridis.jpg</normaloff>:/imagenes/colorscale/colorscale_viridis.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Cividis</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_cividis.jpg</normaloff>:/imagenes/colorscale/colorscale_cividis.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Twilight</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_twilight.jpg</normaloff>:/imagenes/colorscale/colorscale_twilight.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Twilight desplazado</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_twilight_shifted.jpg</normaloff>:/imagenes/colorscale/colorscale_twilight_shifted.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Turbo</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_turbo.jpg</normaloff>:/imagenes/colorscale/colorscale_turbo.jpg</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Verde profundo</string>
+         </property>
+         <property name="icon">
+          <iconset resource="recursos.qrc">
+           <normaloff>:/imagenes/colorscale/colorscale_deepgreen.jpg</normaloff>:/imagenes/colorscale/colorscale_deepgreen.jpg</iconset>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Orientation::Vertical</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QCheckBox" name="checkBox">
+     <property name="text">
+      <string>Previsualizar</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="recursos.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>ColorFalso</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>ColorFalso</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

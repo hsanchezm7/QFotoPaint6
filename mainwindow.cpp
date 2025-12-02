@@ -30,6 +30,7 @@ using namespace cv;
 #include "ecualizacionhistograma.h"
 #include "rojoverdeazul.h"
 #include "perfilado.h"
+#include "colorfalso.h"
 
 QString FiltroImagen = "Todos los formatos (*.jpg *.jpeg *.jpe .jp2 *.tif *.tiff *.png *.gif *.bmp *.dib *.webp *.ppm);;Archivos JPG (*.jpg *.jpeg *.jpe);;Archivos TIF (*.tif *.tiff);;Archivos PNG (*.png);;Archivos WEBP (*.webp);;Archivos GIF (*.gif);;Archivos BMP (*.bmp *.dib);;Otros (*.*)";
 
@@ -670,6 +671,15 @@ void MainWindow::on_actionPerfilado_triggered()
     if (foto_activa() != -1) {
         Perfilado pf(foto_activa(), this);
         pf.exec();
+    }
+}
+
+
+void MainWindow::on_actionColor_falso_triggered()
+{
+    if (foto_activa() != -1) {
+        ColorFalso cf(foto_activa(), this);
+        cf.exec();
     }
 }
 

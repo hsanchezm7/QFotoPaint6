@@ -1235,3 +1235,27 @@ void convertir_a_modelo(int nfoto, int nres, modelo_color mc)
         crear_nueva(nres+i, canales[i]);
     }
 }
+
+void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
+    Mat img = foto[nfoto].img;
+    Mat gris, res;
+
+    // convertir a escala de grises
+    if (img.channels() == 1) {
+        gris = img.clone();
+    } else {
+        cvtColor(img, gris, COLOR_BGR2GRAY);
+    }
+
+    // aplicar mapa de color
+    applyColorMap(gris, res, id_mapa);
+
+    imshow(foto[nfoto].nombre, res);
+
+    if (guardar) {
+        guardar_estado(nfoto);
+        res.copyTo(img);
+        foto[nfoto].modificada = true;
+    }
+}
+
