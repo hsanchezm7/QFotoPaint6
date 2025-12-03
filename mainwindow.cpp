@@ -463,7 +463,7 @@ void MainWindow::on_actionAjuste_lineal_del_histograma_triggered()
 void MainWindow::on_actionCapturar_de_v_deo_triggered()
 {
     if (primera_libre() != -1) {
-        QString nombre = QFileDialog::getOpenFileName();
+        QString nombre = QFileDialog::getOpenFileName(this, "Abrir vídeo", ".", FiltroVideo);
         if(!nombre.isEmpty()) {
             CapturaDeVideo cv(nombre.toLatin1().data(), this);
             if (cv.isOpen()){

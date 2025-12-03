@@ -34,7 +34,7 @@ void rotaravideo::changeEvent(QEvent *e)
 
 void rotaravideo::on_rotaravideo_accepted()
 {
-    QString nombre= QFileDialog::getSaveFileName(w, "Guardar vídeo", ".", QString::fromLatin1(FiltroVideo.c_str()));
+    QString nombre= QFileDialog::getSaveFileName(w, "Guardar vídeo", ".", FiltroVideo);
     if (!nombre.isEmpty()) {
         int modo= ui->radioButton->isChecked() ? 0 :
                  (ui->radioButton_2->isChecked() ? 1 : 2);

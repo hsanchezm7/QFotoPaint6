@@ -17,8 +17,7 @@ static Mat img_media;
 static int frames_img_media;
 // Número de frames que se han acumulado en la media img_media
 
-string FiltroVideo= "Todos los formatos (*.avi *.mpg *.wmv *.mov);;Archivos AVI (*.avi);;Archivos MPG (*.mpg *.mpeg);;Archivos WMV (*.wmv);;Archivos MOV (*.mov);;Otros (*.*)";
-
+QString FiltroVideo = "Todos los formatos de vídeo (*.avi *.mp4 *.m4v *.mkv *.mov *.qt *.wmv *.asf *.mpg *.mpeg *.mpe *.webm *.flv *.3gp *.ts *.mts);;Archivos AVI (*.avi);;Archivos MP4 (*.mp4 *.m4v);;Archivos Matroska (*.mkv);;Archivos QuickTime (*.mov *.qt);;Archivos Windows Media (*.wmv *.asf);;Archivos MPEG (*.mpg *.mpeg *.mpe);;Archivos WebM (*.webm);;Otros (*.*)";
 ///////////////////////////////////////////////////////////////////
 /////////  FUNCIONES DE PROCESAMIENTO DE VIDEO       //////////////
 ///////////////////////////////////////////////////////////////////

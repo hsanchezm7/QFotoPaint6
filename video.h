@@ -1,10 +1,12 @@
 #ifndef VIDEO_H
 #define VIDEO_H
 
+#include <QString>
+
 #include "imagenes.h"
 // Se usa el módulo de procesamiento de imágenes
 
-extern string FiltroVideo;
+extern QString FiltroVideo;
 
 ///////////////////////////////////////////////////////////////////
 /////////  FUNCIONES DE PROCESAMIENTO DE VIDEO       //////////////
