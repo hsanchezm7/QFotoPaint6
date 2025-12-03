@@ -683,10 +683,16 @@ void MainWindow::on_actionColor_falso_triggered()
     }
 }
 
-
-void MainWindow::on_actionBalance_de_blancos_triggered()
+void MainWindow::on_actionDesplazamiento_YUV_triggered()
 {
     if (foto_activa() != -1 && primera_libre() != -1)
-        balance_blancos(foto_activa(), primera_libre());
+        balance_blancos(foto_activa(), primera_libre(), 0);
+}
+
+
+void MainWindow::on_actionVon_Kries_triggered()
+{
+    if (foto_activa() != -1 && primera_libre() != -1)
+        balance_blancos(foto_activa(), primera_libre(), 1);
 }
 

@@ -624,12 +624,19 @@ p, li { white-space: pre-wrap; }
      <addaction name="actionMedia"/>
      <addaction name="actionMediana"/>
     </widget>
+    <widget class="QMenu" name="menuBalance_de_blancos">
+     <property name="title">
+      <string>Balance de blancos</string>
+     </property>
+     <addaction name="actionDesplazamiento_YUV"/>
+     <addaction name="actionVon_Kries"/>
+    </widget>
     <addaction name="menuSuavizado"/>
     <addaction name="actionEscala_de_color"/>
     <addaction name="actionPinchar_estirar"/>
     <addaction name="actionPerfilado"/>
     <addaction name="actionBajorrelieve"/>
-    <addaction name="actionBalance_de_blancos"/>
+    <addaction name="menuBalance_de_blancos"/>
     <addaction name="actionInpaint"/>
    </widget>
    <widget class="QMenu" name="menuV_deo">
@@ -996,9 +1003,14 @@ p, li { white-space: pre-wrap; }
     <string>Aplicar mapa de color...</string>
    </property>
   </action>
-  <action name="actionBalance_de_blancos">
+  <action name="actionDesplazamiento_YUV">
    <property name="text">
-    <string>Balance de blancos</string>
+    <string>Desplazamiento YUV</string>
+   </property>
+  </action>
+  <action name="actionVon_Kries">
+   <property name="text">
+    <string>Von Kries</string>
    </property>
   </action>
  </widget>

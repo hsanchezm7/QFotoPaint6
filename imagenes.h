@@ -225,7 +225,7 @@ void convertir_a_modelo (int nfoto, int nres, modelo_color mc);
 void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar=false);
 // Aplica un mapa de color de OpenCV a una imagen (convertir a color falso)
 
-void balance_blancos(int nfoto, int nres);
+void balance_blancos(int nfoto, int nres, int modo);
 // Ajuste automático del balance de blancos
 
 void guardar_estado (int nfoto);

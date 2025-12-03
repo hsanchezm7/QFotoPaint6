@@ -1259,7 +1259,7 @@ void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
     }
 }
 
-void balance_blancos(int nfoto, int nres)
+void balance_blancos(int nfoto, int nres, int modo)
 {
     Mat img = foto[nfoto].img;
     Mat yuv, res;
@@ -1287,4 +1287,81 @@ void balance_blancos(int nfoto, int nres)
     cvtColor(yuv, res, COLOR_YUV2BGR);
 
     crear_nueva(nres, res);
+}
+
+Mat wb_desplazamiento_yuv(const Mat &src)
+{
+    Mat yuv, res;
+
+    // RGB (BGR) -> YUV
+    cvtColor(src, yuv, COLOR_BGR2YUV);
+
+    vector<Mat> canales;
+    split(yuv, canales); // canales[0]=Y, canales[1]=U, canales[2]=V
+
+    // media de los canales U y V
+    double u_media = mean(canales[1])[0];
+    double v_media = mean(canales[2])[0];
+
+    // desplazamiento necesario para centrar en 128 (gris neutro)
+    double u_shift = 128.0 - u_media;
+    double v_shift = 128.0 - v_media;
+
+    // sumar desplazamiento
+    canales[1] = canales[1] + u_shift;
+    canales[2] = canales[2] + v_shift;
+
+    // YUV -> RGB (BGR)
+    merge(canales, yuv);
+    cvtColor(yuv, res, COLOR_YUV2BGR);
+
+    return res;
+}
+
+Mat wb_von_kries(const Mat &src)
+{
+    Mat img32, res;
+
+    // convertir a flotante (0.0 - 1.0)
+    src.convertTo(img32, CV_32F, 1.0/255.0);
+
+    // RGB (BGR) -> XYZ
+    Mat xyz;
+    cvtColor(img32, xyz, COLOR_BGR2XYZ);
+
+    // XYZ -> LMS
+    Mat M_XYZ2LMS = (Mat_<float>(3,3) <<
+                         0.4002, 0.7076, -0.0808,
+                     -0.2263, 1.1653,  0.0457,
+                     0.0000, 0.0000,  0.9182);
+
+    Mat lms;
+    transform(xyz, lms, M_XYZ2LMS);
+
+    // medias en espacio LMS y referencia gris
+    Scalar medias = mean(lms);
+    double l_mean = medias[0];
+    double m_mean = medias[1];
+    double s_mean = medias[2];
+    double gray_ref = (l_mean + m_mean + s_mean) / 3.0;
+
+    // ganancias (evitando división por cero)
+    double k_l = gray_ref / (l_mean + 1e-5);
+    double k_m = gray_ref / (m_mean + 1e-5);
+    double k_s = gray_ref / (s_mean + 1e-5);
+
+    // aplicar ganancias
+    Mat M_GAIN = (Mat_<float>(3,3) << k_l, 0, 0, 0, k_m, 0, 0, 0, k_s);
+    transform(lms, lms, M_GAIN);
+
+    // LMS -> XYZ -> BGR
+    Mat M_LMS2XYZ = M_XYZ2LMS.inv();
+    transform(lms, xyz, M_LMS2XYZ);
+
+    Mat res32;
+    cvtColor(xyz, res32, COLOR_XYZ2BGR);
+
+    res32.convertTo(res, CV_8U, 255.0);
+
+    return res;
 }
