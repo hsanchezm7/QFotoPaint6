@@ -8,8 +8,11 @@ CapturaDeVideo::CapturaDeVideo(string nombre, QWidget *parent)
     ui->setupUi(this);
     if (cap.open(nombre)) {
         int nframes = cap.get(CAP_PROP_FRAME_COUNT);
+
         ui->horizontalSlider->setMaximum(nframes-1);
         ui->spinBox->setMaximum(nframes-1);
+        ui->horizontalSlider->setTickInterval((nframes-1)/10);
+
         Mat frame;
         if (cap.read(frame))
             imshow("Frame del vídeo", frame);
