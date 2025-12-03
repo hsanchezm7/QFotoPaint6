@@ -99,6 +99,7 @@ private slots:
     void on_actionRojo_Verde_Azul_triggered();
     void on_actionPerfilado_triggered();
     void on_actionColor_falso_triggered();
+    void on_actionBalance_de_blancos_triggered();
 };
 
 extern MainWindow *w;

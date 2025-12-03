@@ -629,6 +629,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionPinchar_estirar"/>
     <addaction name="actionPerfilado"/>
     <addaction name="actionBajorrelieve"/>
+    <addaction name="actionBalance_de_blancos"/>
     <addaction name="actionInpaint"/>
    </widget>
    <widget class="QMenu" name="menuV_deo">
@@ -993,6 +994,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionColor_falso">
    <property name="text">
     <string>Aplicar mapa de color...</string>
+   </property>
+  </action>
+  <action name="actionBalance_de_blancos">
+   <property name="text">
+    <string>Balance de blancos</string>
    </property>
   </action>
  </widget>

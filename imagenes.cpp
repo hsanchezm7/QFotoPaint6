@@ -1259,3 +1259,32 @@ void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
     }
 }
 
+void balance_blancos(int nfoto, int nres)
+{
+    Mat img = foto[nfoto].img;
+    Mat yuv, res;
+
+    // RGB (BGR) -> YUV
+    cvtColor(img, yuv, COLOR_BGR2YUV);
+
+    vector<Mat> canales;
+    split(yuv, canales); // canales[0]=Y, canales[1]=U, canales[2]=V
+
+    // media de los canales U y V
+    double u_media = mean(canales[1])[0];
+    double v_media = mean(canales[2])[0];
+
+    // normalizar media
+    double u_shift = 128.0 - u_media;
+    double v_shift = 128.0 - v_media;
+
+    // sumar desplazamiento a todos los píxeles del canal.
+    canales[1] = canales[1] + u_shift;
+    canales[2] = canales[2] + v_shift;
+
+    // YUV -> RGB (BGR)
+    merge(canales, yuv);
+    cvtColor(yuv, res, COLOR_YUV2BGR);
+
+    crear_nueva(nres, res);
+}

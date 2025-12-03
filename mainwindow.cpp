@@ -683,3 +683,10 @@ void MainWindow::on_actionColor_falso_triggered()
     }
 }
 
+
+void MainWindow::on_actionBalance_de_blancos_triggered()
+{
+    if (foto_activa() != -1 && primera_libre() != -1)
+        balance_blancos(foto_activa(), primera_libre());
+}
+
