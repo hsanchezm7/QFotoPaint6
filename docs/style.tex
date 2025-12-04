@@ -26,6 +26,12 @@
 \definecolor{mBlue}{rgb}{0.13,0.13,1}
 \definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
 
+\usepackage{caption}
+
+\captionsetup{font=small}
+
+\captionsetup{labelfont=bf, textfont=small}
+
 \usepackage{listings} % File listings, with syntax highlighting
 \lstset{
     aboveskip=12pt,
@@ -34,6 +40,7 @@
 	extendedchars=true,  % Soporta caracteres extendidos
 	literate={├}{{|-}}1 {─}{{-}}1 {●}{{$\bullet$}}1 {└}{{\texttt{\textbackslash}}}1
 }
+
 \lstdefinestyle{CppQtStyle}{
 	backgroundcolor=\color{backgroundColour},
 	commentstyle=\color{mGreen}\itshape,
@@ -42,7 +49,7 @@
 	keywordstyle=[3]\color{mOrange},               % basic types
 	numberstyle=\tiny\color{mGray},
 	stringstyle=\color{mPurple},
-	basicstyle=\fontfamily{pcr}\selectfont\small,
+	basicstyle=\fontfamily{pcr}\selectfont\footnotesize,
 	breakatwhitespace=false,
 	breaklines=true,
 	captionpos=b,

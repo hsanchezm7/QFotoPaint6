@@ -112,53 +112,171 @@
   finalidad mostrar el uso y correcto funcionamiento de las principales
   funcionalidades de la aplicación.
 
+  \subsection{Interfaz}
+
+      \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.7\linewidth]{figures/interfaz}
+          \caption{Interfaz de QFotoPaint6.}
+          \label{fig:interfaz}
+      \end{figure}
+
   \subsection{Menú Archivo}
 
       \subsubsection*{Nueva}
+
           \noindent
           Crea una nueva imagen, especificando el tamaño y el color de fondo.
 
+          \noindent
+          \begin{figure}[htb]
+              \begin{minipage}[t]{0.45\textwidth}
+                  \centering
+                  \includegraphics[width=0.8\linewidth]{figures/nueva_1}
+                  \caption{Crear una nueva imagen (paso 1).}
+                  \label{fig:nueva-1}
+              \end{minipage}
+              \hfill
+              \begin{minipage}[t]{0.45\textwidth}
+                  \centering
+                  \includegraphics[width=0.8\linewidth]{figures/nueva_2}
+                  \caption{Crear una nueva imagen (paso 2).}
+                  \label{fig:nueva-2}
+              \end{minipage}
+          \end{figure}
+
+          \clearpage
+
       \subsubsection*{Abrir}
+
           \noindent
           Lee una imagen de un archivo existente en formatos admitidos por OpenCV.
 
+          \noindent
+          \begin{figure}[htb]
+              \begin{minipage}[t]{0.45\textwidth}
+                  \centering
+                  \includegraphics[width=0.8\linewidth]{figures/abrir_1}
+                  \caption{Abrir una nueva imagen (paso 1).}
+                  \label{fig:abrir-1}
+              \end{minipage}
+              \hfill
+              \begin{minipage}[t]{0.45\textwidth}
+                  \centering
+                  \includegraphics[width=0.8\linewidth]{figures/abrir_2}
+                  \caption{Abrir una nueva imagen (paso 2).}
+                  \label{fig:abrir-2}
+              \end{minipage}
+          \end{figure}
+
       \subsubsection*{Guardar}
+
           \noindent
           Guarda la imagen actual sin requerir una nueva especificación de nombre.
 
       \subsubsection*{Guardar como...}
+
           \noindent
           Guarda la imagen actual, permitiendo especificar un nuevo nombre de archivo.
 
       \subsubsection*{Cerrar}
+
           \noindent
           Cierra la imagen abierta, dando opción a guardar si ha sido modificada.
 
       \subsubsection*{Capturar de cámara}
+
           \noindent
           Captura una imagen de una cámara de vídeo conectada al ordenador.
 
       \subsubsection*{Capturar de vídeo}
+
           \noindent
           Abre un frame específico de un archivo de vídeo y permite previsualizar la posición.
 
       \subsubsection*{Salir}
+
           \noindent
           Termina el programa, liberando memoria y dando opción a guardar las imágenes modificadas.
+
+          \noindent
+          \begin{figure}[htb]
+              \begin{minipage}[t]{0.45\textwidth}
+                  \centering
+                  \includegraphics[width=\linewidth]{figures/salir_1}
+                  \caption{Salir de la aplicación (paso 1).}
+                  \label{fig:salir-1}
+              \end{minipage}
+              \hfill
+              \begin{minipage}[t]{0.45\textwidth}
+                  \centering
+                  \includegraphics[width=0.6\linewidth]{figures/salir_2}
+                  \caption{\centering Salir de la aplicación (paso 2: proceso finalizado).}
+                  \label{fig:salir-2}
+              \end{minipage}
+          \end{figure}
+
+          \clearpage
 
   \subsection{Menú Edición}
 
       \subsubsection*{Seleccionar todo}
           \noindent
+
           Selecciona la imagen completa como región de interés (ROI).
 
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.3\linewidth]{figures/seleccionar_todo}
+              \caption{Seleccionar todo.}
+              \label{fig:seleccionar-todo}
+          \end{figure}
+
       \subsubsection*{Copiar a nueva}
+
           \noindent
           Crea una nueva imagen conteniendo solo la región de interés (ROI) seleccionada.
 
+          \noindent
+          \begin{figure}[htb]
+              \begin{minipage}[t]{0.45\textwidth}
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/tulipanes-seleccion}
+                  \caption{Copiar a nueva (paso 1: selección de ROI).}
+                  \label{fig:copiar-a-nueva-entrada}
+              \end{minipage}
+              \hfill
+              \begin{minipage}[t]{0.45\textwidth}
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/copiar_a_nueva.png}
+                  \caption{Copiar a nueva (paso 2).}
+                  \label{fig:copiar-a-nueva}
+              \end{minipage}
+          \end{figure}
+
       \subsubsection*{Ver histograma}
+
           \noindent
           Muestra el histograma de la imagen, ya sea en valor de gris o por canales (R, G, B).
+
+          \vspace{-4ex}
+
+          \noindent
+          \begin{figure}[htb]
+              \begin{minipage}[t]{0.45\textwidth}
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/galaxy}
+                  \caption{Imagen de entrada.}
+                  \label{fig:ver-histograma-entrada}
+              \end{minipage}
+              \hfill
+              \begin{minipage}[t]{0.45\textwidth}
+                  \centering
+                  \includegraphics[width=0.9\linewidth]{figures/histograma}
+                  \caption{Histograma de grises y del canal B.}
+                  \label{fig:ver-histograma-1}
+              \end{minipage}
+          \end{figure}
 
       \subsubsection*{Opciones}
           \noindent
@@ -191,6 +309,8 @@
           \noindent
           Define una región de interés (ROI) rectangular para usar en operaciones posteriores.
 
+          \clearpage
+
   \subsection{Menú Transformar}
 
       \subsubsection*{Ajustar brillo/contraste/gama}
@@ -198,13 +318,89 @@
           \noindent
           Modifica la imagen alterando el brillo (suma), el contraste (multiplicación) y la gama.
 
-      \subsubsection*{Ajustar matiz/saturación/luminosidad}
           \noindent
-          Realiza un ajuste de color usando HLS/HSV para modificar el matiz, la saturación y la luminosidad.
+          \begin{center}
+              \begin{minipage}[t]{0.45\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.7\linewidth]{figures/desierto}
+                      \caption{Imagen de entrada.}
+                      \label{fig:bcg-entrada}
+                  \end{figure}
+              \end{minipage}
+          \end{center}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/bcg_b_100_c_neg15_g_50}
+                  \caption{\centering Ajuste de brillo, contraste y gama con \((100,-15,50)\).}
+                  \label{fig:bcg-m0-m3-m3}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/bcg_b_neg15_c_30_g_250.jpg}
+                  \caption{\centering Ajuste de brillo, contraste y gama con \((-15,30,250)\).}
+                  \label{fig:bcg-m2-m0-m2}
+              \end{figure}
+          \end{minipage}
+
+      \subsubsection*{Ajustar matiz/saturación/luminosidad}
+
+          \noindent
+          Realiza un ajuste de color usando para modificar el matiz, la saturación y la luminosidad. La imagen de entrada es la figura~\ref{fig:bcg-entrada}.
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.9\linewidth]{figures/matsatlum_1.png}
+                  \caption{Ajuste de HLS (1).}
+                  \label{fig:matsatlum-1}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.9\linewidth]{figures/matsatlum_2.png}
+                  \caption{Ajuste de HLS (2).}
+                  \label{fig:matsatlum-2}
+              \end{figure}
+          \end{minipage}
+
+          \clearpage
 
       \subsubsection*{Ajuste lineal del histograma}
+
           \noindent
-          Estira linealmente el histograma indicando el porcentaje de píxeles a descartar en los extremos.
+          Estira linealmente el histograma indicando el porcentaje de píxeles a descartar en los extremos. La imagen de entrada es la figura~\ref{fig:bcg-entrada}.
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/ajuste_lineal_min10_max45}
+                  \caption{Ajuste lineal con rango (10, 45).}
+                  \label{fig:ajuste-lineal-10-45}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/ajuste_lineal_min55_max30}
+                  \caption{Ajuste lineal con rango (55, 30).}
+                  \label{fig:ajuste-lineal-55-30}
+              \end{figure}
+          \end{minipage}
 
       \subsubsection*{Perspectiva}
           \noindent
@@ -218,15 +414,98 @@
           \noindent
           Calcula una nueva imagen como la media ponderada de dos imágenes, escalando si los tamaños no coinciden.
 
+          \clearpage
+
   \subsection{Menú Efectos}
 
       \subsubsection*{Suavizado}
 
           \noindent Aplica un filtro de suavizado (gaussiano, media o mediana) según el tipo y tamaño indicados.
 
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.5\linewidth]{figures/suavizados_entrada}
+                  \caption{\centering Ajuste de brillo, contraste y gama con \((100,-15,50)\).}
+                  \label{fig:suavizados-entrada}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.5\linewidth]{figures/suavizados_gaussiano_x20_y15}
+                  \caption{Suavizado gaussiano con \((20,15)\).}
+                  \label{fig:suavizados-gaussiano-x20-y15}
+              \end{figure}
+          \end{minipage}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.5\linewidth]{figures/suavizados_media_x10_y20}
+                  \caption{Suavizado de media con \((10,20)\).}
+                  \label{fig:suavizados-media-x10-y20}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.5\linewidth]{figures/suavizados_mediana_x15}
+                  \caption{Suavizado de mediana con \((15,0)\).}
+                  \label{fig:suavizados-mediana-x15}
+              \end{figure}
+          \end{minipage}
+
       \subsubsection*{Bajorrelieve}
+
           \noindent
           Aplica un efecto de bajorrelieve a la imagen, seleccionando la dirección y cantidad del efecto.
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.4\linewidth]{figures/chica}
+                  \caption{Imagen de entrada.}
+                  \label{fig:bajorrelieve-entrada}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.4\linewidth]{figures/bajorrelieve_arena}
+                  \caption{Operación bajorrelieve (arena).}
+                  \label{fig:bajorrelieve-arena}
+              \end{figure}
+          \end{minipage}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.4\linewidth]{figures/bajorrelieve_cielo}
+                  \caption{Operación bajorrelieve (cielo).}
+                  \label{fig:bajorrelieve-cielo}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.4\linewidth]{figures/bajorrelieve_gris}
+                  \caption{Operación bajorrelieve (gris).}
+                  \label{fig:bajorrelieve-gris}
+              \end{figure}
+          \end{minipage}
 
       \subsubsection*{Pinchar/estirar}
           \noindent
@@ -247,6 +526,15 @@
   realizados en la estructura del programa y la validación de su correcto
   funcionamiento.
 
+  \begin{warn}[Optimización de Figuras]
+      Gran parte de las imágenes y capturas de pantalla incluidas en este documento han sido sometidas a un proceso de optimización (compresión y reescalado) específico para la generación de la memoria. \\
+
+      \noindent
+      Esta medida es fundamental en la generación con \LaTeX{} para evitar tiempos de compilación excesivos. Asimismo, asegura que el tamaño final del archivo PDF se mantenga dentro de límites manejables para su distribución digital, preservando la calidad visual necesaria.
+  \end{warn}
+
+  \clearpage
+
   \subsection{Nueva imagen desde el portapapeles}
 
       \noindent
@@ -259,43 +547,63 @@
       ``Archivo'' y accedemos al portapapeles de la siguiente forma:
 
       \begin{lstlisting}[style=CppQtStyle, caption={Acceso al portapapeles en Qt.}]
-	// mainwindow.cpp
-	void MainWindow::on_actionNueva_desde_portapapeles_triggered() {
-		const QClipboard *clipboard = QGuiApplication::clipboard();
-		const QMimeData *mimeData = clipboard->mimeData();
+    // mainwindow.cpp
+    void MainWindow::on_actionNueva_desde_portapapeles_triggered() {
+        const QClipboard *clipboard = QGuiApplication::clipboard();
+        const QMimeData *mimeData = clipboard->mimeData();
 
-		if (mimeData->hasImage()) {
-			QImage img = qvariant_cast<QImage>(mimeData->imageData());
+        if (mimeData->hasImage()) {
+            QImage img = qvariant_cast<QImage>(mimeData->imageData());
 
-			if (!img.isNull()) {
-				Mat mat = Mat(img.height(), img.width(), CV_8UC4, img.bits());
-				cvtColor(mat, mat, COLOR_RGBA2RGB);
+            if (!img.isNull()) {
+                Mat mat = Mat(img.height(), img.width(), CV_8UC4, img.bits());
+                cvtColor(mat, mat, COLOR_RGBA2RGB);
 
-				int pl = comprobar_primera_libre();
-				if (pl != -1)
-				crear_nueva(pl, mat);
-			}
-		} else {
-			QMessageBox::warning(this, "Portapapeles vacío",
-			"No se encontró ninguna imagen en el portapapeles.");
-		}
-	}
+                int pl = comprobar_primera_libre();
+                if (pl != -1)
+                crear_nueva(pl, mat);
+            }
+        } else {
+            QMessageBox::warning(this, "Portapapeles vacío",
+            "No se encontró ninguna imagen en el portapapeles.");
+        }
+    }
 \end{lstlisting}
 
       \noindent
       La aplicación lanzará un diálogo de advertencia si el portapapeles esta vacío o no
       se ha encontrado una imagen en la última entrada del historial.
 
-      \clearpage
+      \subsubsection{Uso}
+
+          \noindent
+          \begin{figure}[htb]
+              \begin{minipage}[t]{0.45\textwidth}
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/nueva_portapapeles_1.png}
+                  \caption{Nueva desde portapapeles (paso 1).}
+                  \label{fig:nueva-portapapeles-1}
+              \end{minipage}
+              \hfill
+              \begin{minipage}[t]{0.45\textwidth}
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/nueva_portapapeles_2.png}
+                  \caption{\centering Nueva desde portapapeles (paso 2 tras \texttt{CTRL+V}).}
+                  \label{fig:nueva-portapapeles-2}
+              \end{minipage}
+          \end{figure}
+
+          \clearpage
 
   \subsection{Copiar al portapapeles}
 
       \noindent
       Siguiendo la dinámica de la anterior característica relacionada con el
-      portapapeles, esta funcionalidad permite al usuario copiar la imagen de la
-      ventana seleccionada al portapapeles. Esta operación no necesita la creación de
-      una nueva clase ni de un nuevo formulario, y se puede implementar en el propio
-      código de \texttt{mainwindow.cpp}.
+      portapapeles, esta funcionalidad permite al usuario copiar el ROI de la imagen seleccionada al portapapeles. \\
+
+      Esta operación no necesita la creación de una nueva clase ni de un nuevo
+      formulario, y se puede implementar en el propio código de
+      \texttt{mainwindow.cpp}.
 
       \begin{lstlisting}[style=CppQtStyle, caption={Acceso al portapapeles en Qt.}]
     // mainwindow.cpp
@@ -319,17 +627,45 @@
     }
 \end{lstlisting}
 
-      \noindent
-      Realizamos una conversión del modo BGR de OpenCV al modo de color RGB. Se ha intentado convertir al modo de color RGBA pero la imagen contenía errores a la hora de recuperarla. Para actualizar el portapapeles, se hace uso de la operación \texttt{setImage()} proporcionada por la clase \texttt{QClipboard} de Qt. \cite{opencv_histogram_equalization_tutorial}
+      \subsubsection{Uso}
 
-      \clearpage
+          \vspace{-4ex}
+
+          \noindent
+          \begin{figure}[htb]
+              \begin{minipage}[t]{0.45\textwidth}
+                  \centering
+                  \includegraphics[width=0.8\linewidth]{figures/tulipanes-seleccion.png}
+                  \caption*{\centering Copiar al portapapeles (paso 1: selección de ROI).}
+                  \label{fig:copiar-al-portapapeles-entrada}
+              \end{minipage}
+              \hfill
+              \begin{minipage}[t]{0.45\textwidth}
+                  \centering
+                  \includegraphics[width=0.8\linewidth]{figures/copiar_al_portapapeles.png}
+                  \caption{\centering Copiar al portapapeles (paso 2).}
+                  \label{fig:copiar-al-portapapeles}
+              \end{minipage}
+          \end{figure}
+
+          \noindent
+          Realizamos una conversión del modo BGR de OpenCV al modo de color RGB. Se ha intentado convertir al modo de color RGBA pero la imagen contenía errores a la hora de recuperarla. Para actualizar el portapapeles, se hace uso de la operación \texttt{setImage()} proporcionada por la clase \texttt{QClipboard} de Qt. \cite{opencv_histogram_equalization_tutorial}
+
+          \clearpage
 
   \subsection{Deshacer última acción}
+
+      \label{subsec:undo}
+
+      Esta operación permite revertir la última modificación aplicada sobre la imagen
+      activa, restaurándola a su estado inmediatamente anterior. Esta funcionalidad
+      ha sido una de las más difíciles de implementar, ya que está diseñada de forma
+      que deshacer cualquier cambio cometido en la imagen.
 
       \subsubsection{Introducción}
 
           \noindent
-          Los humanos cometemos numerosos errores y, como cualquier programa de usuario, QFotoPaint6 debería permitir al usuario deshacer los últimos cambios. Esta funcionalidad ha sido una de las más difíciles de implementar, ya que está diseñada de forma que se pueda revertir cualquier cambio cometido en la imagen, ya sea con un formulario o con una herramienta de edición. \\
+          Como cualquier programa de usuario, QFotoPaint6 debería permitir al usuario navegar hacia atrás en el historial de ediciones para corregir errores o descartar cambios no deseados. \\
 
           Lo primero que nos viene a la mente es definir, para cada ventana (imagen)
           abierta, una lista con el historial de acciones realizadas, para poder navegar
@@ -352,19 +688,19 @@
           limitará el tamaño del historial:
 
           \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
-	// imagenes.h
-	#define MAX_HIST_IMG 20 	// Tamaño del historial para deshacer
-	 ...
-	struct ventana {
-		bool usada;             // Indica si se está usando actualmente
-		bool modificada;        // Ha sido modificada después de abrirla o crearla
-		string nombre;          // Nombre de la ventana codificada en UTF8
-		string nombref;         // Nombre del fichero de imagen codificado en Latin1
-		int orden;              // Número de orden entre las ventanas abiertas
-		Rect roi;               // Región de interés seleccionada
-		Mat img;                // Imagen almacenada en esta posición
-		vector<Mat> img_hist;   // Historial de imágenes
-	};
+    // imagenes.h
+    #define MAX_HIST_IMG 20     // Tamaño del historial para deshacer
+     ...
+    struct ventana {
+        bool usada;             // Indica si se está usando actualmente
+        bool modificada;        // Ha sido modificada después de abrirla o crearla
+        string nombre;          // Nombre de la ventana codificada en UTF8
+        string nombref;         // Nombre del fichero de imagen codificado en Latin1
+        int orden;              // Número de orden entre las ventanas abiertas
+        Rect roi;               // Región de interés seleccionada
+        Mat img;                // Imagen almacenada en esta posición
+        vector<Mat> img_hist;   // Historial de imágenes
+    };
 \end{lstlisting}
 
           \clearpage
@@ -374,33 +710,33 @@
           \texttt{guardar\_estado()}:
 
           \begin{lstlisting}[style=CppQtStyle]
-	// imagenes.cpp
-	void guardar_estado (int nfoto) {
-		ventana& v = foto[nfoto];
+    // imagenes.cpp
+    void guardar_estado (int nfoto) {
+        ventana& v = foto[nfoto];
 
-		v.img_hist.push_back(v.img.clone());  // guardar estado en la pila de deshacer
+        v.img_hist.push_back(v.img.clone());  // guardar estado en la pila de deshacer
 
-		if (v.img_hist.size() > MAX_HIST_IMG)	// comprobar tamaño máximo de pila
-			v.img_hist.erase(v.img_hist.begin());
+        if (v.img_hist.size() > MAX_HIST_IMG)    // comprobar tamaño máximo de pila
+            v.img_hist.erase(v.img_hist.begin());
 
-		v.modificada = true;
-	}
+        v.modificada = true;
+    }
 \end{lstlisting}
 
           \noindent
           y \texttt{deshacer()}:
 
           \begin{lstlisting}[style=CppQtStyle]
-	// imagenes.cpp
-	void deshacer (int nfoto) {
-		ventana& v = foto[nfoto];
-		 ...
-		// recuperar y eliminar último estado guardado
-		v.img = v.img_hist.back().clone();
-		v.img_hist.pop_back();
+    // imagenes.cpp
+    void deshacer (int nfoto) {
+        ventana& v = foto[nfoto];
+         ...
+        // recuperar y eliminar último estado guardado
+        v.img = v.img_hist.back().clone();
+        v.img_hist.pop_back();
 
-		imshow(v.nombre, v.img);
-	}
+        imshow(v.nombre, v.img);
+    }
 \end{lstlisting}
 
           Para cada acción del menú, el paso a seguir es el mismo para una: guardar el
@@ -409,15 +745,17 @@
           Un ejemplo es el siguiente:
 
           \begin{lstlisting}[style=CppQtStyle]
-	void ver_brillo_contraste_gamma (int nfoto, double suma, double prod, double gamma, bool guardar) {
-		 ...
-		if (guardar) {
-			guardar_estado(nfoto);		// instrucción añadida
-			img.copyTo(foto[nfoto].img);
-			foto[nfoto].modificada= true;
-		}
-	}
+    void ver_brillo_contraste_gamma (int nfoto, double suma, double prod, double gamma, bool guardar) {
+         ...
+        if (guardar) {
+            guardar_estado(nfoto);        // instrucción añadida
+            img.copyTo(foto[nfoto].img);
+            foto[nfoto].modificada= true;
+        }
+    }
 \end{lstlisting}
+
+          \clearpage
 
           \clearpage
 
@@ -428,28 +766,76 @@
           \texttt{EVENT\_LBUTTONDOWN} y \texttt{EVENT\_LBUTTONUP}.
 
           \begin{lstlisting}[style=CppQtStyle]
-	void callback (int event, int x, int y, int flags, void *_nfoto) {
-		 ...
-		// 1.5. Se inicia la pulsación del ratón
-		if (event==EVENT_LBUTTONDOWN) {
-			downx= x;
-			downy= y;
+    void callback (int event, int x, int y, int flags, void *_nfoto) {
+         ...
+        // 1.5. Se inicia la pulsación del ratón
+        if (event==EVENT_LBUTTONDOWN) {
+            downx= x;
+            downy= y;
 
-			if (!dibujando_activo) {	// marcar inicio trazo
-				guardar_estado(factual);
-				dibujando_activo = true;
-			}
-		}
+            if (!dibujando_activo) {    // marcar inicio trazo
+                guardar_estado(factual);
+                dibujando_activo = true;
+            }
+        }
 
-		if (event==EVENT_LBUTTONUP) {		// finalizar trazo
-			if (dibujando_activo)
-				dibujando_activo = false;
-		}
-	}
+        if (event==EVENT_LBUTTONUP) {        // finalizar trazo
+            if (dibujando_activo)
+                dibujando_activo = false;
+        }
+    }
 \end{lstlisting}
 
           \noindent
           De esta forma, cuando el usuario usa, por ejemplo, la herramienta ``Punto'' y mantiene presionado el botón del ratón, solo se guardará un estado de la imagen: el previo a realizar la acción. Además, se ha asignado al QAction correspondiente el atajo de teclado \texttt{CTRL+Z}, aunque no funciona cuando el foco está en una de las ventanas de OpenCV.
+
+      \subsubsection{Uso}
+
+          \vspace{-2ex}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.5\linewidth]{figures/deshacer_1}
+                  \caption{Imagen modificada.}
+                  \label{fig:deshacer-1}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.5\linewidth]{figures/deshacer_2}
+                  \caption{Tras \(1 \times \text{deshacer}\).}
+                  \label{fig:deshacer-2}
+              \end{figure}
+          \end{minipage}
+
+          \vspace{4ex}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.5\linewidth]{figures/deshacer_3}
+                  \caption{Tras \(7 \times \text{deshacer}\).}
+                  \label{fig:deshacer-3}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.5\linewidth]{figures/deshacer_4}
+                  \caption{Tras \(9 \times \text{deshacer}\).}
+                  \label{fig:deshacer-4}
+              \end{figure}
+          \end{minipage}
+
+          \clearpage
 
   \subsection{Información multimedia}
 
@@ -467,16 +853,6 @@
           ficheros multimedia.
 
       \subsubsection{Implementación}
-
-          \noindent
-          El diálogo implementado tiene el siguiente aspecto:
-
-          \begin{figure}[H]
-              \centering
-              \includegraphics[width=0.3\textwidth]{figures/im}
-              \caption{Diálogo de información multimedia implementado en QFotoPaint6.}
-              \label{fig:im-vlc}
-          \end{figure}
 
           El diseño se ha logrado usando un \texttt{QTabWidget} junto con un
           \texttt{QTreeWidget}. Para extender el contenido de éste al superior, se ha
@@ -499,14 +875,25 @@
 
               \item Se van creando los nodos hijo, cada uno con una propiedad sobre la imagen:
                     \begin{lstlisting}[style=CppQtStyle, numbers=none]
-	QTreeWidgetItem *itemCanales = new QTreeWidgetItem(root);
-		itemCanales->setText(0, QString("Canales de color: %1").arg(img.channels()));
+    QTreeWidgetItem *itemCanales = new QTreeWidgetItem(root);
+        itemCanales->setText(0, QString("Canales de color: %1").arg(img.channels()));
 \end{lstlisting}
 
           \end{enumerate}
 
           \noindent
-          Para ver el código en su totalidad, se remite al anexo de la implementación de la clase~\ref{sec:anexo-im}. \\
+          Para ver el código en su totalidad, se remite al anexo de la implementación de la clase~\ref{sec:anexo-im}.
+
+          \clearpage
+
+      \subsubsection{Uso}
+
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.6\textwidth]{figures/inf_multimedia.png}
+              \caption{Diálogo de información multimedia.}
+              \label{fig:inf-multimedia}
+          \end{figure}
 
           \clearpage
 
@@ -581,36 +968,36 @@
           Para implementar correctamente la funcionalidad, se ha optado por crear una nueva clase junto con un formulario, \texttt{EcualizacionHistograma}. El método implementado en \texttt{imagenes.cpp} es el siguiente:
 
           \begin{lstlisting}[style=CppQtStyle, caption={Implementación de la ecualización del histograma}, label={lst:ecualhist}]
-	// imagenes.cpp
-	void ecualizacion_hist(int nfoto, int modo, bool guardar) {
-	Mat img = foto[nfoto].img;
-	Mat imres;
+    // imagenes.cpp
+    void ecualizacion_hist(int nfoto, int modo, bool guardar) {
+    Mat img = foto[nfoto].img;
+    Mat imres;
 
-	if (img.channels() == 1) {  // imagen de grises
-		equalizeHist(img, imres);
-	} else if (modo == 0) {  // modo conjunto
-		// convertir a HSV para separar luz del color
-		Mat hsv;
-		cvtColor(img, hsv, COLOR_BGR2HSV);
+    if (img.channels() == 1) {  // imagen de grises
+        equalizeHist(img, imres);
+    } else if (modo == 0) {  // modo conjunto
+        // convertir a HSV para separar luz del color
+        Mat hsv;
+        cvtColor(img, hsv, COLOR_BGR2HSV);
 
-		vector<Mat> canales;
-		split(hsv, canales);
+        vector<Mat> canales;
+        split(hsv, canales);
 
-		equalizeHist(canales[2], canales[2]);
+        equalizeHist(canales[2], canales[2]);
 
-		merge(canales, hsv);
-		cvtColor(hsv, imres, COLOR_HSV2BGR);
-	} else {  // modo independiente
-		vector<Mat> canales;
-		split(img, canales);
+        merge(canales, hsv);
+        cvtColor(hsv, imres, COLOR_HSV2BGR);
+    } else {  // modo independiente
+        vector<Mat> canales;
+        split(img, canales);
 
-		for (size_t i = 0; i < 3; ++i)
-		equalizeHist(canales[i], canales[i]);
+        for (size_t i = 0; i < 3; ++i)
+        equalizeHist(canales[i], canales[i]);
 
-		merge(canales, imres);
-	}
+        merge(canales, imres);
+    }
 
-	...
+    ...
 
 }
 \end{lstlisting}
@@ -620,6 +1007,70 @@
           crominancia.
 
           \clearpage
+
+      \subsubsection{Uso}
+
+          \paragraph*{Ejemplo 1} \mbox{} \\
+
+              \vspace{-4ex}
+
+              \noindent
+              \begin{center}
+                  \begin{minipage}[t]{0.45\textwidth}
+                      \begin{figure}[H]
+                          \centering
+                          \includegraphics[width=0.7\linewidth]{figures/desierto}
+                          \caption*{Imagen de entrada.}
+                          \label{fig:ecualhist-entrada}
+                      \end{figure}
+                  \end{minipage}
+              \end{center}
+
+              \noindent
+              \begin{minipage}[t]{0.45\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.7\linewidth]{figures/ecualizacion_conjunta}
+                      \caption{Ecualización del histograma conjunta.}
+                      \label{fig:ecualhist-conjunta}
+                  \end{figure}
+              \end{minipage}
+              \hfill
+              \noindent
+              \begin{minipage}[t]{0.45\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.7\linewidth]{figures/ecualizacion_por_canales}
+                      \caption{Ecualización del histograma por canales.}
+                      \label{fig:ecualhist-por-canales}
+                  \end{figure}
+              \end{minipage}
+
+              \vspace{8ex}
+
+          \paragraph*{Ejemplo 2} \mbox{} \\
+
+              \noindent
+              \begin{minipage}[t]{0.45\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.7\linewidth]{figures/ecualizacion_entrada_2}
+                      \caption{Imagen de entrada.}
+                      \label{fig:ecualhist-entrada-2}
+                  \end{figure}
+              \end{minipage}
+              \hfill
+              \noindent
+              \begin{minipage}[t]{0.45\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.7\linewidth]{figures/ecualizacion_conjunta_2}
+                      \caption{Ecualización del histograma conjunta (2).}
+                      \label{fig:ecualhist-conjunta-2}
+                  \end{figure}
+              \end{minipage}
+
+              \clearpage
 
   \subsection{Modelos de color}
 
@@ -754,6 +1205,107 @@
 
           \clearpage
 
+      \subsubsection{Uso}
+
+          \paragraph*{Conversión a YUV} \mbox{} \\
+
+              \noindent
+              \begin{minipage}[t]{0.4\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.7\linewidth]{figures/mc_yuv_entrada}
+                      \caption{Imagen de entrada.}
+                      \label{fig:yuv-entrada}
+                  \end{figure}
+              \end{minipage}
+              \hfill
+              \noindent
+              \begin{minipage}[t]{0.4\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.7\linewidth]{figures/mc_yuv_y}
+                      \caption{Canal Y (Luminancia/Brillo).}
+                      \label{fig:yuv-canal-y}
+                  \end{figure}
+              \end{minipage}
+
+              \vspace{0.5cm} % Espacio vertical entre filas
+
+              \noindent
+              \begin{minipage}[t]{0.4\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.7\linewidth]{figures/mc_yuv_u}
+                      \caption{Canal U (Crominancia Azul).}
+                      \label{fig:yuv-canal-u}
+                  \end{figure}
+              \end{minipage}
+              \hfill
+              \noindent
+              \begin{minipage}[t]{0.4\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.7\linewidth]{figures/mc_yuv_v}
+                      \caption{Canal V (Crominancia Roja).}
+                      \label{fig:yuv-canal-v}
+                  \end{figure}
+              \end{minipage}
+
+              \clearpage
+
+          \paragraph*{Conversión a CMYK} \mbox{} \\
+
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.25\linewidth]{figures/mc_cmyk_entrada}
+                  \caption{Imagen de entrada.}
+                  \label{fig:cmyk-entrada}
+              \end{figure}
+
+              \noindent
+              \begin{minipage}[t]{0.45\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.5\linewidth]{figures/mc_cmyk_c}
+                      \caption{Canal Cian.}
+                      \label{fig:cmyk-canal-c}
+                  \end{figure}
+              \end{minipage}
+              \hfill
+              \noindent
+              \begin{minipage}[t]{0.45\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.5\linewidth]{figures/mc_cmyk_m}
+                      \caption{Canal Magenta.}
+                      \label{fig:cmyk-canal-m}
+                  \end{figure}
+              \end{minipage}
+
+              \vspace{0.5cm} % Espacio vertical entre filas
+
+              \noindent
+              \begin{minipage}[t]{0.45\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.5\linewidth]{figures/mc_cmyk_y}
+                      \caption{Canal Amarillo.}
+                      \label{fig:cmyk-canal-y}
+                  \end{figure}
+              \end{minipage}
+              \hfill
+              \noindent
+              \begin{minipage}[t]{0.45\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.5\linewidth]{figures/mc_cmyk_k}
+                      \caption{Canal Negro (K).}
+                      \label{fig:cmyk-canal-k}
+                  \end{figure}
+              \end{minipage}
+
+              \clearpage
+
   \subsection{Perfilado}
 
       \subsubsection{Introducción}
@@ -807,7 +1359,7 @@
               \item \(c\) es un factor de ponderación controlado por el usuario (porcentaje).
           \end{itemize}
 
-      \subsubsection{Implementación }
+      \subsubsection{Implementación}
 
           La implementación en C++ se ha llevado a cabo tomando de ejemplo la porción de
           código de las diapositivas de teoría. Como para cualquier nueva función, se
@@ -843,6 +1395,48 @@
           \noindent
           Para ver el código completo, se remite al anexo de la implementación de la
           función~\ref{sec:anexo-perfilado}.
+
+      \subsubsection{Uso}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/bateria_cenizas}
+                  \caption{Imagen de entrada.}
+                  \label{fig:perfilado-entrada}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/perfilado_1x1_80}
+                  \caption{Perfilado de imagen con kernel \( 1\times 1\) y 80\%.}
+                  \label{fig:perfilado-1x1-80}
+              \end{figure}
+          \end{minipage}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/perfilado_2x2_50}
+                  \caption{Perfilado de imagen con kernel \( 2\times 2\) y 50\%.}
+                  \label{fig:perfilado-2x2-50}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/perfilado_3x3_15}
+                  \caption{Perfilado de imagen con kernel \( 3\times 3\) y 15\%.}
+                  \label{fig:perfilado-3x3-15}
+              \end{figure}
+          \end{minipage}
 
           \clearpage
 
@@ -927,13 +1521,279 @@
 
           \end{enumerate}
 
-          La interfaz de usuario (clase \texttt{Perfilado}) convierte los valores de los
+          La de usuario (clase \texttt{Perfilado}) convierte los valores de los
           \textit{sliders} (enteros) a los coeficientes flotantes necesarios, dividiendo
           por un factor de escala (100.0) para el parámetro $\alpha$, permitiendo así
-          precisión decimal en la multiplicación. \\
+          precisión decimal en la multiplicación. Para ver el código en su totalidad, se
+          remite al anexo de la implementación de la
+          clase~\ref{sec:anexo-ver-rojoverdeazul}.
+
+      \subsubsection{Uso}
+
+          \vspace{-4ex}
 
           \noindent
-           Para ver el código en su totalidad, se remite al anexo de la implementación de la clase~\ref{sec:anexo-ver-rojoverdeazul}. \\
+          \begin{center}
+              \begin{minipage}[t]{0.45\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.7\linewidth]{figures/desierto}
+                      \caption*{Imagen de entrada.}
+                      \label{fig:rgb-entrada}
+                  \end{figure}
+              \end{minipage}
+          \end{center}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/rgb_r_m0_g_m3_b_m3}
+                  \caption{\centering Ajuste de canales RGB \newline(R: \(\alpha=0, \beta=-255\); G: \(\alpha=3, \beta=75\);\newline B: \(\alpha=3, \beta=50\)).}
+                  \label{fig:rgb-m0-m3-m3}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/rgb_r_m2_g_m0_b_m2}
+                  \caption{\centering Ajuste de canales RGB \newline(R: \(\alpha=2, \beta=-255\); G: \(\alpha=0, \beta=75\);\newline B: \(\alpha=2, \beta=50\)).}
+                  \label{fig:rgb-m2-m0-m2}
+              \end{figure}
+          \end{minipage}
+
+          \clearpage
+
+  \subsection{Aplicar mapas de color (color falso)}
+
+      \noindent
+      La técnica de color falso o pseudocolor consiste en asignar un color específico a cada nivel de intensidad de una imagen en escala de grises. A diferencia de una imagen en color real, en una imagen de color falso los colores se generan artificialmente basándose en una tabla de mapeo predefinida.
+
+      \subsubsection{Introducción}
+
+          \noindent
+          El objetivo principal de esta transformación es mejorar la visualización e interpretación de los datos. El sistema visual humano tiene una capacidad limitada para distinguir variaciones sutiles de intensidad luminosa; se estima que el ojo humano solo puede diferenciar unas pocas docenas de niveles de gris simultáneamente. Sin embargo, es capaz de distinguir miles de matices de color. \cite{opencv_colormap_group} \\
+
+          Al mapear el rango dinámico de intensidad de una imagen monocromática a una
+          escala de color, se facilita enormemente la detección de patrones, gradientes
+          térmicos o variaciones de densidad que pasarían desapercibidas en escala de
+          grises.
+
+      \subsubsection{Implementación}
+
+          \begin{lstlisting}[style=CppQtStyle]
+void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
+    Mat img = foto[nfoto].img;
+    Mat gris, res;
+
+    // convertir a escala de grises
+    if (img.channels() == 1)
+        gris = img.clone();
+    else
+        cvtColor(img, gris, COLOR_BGR2GRAY);
+
+    // aplicar mapa de color
+    applyColorMap(gris, res, id_mapa);
+     ...
+}
+\end{lstlisting}
+
+      \subsubsection{Uso}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/pinguinos}
+                  \caption{Imagen de entrada.}
+                  \label{fig:color-falso-entrada}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/color_falso_hueso}
+                  \caption{Color falso con mapa ``Hueso''.}
+                  \label{fig:color-falso-hueso}
+              \end{figure}
+          \end{minipage}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/color_falso_invierno}
+                  \caption{Color falso con mapa ``Invierno''.}
+                  \label{fig:color-falso-invierno}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/color_falso_inferno}
+                  \caption{Color falso con mapa ``Inferno''.}
+                  \label{fig:color-falso-inferno}
+              \end{figure}
+          \end{minipage}
+
+          \clearpage
+
+  \subsection{Balance de blancos}
+      \label{subsec:balance-blancos}
+      Esta funcionalidad permite la corrección automática de las dominantes de color
+      en la imagen global. El objetivo es ajustar las intensidades cromáticas para
+      que los objetos que son blancos en la realidad aparezcan blancos en la imagen,
+      independientemente de la temperatura de color de la fuente de luz original.
+      Esta característica del sistema visual se llama adaptación cromática o
+      constancia del color; cuando la corrección ocurre en una cámara se denomina
+      balance de blancos. \cite{enwiki:1296451820} \\
+
+      \subsubsection{Introducción}
+
+          La operación se fundamenta en la teoría de la \textbf{Hipótesis del Mundo Gris}
+          o \textit{Gray World Assumption}. Esta hipótesis postula que, en una imagen con
+          suficiente variedad cromática, la media espacial de todos los colores presentes
+          debe tender al gris neutro (acromático). Si la media se desvía de este valor
+          neutro, se asume que existe una dominante de color provocada por la
+          iluminación. \\
+
+          A diferencia de las transformaciones de Von Kries, que operan mediante la
+          multiplicación de ganancias en el espacio RGB, esta implementación opta por una
+          estrategia de \textbf{desplazamiento de crominancia} en el espacio de color
+          YUV. Esta elección se debe a la idea presentada en las diapositivas de la
+          teoría (pág. 44 -- Tema 5) de la asignatura.
+
+          \begin{itemize}
+              \item \textbf{Desacoplamiento:} El espacio YUV separa la información de brillo (Y) de la información de color (U y V). Esto permite corregir el color sin alterar la luminosidad de la escena.
+
+              \item \textbf{Eficiencia:} Al operar mediante sumas y restas (desplazamiento) en lugar de multiplicaciones, el coste computacional se reduce.
+          \end{itemize}
+
+          El algoritmo busca que la media de los canales de crominancia coincida con el
+          valor que representa la ausencia de color. En una representación digital
+          estándar de 8 bits, este valor neutro es 128. \\
+
+          \noindent
+          Matemáticamente, para cada píxel $(x,y)$, la corrección de los componentes de
+          crominancia $U$ y $V$ se define como:
+
+          \[ U_{dst}(x,y) = U_{src}(x,y) + (128 - \mu_U) \]
+
+          \[ V_{dst}(x,y) = V_{src}(x,y) + (128 - \mu_V) \]
+
+          \noindent
+          Donde:
+          \begin{itemize}
+              \item $\mu_U$ y $\mu_V$: Son las medias aritméticas de los canales U y V de toda la imagen original.
+              \item $(128 - \mu)$: Representa el vector de desplazamiento necesario para centrar la distribución de color en el gris neutro.
+          \end{itemize}
+
+          El componente de luminancia $Y$ permanece inalterado ($Y_{dst} = Y_{src}$),
+          preservando el contraste original de la fotografía. Finalmente, la imagen es
+          reconvertida al espacio RGB para su visualización.
+
+          \clearpage
+
+      \subsubsection{Implementación}
+
+          \noindent
+          Como siempre, definimos la función prototipo en \texttt{imagenes.h}. Esta operación no necesita la creación de una nueva clase ni de un formulario.
+
+          \begin{lstlisting}[style=CppQtStyle]
+    void balance_blancos(int nfoto, int nres);
+    // Ajuste automático del balance de blancos
+\end{lstlisting}
+
+          \noindent
+          Desarrollamos la función en \texttt{imagenes.cpp}. En primer lugar, realizamos una conversión al espacio de color YUV con \texttt{cv::cvtColor} y dividimos los canales:
+
+          \begin{lstlisting}[style=CppQtStyle]
+    cvtColor(img, yuv, COLOR_BGR2YUV);   // RGB (BGR) -> YUV
+
+    vector<Mat> canales;
+    split(yuv, canales); // canales[0]=Y, canales[1]=U, canales[2]=V
+\end{lstlisting}
+
+          \noindent
+          Calculamos la media de los canales U $\mu_U$ y V $\mu_V$ con la operación \texttt{cv::mean} y hallamos el desplazamiento:
+
+          \begin{lstlisting}[style=CppQtStyle]
+    double u_media = mean(canales[1])[0];  // media U
+    double v_media = mean(canales[2])[0];  // media V
+
+    double u_shift = 128.0 - u_media;      // desplazamiento U
+    double v_shift = 128.0 - v_media;      // desplazamiento V
+\end{lstlisting}
+
+          \noindent
+          Finalmente, sumamos los desplazamientos y recuperamos el modelo de color RGB.
+          \begin{lstlisting}[style=CppQtStyle]
+    canales[1] = canales[1] + u_shift;
+    canales[2] = canales[2] + v_shift;
+
+    merge(canales, yuv);
+    cvtColor(yuv, res, COLOR_YUV2BGR);
+\end{lstlisting}
+
+      \subsubsection{Uso}
+
+          \vspace{-2ex}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.6\linewidth]{figures/saint_vincent_paul_chapel}
+                  \caption{\centering Imagen de entrada: Capilla de San Vicente de Paúl de París.}
+                  \label{fig:wb-entrada}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.6\linewidth]{figures/wb_desplazamiento_yuv}
+                  \caption{\centering Balance de blancos por desplazamiento YUV.}
+                  \label{fig:wb-desplazamiento-yuv}
+              \end{figure}
+          \end{minipage}
+
+          \clearpage
+
+  \subsection{Suavizado (herramienta)}
+
+      \subsubsection{Introducción}
+
+      \subsubsection{Implementación}
+
+      \subsubsection{Uso}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.8\linewidth]{figures/lupa}
+                  \caption{Imagen de entrada}
+                  \label{fig:suavizado-entrada}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.8\linewidth]{figures/suavizado}
+                  \caption{Suavizado del fondo de la imagen}
+                  \label{fig:suavizado}
+              \end{figure}
+          \end{minipage}
 
           \clearpage
 
@@ -944,15 +1804,14 @@
       \subsubsection{Introducción}
 
           \noindent
-          Como propuesta del profesor, se ha diseñado una solución para que el usuario sea capaz de modificar el ``\textit{paso}'' con
-          el que se cambia de color del pincel en la herramienta ``Arcoíris''. Esta característica permitirá al usuario un mayor control
-          sobre apariencia del efecto. \\
-
-          El ``paso'' se refiere a la velocidad de avance que en la secuencia de colores
-          del espectro cada vez que se dibuja un píxel. Un paso pequeño provoca que los
-          colores cambien lentamente, generando transiciones suaves y graduales entre
-          tonos consecutivos. Por el contrario, un paso mayor acelera el cambio de color,
-          produciendo un efecto más vivo. \\
+          Como propuesta del profesor, se ha diseñado una solución para que el usuario
+          sea capaz de modificar el ``\textit{paso}'' con el que se cambia de color del
+          pincel en la herramienta ``Arcoíris''. Esta característica permitirá al usuario
+          un mayor control sobre apariencia del efecto. El ``paso'' se refiere a la
+          velocidad de avance que en la secuencia de colores del espectro cada vez que se
+          dibuja un píxel. Un paso pequeño provoca que los colores cambien lentamente,
+          generando transiciones suaves y graduales entre tonos consecutivos. Por el
+          contrario, un paso mayor acelera el cambio de color.
 
       \subsubsection{Implementación}
 
@@ -968,49 +1827,38 @@
           decidido implementar.
 
           \begin{lstlisting}[style=CppQtStyle, caption={Mostrar/Ocultar panel al presionar la herramienta}]
-	// mainwindow.cpp
-	void MainWindow::on_toolButton_9_clicked() {
-		herr_actual = HER_ARCOIRIS;
-		ui->incrementoArcoirisWidget->setVisible(!ui->incrementoArcoirisWidget->isVisible());
-	}
-	 ...
-	void MainWindow::mouseMoveEvent(QMouseEvent *event)	{
-		if (ui->incrementoArcoirisWidget->isVisible()) {
-			QPoint pos = event->pos();
+    // mainwindow.cpp
+    void MainWindow::on_toolButton_9_clicked() {
+        herr_actual = HER_ARCOIRIS;
+        ui->incrementoArcoirisWidget->setVisible(!ui->incrementoArcoirisWidget->isVisible());
+    }
+     ...
+    void MainWindow::mouseMoveEvent(QMouseEvent *event)    {
+        if (ui->incrementoArcoirisWidget->isVisible()) {
+            QPoint pos = event->pos();
 
-			// Si el ratón no está dentro del widget y tampoco sobre el botón
-			if (!ui->incrementoArcoirisWidget->geometry().contains(pos) &&
-			!ui->toolButton_9->geometry().contains(pos)) {
-				ui->incrementoArcoirisWidget->hide();
-				ui->toolButton_9->setDown(false);
-			}
-		}
-	}
+            // si el ratón no está dentro del widget y tampoco sobre el botón
+            if (!ui->incrementoArcoirisWidget->geometry().contains(pos) &&
+                !ui->toolButton_9->geometry().contains(pos)) {
+                ui->incrementoArcoirisWidget->hide();
+                ui->toolButton_9->setDown(false);
+            }
+        }
+    }
 \end{lstlisting}
 
-          En la clase \texttt{imagenes} también se han realizado algunas modificaciones.
+          En la clase \texttt{Imagenes} también se han realizado algunas modificaciones.
           La primera es la necesidad de tener una variable externa que se pueda utilizar
           en \texttt{mainwindow}, sustituyendo a la variable local \texttt{incremento}.
 
           \begin{lstlisting}[style=CppQtStyle, numbers=none]
-	// imagenes.h
-	constexpr int DEFAULT_INCREMENTO_ARCOIRIS = 10;
-	extern int incremento_arcoiris;
+    // imagenes.h
+    constexpr int DEFAULT_INCREMENTO_ARCOIRIS = 10;
+    extern int incremento_arcoiris;
+
+    // imagenes.cpp
+    int incremento_arcoiris = DEFAULT_INCREMENTO_ARCOIRIS;
 \end{lstlisting}
-
-          \begin{lstlisting}[style=CppQtStyle, numbers=none]
-	// imagenes.cpp
-	int incremento_arcoiris = DEFAULT_INCREMENTO_ARCOIRIS;
-\end{lstlisting}
-
-          % TODO: Incluir modificaciones a MainWindow
-
-          %\begin{figure}[H]
-          %	\centering
-          %	\includegraphics[width=0.7\linewidth]{figures/}
-          %	\caption{}
-          %	\label{fig:}
-          %\end{figure}
 
           \clearpage
 
@@ -1019,7 +1867,14 @@
       \subsubsection{Introducción}
 
           \noindent
-          Con el fin de completar la funcionalidad de deshacer las acciones realizadas, y con la base ya implementada para soportarla, se ha optado por ofrecer al usuario una forma de recuperar los cambios ``deshechos''. Esta operación es conocida con el nombre de rehacer o \textit{redo} en inglés. La idea es la misma que para la operación de ``deshacer'': modificar la estructura \texttt{ventana} con un nuevo tipo de dato que actúe exactamente igual que la pila implementada anteriormente en la figura~\ref{fig:ventana-undo}. La forma es la siguiente:
+          Con el fin de completar la funcionalidad de deshacer las acciones realizadas, y
+          con la base ya implementada para soportarla, se ha optado por ofrecer al
+          usuario una forma de recuperar los cambios ``deshechos''. Esta operación es
+          conocida con el nombre de rehacer o \textit{redo} en inglés. La idea es la
+          misma que para la operación de ``deshacer'': modificar la estructura
+          \texttt{ventana} con un nuevo tipo de dato que actúe exactamente igual que la
+          pila implementada anteriormente en la figura~\ref{fig:ventana-undo}. La forma
+          es la siguiente:
 
           \begin{figure}[H]
               \centering
@@ -1034,32 +1889,33 @@
           A nivel de código:
 
           \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
-	// imagenes.h
-	#define MAX_HIST_IMG 20 	// Tamaño del historial para deshacer/rehacer
-	 ...
-	struct ventana {
-		bool usada;             // Indica si se está usando actualmente
-		bool modificada;        // Ha sido modificada después de abrirla o crearla
-		string nombre;          // Nombre de la ventana codificada en UTF8
-		string nombref;         // Nombre del fichero de imagen codificado en Latin1
-		int orden;              // Número de orden entre las ventanas abiertas
-		Rect roi;               // Región de interés seleccionada
-		Mat img;                // Imagen almacenada en esta posición
-		vector<Mat> img_hist;   // Historial de imágenes
-		vector<Mat> undo_hist;  // Historial de deshacer
-	};
+    // imagenes.h
+    #define MAX_HIST_IMG 20     // Tamaño del historial para deshacer/rehacer
+     ...
+    struct ventana {
+        bool usada;             // Indica si se está usando actualmente
+        bool modificada;        // Ha sido modificada después de abrirla o crearla
+        string nombre;          // Nombre de la ventana codificada en UTF8
+        string nombref;         // Nombre del fichero de imagen codificado en Latin1
+        int orden;              // Número de orden entre las ventanas abiertas
+        Rect roi;               // Región de interés seleccionada
+        Mat img;                // Imagen almacenada en esta posición
+        vector<Mat> img_hist;   // Historial de imágenes
+        vector<Mat> undo_hist;  // Historial de deshacer
+    };
 \end{lstlisting}
 
+          \clearpage
+
           \noindent
-          Debemos actualizar la operación deshacer para que, en cada cambio de estado, se guarde la imagen actual. De esta manera, la imagen no se pierde y se guarda en la nueva pila. También será necesario definir una nueva operación \texttt{rehacer()}.
+          Actualizamos la operación deshacer para que, en cada cambio de estado, se guarde la imagen actual. Así, la imagen no se pierde y se guarda en la nueva pila. Es necesario definir una nueva operación \texttt{rehacer()}.
 
           \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
     // imagenes.cpp
     void deshacer (int nfoto) {
         ventana& v = foto[nfoto];
          ...
-        // guardar estado para poder ir hacia delante
-        v.undo_hist.push_back(v.img.clone());
+        v.undo_hist.push_back(v.img.clone());  // guardar estado para ir hacia delante
          ...
         if (v.undo_hist.size() > MAX_HIST_IMG)
             v.undo_hist.erase(v.undo_hist.begin());
@@ -1074,12 +1930,10 @@
             return;
         }
 
-        // guardar estado en la pila de deshacer
-        v.img_hist.push_back(v.img.clone());
+        v.img_hist.push_back(v.img.clone());  // guardar estado pila de deshacer
 
-        // recuperar y eliminar último estado de la pila de rehacer
-        v.img = v.undo_hist.back().clone();
-        v.undo_hist.pop_back();
+        v.img = v.undo_hist.back().clone();   // recuperar últ. estado pila de rehacer
+        v.undo_hist.pop_back();               // eliminar de la pila (ya está en v.img)
 
         imshow(v.nombre, v.img);
     }
@@ -1087,6 +1941,223 @@
 
           \noindent
           El atajo de teclado designado para el QAction correspondiente es \texttt{CTRL+Y}, el cual, a diferencia del atajo \texttt{CTRL+Z}, no se superpone con ningún otro y se puede ejecutar con el foco en imágenes de OpenCV.
+
+      \subsubsection{Uso}
+
+          \vspace{-4ex}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.5\linewidth]{figures/deshacer_4}
+                  \caption{Tras \(9 \times \text{deshacer}\).}
+                  \label{fig:rehacer-1}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.5\linewidth]{figures/deshacer_3}
+                  \caption{Tras \(2 \times \text{rehacer}\).}
+                  \label{fig:rehacer-2}
+              \end{figure}
+          \end{minipage}
+
+          \vspace{2ex}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.5\linewidth]{figures/deshacer_2}
+                  \caption{Tras \(8 \times \text{rehacer}\).}
+                  \label{fig:rehacer-3}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.5\linewidth]{figures/deshacer_1}
+                  \caption{Tras \(9 \times \text{rehacer}\).}
+                  \label{fig:rehacer-4}
+              \end{figure}
+          \end{minipage}
+
+          \clearpage
+
+  \subsection{Balance de blancos mediante la aproximación de Von Kries}
+
+      \noindent
+      En la sección~\ref{subsec:balance-blancos} implementamos el ajuste de balance de blancos mediante el método de desplazamiento en el espacio de color YUV. Sin embargo, existen otros muchos métodos de corrección de color que ajustan el balance de blancos. Algunos de ellos son los basados en el método de \textbf{adaptación cromática de von Kries}, considerado la base de los algoritmos de balance de blancos automáticos (AWB) de la mayoría de las cámaras digitales modernas. \cite{enwiki:1310731594}
+
+      \subsubsection{Introducción}
+
+          \noindent
+          El modelo de von Kries no opera sobre los canales RGB del dispositivo, sino que intenta simular el comportamiento biológico del sistema visual humano. La retina humana contiene tres conos responsables de la visión en color, clasificadas según su pico de sensibilidad espectral:
+
+          \begin{itemize}
+              \item \textbf{L (\textit{Long}):} Sensibles a longitudes de onda largas (rango rojo).
+
+              \item \textbf{M (\textit{Medium}):} Sensibles a longitudes de onda medias (rango verde).
+
+              \item \textbf{S (\textit{Short}):} Sensibles a longitudes de onda cortas (rango azul).
+          \end{itemize}
+
+          \noindent
+          Este espacio de color se ha visto en las primeras páginas del quinto tema de teoría--``\textit{Espacios de color y el dominio frecuencial}''. \\
+
+          Dado que las imágenes digitales se almacenan en espacios RGB o sRGB, primero es
+          necesario convertirlas al espacio CIE XYZ. Posteriormente, se proyecta al
+          espacio LMS utilizando una matriz de transformación $M_{XYZ \to LMS}$. En
+          nuestro caso, usaremos la matriz de Hunt--Point--Estevez normalizada a D65:
+          \cite{enwiki:1323929568}
+
+          \[
+              \begin{bmatrix} L \\ M \\ S \end{bmatrix} =
+              \mathbf{M}_{XYZ \to LMS} \cdot
+              \begin{bmatrix} X \\ Y \\ Z \end{bmatrix}
+          \]
+
+          \noindent
+          donde la matriz utilizada en la implementación es:
+
+          \[
+              \mathbf{M}_{XYZ \to LMS} =
+              \begin{bmatrix}
+                  0.4002  & 0.7076 & -0.0808 \\
+                  -0.2263 & 1.1653 & 0.0457  \\
+                  0.0000  & 0.0000 & 0.9182
+              \end{bmatrix}
+          \]
+
+          \noindent
+          Posteriormente, se escalan los tres valores primarios del LMS para equilibrar el neutro; luego, el color se puede convertir nuevamente al espacio de color final deseado:
+
+          \[
+              \begin{bmatrix} L' \\ M' \\ S' \end{bmatrix} =
+              \begin{bmatrix}
+                  \rho & 0      & 0     \\
+                  0    & \gamma & 0     \\
+                  0    & 0      & \beta
+              \end{bmatrix}
+              \begin{bmatrix} L \\ M \\ S \end{bmatrix}
+          \]
+
+          \clearpage
+
+          Los valores \(\rho\), \(\gamma\) y \(\beta\) son los denominados
+          \textbf{coeficientes de adaptación de von Kries}. Diversos estudios indican que
+          estos coeficientes no son constantes y que, según el método empleado para
+          calcularlos, pueden ofrecer mejores resultados en determinadas imágenes. En
+          nuestro caso, y por simplicidad de implementación, los obtenemos de la
+          siguiente manera:~\cite{Buenaposada2001VariationsOG}
+
+          \[ \rho = \frac{E}{\bar{L}}, \quad \gamma = \frac{E}{\bar{M}}, \quad \beta = \frac{E}{\bar{S}} \]
+
+          \noindent
+          donde \(\bar{L}\), \(\bar{M}\) y \(\bar{S}\) son los valores triestímulo de un objeto que se cree que es blanco y \(E\) es el valor gris medio ideal, calculado como:
+
+          \[ E = \frac{\bar{L} + \bar{M} + \bar{S}}{3} \]
+
+          Finalmente, los valores corregidos \(L'M'S'\) se transforman de vuelta al
+          espacio XYZ utilizando la matriz inversa \(\mathbf{M}^{-1}\), y posteriormente
+          al espacio RGB para su visualización.
+
+      \subsubsection{Implementación}
+
+          \noindent
+          Reutilizamos la función prototipo usada anteriormente añadiendo un nuevo parámetro, \texttt{modo} (0: desplazamiento YUV, 1: aproximación von Kries).
+
+          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+    void balance_blancos(int nfoto, int nres, int modo);
+\end{lstlisting}
+
+          En \texttt{imagenes.cpp}, definimos una nueva función
+          \texttt{wb\_von\_kries()}, a la que llamaremos si \texttt{modo=1}. Para aplicar
+          la técnica, es necesario realizar una conversión al espacio LMS, pasando
+          primero al modelo XYZ:
+
+          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+    // RGB (BGR) -> XYZ
+    Mat xyz;
+    cvtColor(img32, xyz, COLOR_BGR2XYZ);
+
+    // XYZ -> LMS
+    Mat M_XYZ2LMS = (Mat_<float>(3,3) <<
+                     0.4002, 0.7076, -0.0808,
+                     -0.2263, 1.1653,  0.0457,
+                     0.0000, 0.0000,  0.9182);
+
+    Mat lms;
+    transform(xyz, lms, M_XYZ2LMS);
+\end{lstlisting}
+
+          \noindent
+          Calculamos \(\bar{L}\), \(\bar{M}\) y \(\bar{S}\); a continuación hallamos el valor de \(E\);
+
+          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+    // medias en espacio LMS y referencia gris
+    Scalar medias = mean(lms);
+    double l_mean = medias[0];
+    double m_mean = medias[1];
+    double s_mean = medias[2];
+    double gray_ref = (l_mean + m_mean + s_mean) / 3.0;
+\end{lstlisting}
+
+          \clearpage
+
+          \noindent
+          Calculamos las ganancias y realizamos la transformación de von Kries:
+
+          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+    // ganancias (evitando división por cero)
+    double k_l = gray_ref / (l_mean + 1e-5);
+    double k_m = gray_ref / (m_mean + 1e-5);
+    double k_s = gray_ref / (s_mean + 1e-5);
+
+    // aplicar ganancias
+    Mat M_GAIN = (Mat_<float>(3,3) << k_l, 0, 0, 0, k_m, 0, 0, 0, k_s);
+    transform(lms, lms, M_GAIN)
+\end{lstlisting}
+
+          \noindent
+          Finalizando, volvemos a convertir al espacio RGB, usando primero \(\mathbf{M}^{-1}\) para pasar por el modelo XYZ.
+
+          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+    // LMS -> XYZ -> BGR
+    Mat M_LMS2XYZ = M_XYZ2LMS.inv();
+    transform(lms, xyz, M_LMS2XYZ);
+
+    Mat res32;
+    cvtColor(xyz, res32, COLOR_XYZ2BGR);
+\end{lstlisting}
+
+      \subsubsection{Uso}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.6\linewidth]{figures/saint_vincent_paul_chapel}
+                  \caption*{\centering Imagen de entrada: Capilla de San Vicente de Paúl de París.}
+                  \label{fig:wb-von-kries-entrada}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.6\linewidth]{figures/wb_von_kries}
+                  \caption{\centering Balance de blancos por aproximación von Kries.}
+                  \label{fig:wb-von-kries}
+              \end{figure}
+          \end{minipage}
 
           \clearpage
 
@@ -1105,6 +2176,8 @@
       \label{sec:anexo-im}
 
       \lstinputlisting[style=CppQtStyle, caption={Código de \texttt{informacionmultimedia.cpp}}]{../informacionmultimedia.cpp}
+
+      \clearpage
 
   \subsection{Código de la implementación de convertir\_a\_modelo()}
       \label{sec:anexo-convertir-a-modelo}
@@ -1189,6 +2262,8 @@
            }
        \end{lstlisting}
 
+      \clearpage
+
   \subsection{Código de la implementación de perfilado()}
       \label{sec:anexo-perfilado}
 
@@ -1225,10 +2300,12 @@
                  }
              \end{lstlisting}
 
-           \subsection{Código de la implementación de ver\_rojoverdeazul()}
-                 \label{sec:anexo-ver-rojoverdeazul}
+      \clearpage
 
-                 \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+  \subsection{Código de la implementación de ver\_rojoverdeazul()}
+      \label{sec:anexo-ver-rojoverdeazul}
+
+      \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
                             // imagenes.cpp
                             void ver_rojoverdeazul(int nfoto, double r_mul, double r_add,
                                                    double g_mul, double g_add,
