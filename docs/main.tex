@@ -411,8 +411,41 @@
           Convierte la imagen a escala de grises o a color según la opción seleccionada.
 
       \subsubsection*{Media ponderada de dos imágenes}
+
           \noindent
           Calcula una nueva imagen como la media ponderada de dos imágenes, escalando si los tamaños no coinciden.
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.4\linewidth]{figures/mp-entrada1}
+                  \caption{Imagen de entrada 1.}
+                  \label{fig:mp-entrada-1}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.4\linewidth]{figures/mp-entrada2}
+                  \caption{Imagen de entrada 2.}
+                  \label{fig:mp-entrada-2}
+              \end{figure}
+          \end{minipage}
+
+          \noindent
+          \begin{center}
+              \begin{minipage}[t]{0.45\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.4\linewidth]{figures/mp}
+                      \caption{Media ponderada de dos imágenes.}
+                      \label{fig:mp}
+                  \end{figure}
+              \end{minipage}
+          \end{center}
 
           \clearpage
 
@@ -508,8 +541,29 @@
           \end{minipage}
 
       \subsubsection*{Pinchar/estirar}
+
           \noindent
-          Aplica transformaciones geométricas de pinchar o estirar una imagen indicando centro, radio y cantidad del efecto.
+          Aplica transformaciones geométricas de pinchar o estirar una imagen indicando radio y cantidad. Este efecto es similar al conocido ``ojo de pez''.
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.6\linewidth]{figures/pe_entrada}
+                  \caption{Imagen de entrada.}
+                  \label{fig:pe-entrada}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.6\linewidth]{figures/pe}
+                  \caption{Operación pinchar/estirar.}
+                  \label{fig:pe}
+              \end{figure}
+          \end{minipage}
 
       \subsubsection*{Inpaint}
           \noindent
@@ -1797,6 +1851,174 @@ void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
 
           \clearpage
 
+  \subsection{Morfología matemática}
+
+      \noindent
+      Este conjunto de operaciones habilita la aplicación de filtros morfológicos fundamentales, permitiendo al usuario alternar entre erosión, dilatación, apertura y cierre. Estas transformaciones son fundamentales para el preprocesamiento, la eliminación de ruido y la corrección de estructuras binarias.
+
+      \subsubsection{Introducción}
+
+          \noindent
+          El término morfología proviene habitualmente de la biología, rama que estudia la \textbf{forma y estructura} de animales y plantas. En el contexto de la visión artificial, la morfología matemática se emplea como herramienta para extraer componentes de la imagen que son útiles para la representación y descripción de formas. \cite{book:93456089}\\
+
+          Este enfoque marca una transición desde métodos cuyas salidas son simplemente
+          otras imágenes, hacia métodos cuyas salidas son atributos de la imagen,
+          facilitando tareas de extracción y descripción de objetos.
+
+      \subsubsection{Teoría de conjuntos}
+
+          \noindent
+          El lenguaje fundamental de la morfología matemática es la teoría de conjuntos. Al trabajar con imágenes, los conjuntos representan objetos. En imágenes binarias, los conjuntos en cuestión son miembros del espacio entero 2-D (\(\mathbb{Z}^2\)), donde cada elemento es un vector cuyas coordenadas corresponden a un píxel del objeto. Las imágenes en escala de grises pueden representarse como conjuntos en \(\mathbb{Z}^3\), el tercer componente corresponde a la intensidad. \\
+
+          En el procesamiento de imágenes, se usa la morfología mediante la interacción
+          de dos tipos de conjuntos de píxeles: los objetos de interés y los elementos
+          estructurantes (SE). Estos últimos actúan como sondas que examinan la imagen.
+          Nos referimos a ellos como ``\textit{kernels}''. A continuación, se describen
+          las operaciones implementadas para la aplicación. De todas ellas, las que
+          sientan las bases con las operaciones de de erosión y dilatación. A partir de
+          ellas, se pueden construir infinidad de operaciones complejas.
+
+          \paragraph*{Erosión} Es la operación básica de contracción. El elemento
+              estructurante se desliza sobre la imagen y determina el valor del píxel
+              resultante basándose en la coincidencia espacial. Matemáticamente, la erosión
+              del conjunto de píxeles \( A \) por el elemento estructurante \( B \) se define
+              como:
+
+              \[ A \ominus B = \{ z \mid (B)_z \subseteq A \} \]
+
+              En términos descriptivos, esta ecuación indica que la erosión de \( A \) por \(
+              B \) es el conjunto de todos los puntos \( z \) tales que \( B \), trasladado
+              por \( z \), está contenido completamente en \( A \).
+
+          \paragraph*{Dilatación} Es la operación básica de expansión. El proceso implica
+              reflejar el elemento estructurante respecto a su origen y trasladarlo sobre la
+              imagen. Matemáticamente, la dilatación del conjunto \( A \) por el elemento
+              estructurante \( B \) se define como:
+
+              \[ A \oplus B = \{ z \mid (\hat{B})_z \cap A \neq \emptyset \} \]
+
+              Esta ecuación indica que la dilatación de \( A \) por \( B \) es el conjunto de
+              todos los desplazamientos \( z \) tales que el reflejo de \( B \) (denotado
+              como \( \hat{B} \)), trasladado por \( z \), solapa al menos un elemento de \(
+              A \).
+
+              \clearpage
+
+          \paragraph*{Apertura (Opening)} La apertura es una operación compuesta que consiste
+              en aplicar una erosión seguida inmediatamente de una dilatación utilizando el
+              mismo elemento estructurante. Se denota como:
+
+              \[ A \circ B = (A \ominus B) \oplus B \]
+
+              Esta operación tiene la propiedad de eliminar objetos pequeños y brillantes
+              (menores que el elemento estructurante) sin alterar significativamente el
+              tamaño o la forma de los objetos grandes restantes. Es fundamental para
+              eliminar ruido sin afectar al contorno global.
+
+          \paragraph*{Cierre (Closing)} El cierre es la operación inversa a la apertura:
+              consiste en una dilatación seguida de una erosión. Se denota como:
+
+              \[ A \bullet B = (A \oplus B) \ominus B \]
+
+              Su función principal es rellenar pequeños agujeros oscuros dentro de objetos
+              brillantes y conectar componentes cercanos, suavizando el contorno exterior
+              mediante el rellenado de golfos o bahías estrechas.
+
+      \subsubsection{Implementación}
+
+          \noindent
+          Gracias a los métodos \texttt{cv::morphologyEx} y \texttt{cv::getStructuringElement} de la librería OpenCV podemos aplicar las funciones mencionadas anteriormente en QFotoPaint6. La primera, actúa como una función unificada que ejecuta la transformación morfológica específica seleccionada, mientras que la segunda genera la matriz del elemento estructurante (kernel) con la forma y tamaño que definamos. En nuestro caso, y por simplicidad, será siempre de tamaño \(3 \times 3\).  \\
+
+          \noindent
+          Al igual que para el resto de funcionalidades, declaramos el prototipo de la función \texttt{morfologia()}, y definimos un enum para especificar las operaciones soportadas:
+
+          \begin{lstlisting}[style=CppQtStyle]
+    // imagenes.h
+    enum op_morfologia {
+        OP_EROSION = MORPH_ERODE,
+        OP_DILATACION = MORPH_DILATE,
+        OP_APERTURA = MORPH_OPEN,
+        OP_CIERRE = MORPH_CLOSE,
+    };
+     ...
+    void morfologia(int nfoto, op_morfologia modo, int iteraciones, bool guardar=false);
+    // Aplicar operaciones de morfología matemática sobre la imagen
+\end{lstlisting}
+
+          \begin{lstlisting}[style=CppQtStyle]
+    // imagenes.cpp
+    void morfologia(int nfoto, op_morfologia modo, int iteraciones, bool guardar)
+    {
+        Mat img = foto[nfoto].img;
+        Mat imres;
+
+        int tam = 3;    // tamaño de kernel por defecto
+        Mat kernel = getStructuringElement(MORPH_RECT, Size(tam, tam));
+
+        // aplicar operación
+        morphologyEx(img, imres, (int)modo, kernel, Point(-1, -1), iteraciones);
+        ...
+    }
+\end{lstlisting}
+
+          \clearpage
+
+      \subsubsection{Uso}
+
+          \noindent
+          \begin{center}
+              \begin{minipage}[t]{0.45\textwidth}
+                  \begin{figure}[H]
+                      \centering
+                      \includegraphics[width=0.4\linewidth]{figures/mm_entrada}
+                      \caption*{Imagen de entrada.}
+                      \label{fig:mm-entrada}
+                  \end{figure}
+              \end{minipage}
+          \end{center}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.4\linewidth]{figures/mm_erosion_it6}
+                  \caption{\centering Erosión con kernel \(3 \times 3\) e \(it=6\)}
+                  \label{fig:mm-erosion}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.4\linewidth]{figures/mm_dilatacion_it2}
+                  \caption{\centering Dilatación con kernel \(3 \times 3\) e \(it=2\)}
+                  \label{fig:mm-dilatacion}
+              \end{figure}
+          \end{minipage}
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.4\linewidth]{figures/mm_apertura_it3}
+                  \caption{\centering Apertura con kernel \(3 \times 3\) e \(it=3\)}
+                  \label{fig:mm-apertura}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.4\linewidth]{figures/mm_cierre_it6}
+                  \caption{\centering Cierre con kernel \(3 \times 3\) e \(it=6\)}
+                  \label{fig:mm-cierre}
+              \end{figure}
+          \end{minipage}
+
+          \clearpage
+
 \section{Mejoras adicionales no mencionadas en el enunciado}
 
   \subsection{Incremento del paso en arcoíris}
@@ -1990,7 +2212,7 @@ void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
 
           \clearpage
 
-  \subsection{Balance de blancos mediante la aproximación de Von Kries}
+  \subsection{Balance de blancos mediante la aproximación de von Kries}
 
       \noindent
       En la sección~\ref{subsec:balance-blancos} implementamos el ajuste de balance de blancos mediante el método de desplazamiento en el espacio de color YUV. Sin embargo, existen otros muchos métodos de corrección de color que ajustan el balance de blancos. Algunos de ellos son los basados en el método de \textbf{adaptación cromática de von Kries}, considerado la base de los algoritmos de balance de blancos automáticos (AWB) de la mayoría de las cámaras digitales modernas. \cite{enwiki:1310731594}
