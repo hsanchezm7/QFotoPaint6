@@ -1102,6 +1102,8 @@ void copiar_a_nueva (int nfoto, int nres) {
     crear_nueva(nres, img);
 }
 
+//---------------------------------------------------------------------------
+
 void guardar_estado (int nfoto) {
     ventana& v = foto[nfoto];
 
@@ -1118,6 +1120,8 @@ void guardar_estado (int nfoto) {
 
     v.modificada = true;
 }
+
+//---------------------------------------------------------------------------
 
 void deshacer (int nfoto) {
     ventana& v = foto[nfoto];
@@ -1141,6 +1145,8 @@ void deshacer (int nfoto) {
     imshow(v.nombre, v.img);
 }
 
+//---------------------------------------------------------------------------
+
 void rehacer (int nfoto) {
     ventana& v = foto[nfoto];
 
@@ -1158,6 +1164,8 @@ void rehacer (int nfoto) {
 
     imshow(v.nombre, v.img);
 }
+
+//---------------------------------------------------------------------------
 
 void convertir_a_modelo(int nfoto, int nres, modelo_color mc)
 {
@@ -1236,6 +1244,8 @@ void convertir_a_modelo(int nfoto, int nres, modelo_color mc)
     }
 }
 
+//---------------------------------------------------------------------------
+
 void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
     Mat img = foto[nfoto].img;
     Mat gris, res;
@@ -1258,6 +1268,30 @@ void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
         foto[nfoto].modificada = true;
     }
 }
+
+//---------------------------------------------------------------------------
+
+void morfologia(int nfoto, op_morfologia modo, int iteraciones, bool guardar)
+{
+    Mat img = foto[nfoto].img;
+    Mat imres;
+
+    int tam = 3;    // tamaño de kernel por defecto
+    Mat kernel = getStructuringElement(MORPH_RECT, Size(tam, tam));
+
+    // aplicar operación
+    morphologyEx(img, imres, (int)modo, kernel, Point(-1, -1), iteraciones);
+
+    imshow(foto[nfoto].nombre, imres);
+
+    if (guardar) {
+        guardar_estado(nfoto);
+        imres.copyTo(img);
+        foto[nfoto].modificada = true;
+    }
+}
+
+//---------------------------------------------------------------------------
 
 void balance_blancos(int nfoto, int nres, int modo)
 {

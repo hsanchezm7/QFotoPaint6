@@ -27,6 +27,7 @@ SOURCES += main.cpp \
     dialognueva.cpp \
     brillocontraste.cpp \
     matsatlum.cpp \
+    morfologia.cpp \
     perfilado.cpp \
     pincharestirar.cpp \
     rojoverdeazul.cpp \
@@ -50,6 +51,7 @@ HEADERS += mainwindow.h \
     informacionmultimedia.h \
     inpaint.h \
     matsatlum.h \
+    morfologia.h \
     perfilado.h \
     pincharestirar.h \
     rojoverdeazul.h \
@@ -72,6 +74,7 @@ FORMS += mainwindow.ui \
     informacionmultimedia.ui \
     inpaint.ui \
     matsatlum.ui \
+    morfologia.ui \
     perfilado.ui \
     pincharestirar.ui \
     rojoverdeazul.ui \

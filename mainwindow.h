@@ -101,6 +101,7 @@ private slots:
     void on_actionColor_falso_triggered();
     void on_actionDesplazamiento_YUV_triggered();
     void on_actionVon_Kries_triggered();
+    void on_actionMorfolog_a_2_triggered();
 };
 
 extern MainWindow *w;

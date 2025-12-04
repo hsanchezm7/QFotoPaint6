@@ -638,6 +638,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionBajorrelieve"/>
     <addaction name="menuBalance_de_blancos"/>
     <addaction name="actionInpaint"/>
+    <addaction name="actionMorfolog_a_2"/>
    </widget>
    <widget class="QMenu" name="menuV_deo">
     <property name="title">
@@ -1011,6 +1012,16 @@ p, li { white-space: pre-wrap; }
   <action name="actionVon_Kries">
    <property name="text">
     <string>Von Kries</string>
+   </property>
+  </action>
+  <action name="actionErosionar">
+   <property name="text">
+    <string>Erosionar</string>
+   </property>
+  </action>
+  <action name="actionMorfolog_a_2">
+   <property name="text">
+    <string>Morfología...</string>
    </property>
   </action>
  </widget>

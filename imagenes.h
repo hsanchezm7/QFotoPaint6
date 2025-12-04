@@ -58,6 +58,13 @@ enum modelo_color {    MC_RGB, // Rojo, Verde, Azul
     MC_CMYK,    // Cian, Magenta, Amarillo, Negro
 };
 
+enum op_morfologia {
+    OP_EROSION = MORPH_ERODE,
+    OP_DILATACION = MORPH_DILATE,
+    OP_APERTURA = MORPH_OPEN,
+    OP_CIERRE = MORPH_CLOSE,
+};
+
 constexpr tipo_herramienta DEFAULT_HER = HER_PUNTO;
 constexpr int DEFAULT_RADIO_PINCEL = 10;
 constexpr int DEFAULT_DIFUM_PINCEL = 10;
@@ -221,6 +228,9 @@ void ajuste_lineal_hist (int nfoto, double pmin, double pmax, bool guardar=false
 void convertir_a_modelo (int nfoto, int nres, modelo_color mc);
 // Convierte la imagen a un espacio de color específico.
 // Genera 3 nuevas ventanas independientes, una para cada canal del modelo elegido
+
+void morfologia(int nfoto, op_morfologia modo, int iteraciones, bool guardar=false);
+// Aplicar operaciones de morfología matemática sobre la imagen
 
 void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar=false);
 // Aplica un mapa de color de OpenCV a una imagen (convertir a color falso)

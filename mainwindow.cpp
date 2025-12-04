@@ -31,6 +31,7 @@ using namespace cv;
 #include "rojoverdeazul.h"
 #include "perfilado.h"
 #include "colorfalso.h"
+#include "morfologia.h"
 
 QString FiltroImagen = "Todos los formatos (*.jpg *.jpeg *.jpe .jp2 *.tif *.tiff *.png *.gif *.bmp *.dib *.webp *.ppm);;Archivos JPG (*.jpg *.jpeg *.jpe);;Archivos TIF (*.tif *.tiff);;Archivos PNG (*.png);;Archivos WEBP (*.webp);;Archivos GIF (*.gif);;Archivos BMP (*.bmp *.dib);;Otros (*.*)";
 
@@ -694,5 +695,14 @@ void MainWindow::on_actionVon_Kries_triggered()
 {
     if (foto_activa() != -1 && primera_libre() != -1)
         balance_blancos(foto_activa(), primera_libre(), 1);
+}
+
+
+void MainWindow::on_actionMorfolog_a_2_triggered()
+{
+    if (foto_activa() != -1) {
+        Morfologia mf(foto_activa(), this);
+        mf.exec();
+    }
 }
 
