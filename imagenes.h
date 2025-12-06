@@ -238,6 +238,10 @@ void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar=false);
 void balance_blancos(int nfoto, int nres, int modo);
 // Ajuste automático del balance de blancos
 
+Mat wb_desplazamiento_yuv(const Mat &src);
+
+Mat wb_von_kries(const Mat &src);
+
 void guardar_estado (int nfoto);
 // Guarda una copia profunda (clone) de la imagen actual en la pila de 'deshacer'.
 // Debe llamarse justo antes de aplicar cualquier modificación destructiva.
