@@ -1,4 +1,4 @@
-% !TeX spellcheck = <none>
+% !TeX spellcheck = es_ES
 %%% main.tex %%%
 
 \documentclass[11pt]{article}
@@ -406,9 +406,31 @@
           \noindent
           Realiza una transformación perspectiva mapeando 4 puntos origen a 4 puntos destino seleccionados por el usuario.
 
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.6\linewidth]{figures/pers_entrada}
+                  \caption{Imagen de entrada.}
+                  \label{fig:pers-entrada}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.6\linewidth]{figures/pers_salida}
+                  \caption{Imagen de salida.}
+                  \label{fig:pers-salida}
+              \end{figure}
+          \end{minipage}
+
       \subsubsection*{Convertir a escala de color}
           \noindent
           Convierte la imagen a escala de grises o a color según la opción seleccionada.
+
+          \clearpage
 
       \subsubsection*{Media ponderada de dos imágenes}
 
@@ -567,7 +589,27 @@
 
       \subsubsection*{Inpaint}
           \noindent
-          Aplica el algoritmo inpaint para borrar contenido de la imagen pintando sobre las zonas afectadas.
+          Aplica el algoritmo inpaint para borrar contenido de la imagen pintando sobre las zonas afectadas. Es de gran utilidad para editar imágenes de rostros con imperfectos como la presencia de acné:
+
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/inpaint-entrada}
+                  \caption{Imagen de entrada.}
+                  \label{fig:inpaint-entrada}
+              \end{figure}
+          \end{minipage}
+          \hfill
+          \noindent
+          \begin{minipage}[t]{0.45\textwidth}
+              \begin{figure}[H]
+                  \centering
+                  \includegraphics[width=0.7\linewidth]{figures/inpaint}
+                  \caption{Operación inpaint.}
+                  \label{fig:inpaint}
+              \end{figure}
+          \end{minipage}
 
           \clearpage
 
@@ -1377,8 +1419,8 @@
           borde. \cite{enwiki:1320845251} \\
 
           Sea \(f(x,y)\) la función de intensidad de la imagen original, el operador
-          Laplaciano, denotado como \(\nabla^2\), está definido como la suma de las segundas derivadas
-          parciales: \cite{opencv_laplaceoperator}
+          Laplaciano, denotado como \(\nabla^2\), está definido como la suma de las
+          segundas derivadas parciales: \cite{opencv_laplaceoperator}
 
           \[ \nabla^2 f(x,y) = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} \]
 
@@ -1822,34 +1864,37 @@ void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
 
   \subsection{Suavizado (herramienta)}
 
-  \noindent
-  Esta funcionalidad implementa una herramienta de edición interactiva que permite al usuario aplicar filtros de suavizado sobre regiones específicas de la imagen. A diferencia de las operaciones globales de suavizado que afectan a toda la imagen, esta herramienta actúa como un pincel circular, difuminando únicamente el área donde el usuario hace clic con el ratón.
+      \noindent
+      Esta funcionalidad implementa una herramienta de edición interactiva que permite al usuario aplicar filtros de suavizado sobre regiones específicas de la imagen. A diferencia de las operaciones globales de suavizado que afectan a toda la imagen, esta herramienta actúa como un pincel circular, difuminando únicamente el área donde el usuario hace clic con el ratón.
 
-  \subsubsection{Introducción}
+      \subsubsection{Introducción}
 
-  \noindent
-  El suavizado local es fundamental en tareas de retoque fotográfico, permitiendo atenuar imperfecciones, suavizar la piel o eliminar ruido de la imagen. La operación se define por dos parámetros:
+          \noindent
+          El suavizado local es fundamental en tareas de retoque fotográfico, permitiendo atenuar imperfecciones, suavizar la piel o eliminar ruido de la imagen. La operación se define por dos parámetros:
 
-  \begin{itemize}
-      \item \textbf{Radio del Pincel (\(R\)):} Determina el tamaño de la zona afectada.
-      \item \textbf{Intensidad del Difuminado (\(K\)):} Define el tamaño del kernel de convolución aplicado dentro de la zona.
-  \end{itemize}
+          \begin{itemize}
+              \item \textbf{Radio del Pincel (\(R\)):} Determina el tamaño de la zona afectada.
+              \item \textbf{Intensidad del Difuminado (\(K\)):} Define el tamaño del kernel de convolución aplicado dentro de la zona.
+          \end{itemize}
 
-  Dado que las imágenes digitales y las Regiones de Interés (ROI) en OpenCV son inherentemente rectangulares, la aplicación de un efecto perfectamente circular requiere el uso de máscaras binarias para restringir la mezcla de la imagen procesada con la original.
+          Dado que las imágenes digitales y las Regiones de Interés (ROI) en OpenCV son
+          inherentemente rectangulares, la aplicación de un efecto perfectamente circular
+          requiere el uso de máscaras binarias para restringir la mezcla de la imagen
+          procesada con la original.
 
       \subsubsection{Implementación}
 
-      \noindent
-      Definimos una nueva herramienta en \texttt{imagenes.h}:
+          \noindent
+          Definimos una nueva herramienta en \texttt{imagenes.h}:
 
-      \begin{lstlisting}[style=CppQtStyle]
+          \begin{lstlisting}[style=CppQtStyle]
     enum tipo_herramienta {HER_PUNTO, ..., HER_SUAVIZADO};
 \end{lstlisting}
 
-\noindent
-Al igual que con el resto de herramientas, modificamos el callback de \texttt{imagenes.cpp} añadiendo un nuevo caso:
+          \noindent
+          Al igual que con el resto de herramientas, modificamos el callback de \texttt{imagenes.cpp} añadiendo un nuevo caso:
 
-\begin{lstlisting}[style=CppQtStyle]
+          \begin{lstlisting}[style=CppQtStyle]
     // 2.6. Herramienta SUAVIZADO
     case HER_SUAVIZADO:
         if (event == EVENT_LBUTTONDOWN)
@@ -1862,9 +1907,12 @@ Al igual que con el resto de herramientas, modificamos el callback de \texttt{im
         break;
 \end{lstlisting}
 
-    Para las funciones correspondientes \texttt{cb\_suavizar()} y \texttt{cb\_ver\_suavizado()}, nos inspiramos en las usadas por la herramienta punto para imitar el funcionamiento de un pincel y conseguir un comportamiento correcto en los bordes de la imagen.
+          Para las funciones correspondientes \texttt{cb\_suavizar()} y
+          \texttt{cb\_ver\_suavizado()}, nos inspiramos en las usadas por la herramienta
+          punto para imitar el funcionamiento de un pincel y conseguir un comportamiento
+          correcto en los bordes de la imagen.
 
-\begin{lstlisting}[style=CppQtStyle]
+          \begin{lstlisting}[style=CppQtStyle]
 void cb_suavizar (int factual, int x, int y) {
     Mat &im = foto[factual].img;
 
@@ -1887,12 +1935,13 @@ void cb_suavizar (int factual, int x, int y) {
 }
 \end{lstlisting}
 
-Para ver el código completo de estas dos funciones, se remite al anexo~\ref{sec:anexo-suavizado}.
+          Para ver el código completo de estas dos funciones, se remite al
+          anexo~\ref{sec:anexo-suavizado}.
 
       \subsubsection{Uso}
 
-      \noindent
-      Con esta nueva operación, se pueden lograr efectos de difuminado como el siguiente:
+          \noindent
+          Con esta nueva operación, se pueden lograr efectos de difuminado como el siguiente:
 
           \noindent
           \begin{minipage}[t]{0.45\textwidth}
@@ -2450,40 +2499,58 @@ Para ver el código completo de estas dos funciones, se remite al anexo~\ref{sec
 
 \section{Conclusiones y valoraciones personales}
 
-El desarrollo de QFotoPaint6 ha resultado muy satisfactorio tanto a nivel personal como a nivel académico. Como puntos positivos, cabe resaltar la estrecha relación con la teoría de la asignatura, pues es una de las prácticas que más útil ha resultado de cara al estudio. \\
+  El desarrollo de QFotoPaint6 ha resultado muy satisfactorio tanto a nivel
+  personal como a nivel académico. Como puntos positivos, cabe resaltar la
+  estrecha relación con la teoría de la asignatura, pues es una de las prácticas
+  que más útil ha resultado de cara al estudio. \\
 
-Respecto a las tecnologías usadas, como el entorno Qt en C++, es un acierto que los profesores proporcionen una base, pues ayuda a hacer énfasis en el verdadero objetivo de la asignatura, que no es ni mucho menos aprender a desarrollar aplicaciones de escritorio, sino a manipular imágenes. \\
+  Respecto a las tecnologías usadas, como el entorno Qt en C++, es un acierto que
+  los profesores proporcionen una base, pues ayuda a hacer énfasis en el
+  verdadero objetivo de la asignatura, que no es ni mucho menos aprender a
+  desarrollar aplicaciones de escritorio, sino a manipular imágenes. \\
 
-Por otro lado, OpenCV ha resultado ser una librería sencilla y con una curva de aprendizaje factible. La documentación es bastante completa y está muy bien redactada, con fuentes fiables, ejemplos y demostraciones matemáticas. Sin embargo, el nivel de abstracción es muy alto y, bajo mi punto de vista, encapsula mucha de la lógica que hubiese sido interesante aplicar, pues se ha aprendido durante las clases de teoría. \\
+  Por otro lado, OpenCV ha resultado ser una librería sencilla y con una curva de
+  aprendizaje factible. La documentación es bastante completa y está muy bien
+  redactada, con fuentes fiables, ejemplos y demostraciones matemáticas. Sin
+  embargo, el nivel de abstracción es muy alto y, bajo mi punto de vista,
+  encapsula mucha de la lógica que hubiese sido interesante aplicar, pues se ha
+  aprendido durante las clases de teoría. \\
 
-Dentro del desarrollo de la práctica, los aspectos menos llamativos han sido las implementaciones de las funciones de la barra de herramientas, pues no guardan mucha lógica respecto a la teoría de análisis de imágenes. Me hubiese gustado empezar antes con el desarrollo de los filtros y efectos. \\
+  Dentro del desarrollo de la práctica, los aspectos menos llamativos han sido
+  las implementaciones de las funciones de la barra de herramientas, pues no
+  guardan mucha lógica respecto a la teoría de análisis de imágenes. Me hubiese
+  gustado empezar antes con el desarrollo de los filtros y efectos. \\
 
-Cabe mencionar que para realizar la documentación, gran parte de las referencias y fórmulas matemáticas corresponden al libro de Rafel C.: \textit{Digital image processing}.
+  Cabe mencionar que para realizar la documentación, gran parte de las
+  referencias y fórmulas matemáticas corresponden al libro de Rafel C.:
+  \textit{Digital image processing}.
 
 \section{Bitácora}
 
-A continuación, se comenta la distribución del trabajo entre las clases prácticas presenciales y el trabajo autónomo. El control de horas es una aproximación cercana a la duración real de cada actividad.
+  A continuación, se comenta la distribución del trabajo entre las clases
+  prácticas presenciales y el trabajo autónomo. El control de horas es una
+  aproximación cercana a la duración real de cada actividad.
 
-\setlength{\tabcolsep}{15pt} % Espacio entre columnas
-\begin{table}[h]
-	\centering
-	\begin{tabular}{c c c}
-		\hline
-		\textbf{Actividad}     & \textbf{Presencial (prácticas)} & \textbf{Trabajo autónomo} \\
-		\hline
-		\textit{Análisis}      & 4                   & 5                       \\
-		\textit{Desarrollo}    & 14                   &  15                        \\
-		\textit{Documentación} & 0                   & 4                         \\
-		\hline
-		\textbf{Total}         & \textbf{18 horas}    & \textbf{24 horas}          \\
-		\hline \\
-	\end{tabular}
-	\caption{Distribución de horas entre actividades presenciales y trabajo
-		autónomo.}
-	\label{tab:distribucion-horas}
-\end{table}
+  \setlength{\tabcolsep}{15pt} % Espacio entre columnas
+  \begin{table}[h]
+      \centering
+      \begin{tabular}{c c c}
+          \hline
+          \textbf{Actividad}     & \textbf{Presencial (prácticas)} & \textbf{Trabajo autónomo} \\
+          \hline
+          \textit{Análisis}      & 4                               & 5                         \\
+          \textit{Desarrollo}    & 14                              & 15                        \\
+          \textit{Documentación} & 0                               & 4                         \\
+          \hline
+          \textbf{Total}         & \textbf{18 horas}               & \textbf{24 horas}         \\
+          \hline                                                                               \\
+      \end{tabular}
+      \caption{Distribución de horas entre actividades presenciales y trabajo
+          autónomo.}
+      \label{tab:distribucion-horas}
+  \end{table}
 
-\clearpage
+  \clearpage
 
   \bibliographystyle{unsrt}
   \bibliography{bibliography}
@@ -2654,14 +2721,14 @@ A continuación, se comenta la distribución del trabajo entre las clases práct
                             }
                         \end{lstlisting}
 
-                       \clearpage
+      \clearpage
 
   \subsection{Código de la implementación de la herramienta suavizado}
       \label{sec:anexo-suavizado}
 
-\subsubsection{Código de la implementación de cb\_suavizar()}
+      \subsubsection{Código de la implementación de cb\_suavizar()}
 
-   \begin{lstlisting}[style=CppQtStyle, caption={Código de la implementación de \texttt{cb\_suavizar()}.}]
+          \begin{lstlisting}[style=CppQtStyle, caption={Código de la implementación de \texttt{cb\_suavizar()}.}]
 void cb_suavizar (int factual, int x, int y)
 {
     Mat &im = foto[factual].img;
@@ -2706,11 +2773,11 @@ void cb_suavizar (int factual, int x, int y)
 }
 \end{lstlisting}
 
-\clearpage
+          \clearpage
 
-  \subsubsection{Código de la implementación de cb\_ver\_suavizado()}
+      \subsubsection{Código de la implementación de cb\_ver\_suavizado()}
 
-   \begin{lstlisting}[style=CppQtStyle, caption={Código de la implementación de \texttt{cb\_ver\_suavizado()}.}]
+          \begin{lstlisting}[style=CppQtStyle, caption={Código de la implementación de \texttt{cb\_ver\_suavizado()}.}]
 void cb_ver_suavizado (int factual, int x, int y)
 {
     Mat res = foto[factual].img.clone();
