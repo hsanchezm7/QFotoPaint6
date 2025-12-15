@@ -29,6 +29,7 @@ SOURCES += main.cpp \
     matsatlum.cpp \
     morfologia.cpp \
     perfilado.cpp \
+    perspectiva.cpp \
     pincharestirar.cpp \
     rojoverdeazul.cpp \
     starwars.cpp \
@@ -53,6 +54,7 @@ HEADERS += mainwindow.h \
     matsatlum.h \
     morfologia.h \
     perfilado.h \
+    perspectiva.h \
     pincharestirar.h \
     rojoverdeazul.h \
     starwars.h \
@@ -76,6 +78,7 @@ FORMS += mainwindow.ui \
     matsatlum.ui \
     morfologia.ui \
     perfilado.ui \
+    perspectiva.ui \
     pincharestirar.ui \
     rojoverdeazul.ui \
     starwars.ui \

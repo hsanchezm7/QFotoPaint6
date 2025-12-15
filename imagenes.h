@@ -213,6 +213,10 @@ void perfilado(int nfoto, int radio, double porcentaje, bool guardar=false);
 void ver_bajorrelieve(int nfoto, int nres, double angulo, double grado, int tamSobel, int ntextura, bool guardar=false);
 // Efecto de bajorrelieve
 
+void ver_perspectiva (int norig, int ndest, Point2f porig[],
+                     Point2f pdest[], bool guardar= false);
+// Transformación perspectiva desde la imagen orig hasta dest
+
 void media_ponderada (int nf1, int nf2, int nueva, double peso);
 // Calcula la media ponderada entre la imagen nf1 y la nf2, según el peso dado,
 // y almacena el resultado en la posición nueva. Se aplica la fórmula:

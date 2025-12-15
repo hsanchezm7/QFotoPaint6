@@ -32,6 +32,7 @@ using namespace cv;
 #include "perfilado.h"
 #include "colorfalso.h"
 #include "morfologia.h"
+#include "perspectiva.h"
 
 QString FiltroImagen = "Todos los formatos (*.jpg *.jpeg *.jpe .jp2 *.tif *.tiff *.png *.gif *.bmp *.dib *.webp *.ppm);;Archivos JPG (*.jpg *.jpeg *.jpe);;Archivos TIF (*.tif *.tiff);;Archivos PNG (*.png);;Archivos WEBP (*.webp);;Archivos GIF (*.gif);;Archivos BMP (*.bmp *.dib);;Otros (*.*)";
 
@@ -703,6 +704,15 @@ void MainWindow::on_actionMorfolog_a_2_triggered()
     if (foto_activa() != -1) {
         Morfologia mf(foto_activa(), this);
         mf.exec();
+    }
+}
+
+
+void MainWindow::on_actionPerspectiva_triggered()
+{
+    if (foto_activa() != -1) {
+        Perspectiva pe(this);
+        pe.exec();
     }
 }
 

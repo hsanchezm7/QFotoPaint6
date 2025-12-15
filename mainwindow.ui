@@ -609,6 +609,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionEcualizaci_n_del_histograma"/>
     <addaction name="actionAjuste_lineal_del_histograma"/>
     <addaction name="actionMedia_ponderada"/>
+    <addaction name="actionPerspectiva"/>
     <addaction name="menuModelos_de_color"/>
     <addaction name="actionColor_falso"/>
    </widget>
@@ -1022,6 +1023,11 @@ p, li { white-space: pre-wrap; }
   <action name="actionMorfolog_a_2">
    <property name="text">
     <string>Morfología...</string>
+   </property>
+  </action>
+  <action name="actionPerspectiva">
+   <property name="text">
+    <string>Perspectiva...</string>
    </property>
   </action>
  </widget>
