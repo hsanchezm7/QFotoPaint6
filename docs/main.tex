@@ -1,8 +1,8 @@
 % !TeX spellcheck = es_ES
-%%% main.tex %%%
 
 \documentclass[11pt]{article}
 \include{style}
+
 
 \begin{document}
 
@@ -193,6 +193,8 @@
 
           \noindent
           Abre un frame específico de un archivo de vídeo y permite previsualizar la posición.
+
+      \clearpage
 
       \subsubsection*{Salir}
 
@@ -677,14 +679,14 @@
               \begin{minipage}[t]{0.45\textwidth}
                   \centering
                   \includegraphics[width=0.7\linewidth]{figures/nueva_portapapeles_1.png}
-                  \caption{Nueva desde portapapeles (paso 1).}
+                  \caption{Nueva imagen desde el portapapeles — paso 1.}
                   \label{fig:nueva-portapapeles-1}
               \end{minipage}
               \hfill
               \begin{minipage}[t]{0.45\textwidth}
                   \centering
                   \includegraphics[width=0.7\linewidth]{figures/nueva_portapapeles_2.png}
-                  \caption{\centering Nueva desde portapapeles (paso 2 tras \texttt{CTRL+V}).}
+                  \caption{\centering Nueva imagen desde el portapapeles — paso 2 (pegado con \texttt{Ctrl+V}).}
                   \label{fig:nueva-portapapeles-2}
               \end{minipage}
           \end{figure}
@@ -732,14 +734,14 @@
               \begin{minipage}[t]{0.45\textwidth}
                   \centering
                   \includegraphics[width=0.8\linewidth]{figures/tulipanes-seleccion.png}
-                  \caption*{\centering Copiar al portapapeles (paso 1: selección de ROI).}
+                  \caption*{\centering Copiar al portapapeles — paso 1: selección del ROI.}
                   \label{fig:copiar-al-portapapeles-entrada}
               \end{minipage}
               \hfill
               \begin{minipage}[t]{0.45\textwidth}
                   \centering
                   \includegraphics[width=0.8\linewidth]{figures/copiar_al_portapapeles.png}
-                  \caption{\centering Copiar al portapapeles (paso 2).}
+                  \caption{\centering Resultado: ROI copiado al portapapeles (paso 2).}
                   \label{fig:copiar-al-portapapeles}
               \end{minipage}
           \end{figure}
@@ -773,7 +775,7 @@
           \begin{figure}[H]
               \centering
               \includegraphics[width=0.6\textwidth]{figures/ventana_undo}
-              \caption{Actualización de la estructura ventana con un vector \texttt{img\_hist}.}
+              \caption{Actualización de la estructura \texttt{ventana}: inclusión del vector \texttt{img\_hist} para el historial de imágenes.}
               \label{fig:ventana-undo}
           \end{figure}
 
@@ -783,7 +785,7 @@
           nuevo vector dinámico que actuará como pila, junto con una constante que
           limitará el tamaño del historial:
 
-          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+          \begin{lstlisting}[style=CppQtStyle, caption={Estructura \texttt{ventana}: adición de \texttt{img\_hist} y constante \texttt{MAX\_HIST\_IMG}.}]
     // imagenes.h
     #define MAX_HIST_IMG 20     // Tamaño del historial para deshacer
      ...
@@ -894,7 +896,7 @@
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.5\linewidth]{figures/deshacer_1}
-                  \caption{Imagen modificada.}
+                  \caption{Imagen modificada (estado inicial).}
                   \label{fig:deshacer-1}
               \end{figure}
           \end{minipage}
@@ -987,7 +989,7 @@
           \begin{figure}[H]
               \centering
               \includegraphics[width=0.6\textwidth]{figures/inf_multimedia.png}
-              \caption{Diálogo de información multimedia.}
+              \caption{Diálogo de información multimedia (clase \texttt{InformacionMultimedia}).}
               \label{fig:inf-multimedia}
           \end{figure}
 
@@ -1116,7 +1118,7 @@
                       \begin{figure}[H]
                           \centering
                           \includegraphics[width=0.7\linewidth]{figures/desierto}
-                          \caption*{Imagen de entrada.}
+                          \caption*{Imagen de entrada del Ejemplo 1.}
                           \label{fig:ecualhist-entrada}
                       \end{figure}
                   \end{minipage}
@@ -1127,7 +1129,7 @@
                   \begin{figure}[H]
                       \centering
                       \includegraphics[width=0.7\linewidth]{figures/ecualizacion_conjunta}
-                      \caption{Ecualización del histograma conjunta.}
+                      \caption{Resultado de la ecualización conjunta.}
                       \label{fig:ecualhist-conjunta}
                   \end{figure}
               \end{minipage}
@@ -1137,7 +1139,7 @@
                   \begin{figure}[H]
                       \centering
                       \includegraphics[width=0.7\linewidth]{figures/ecualizacion_por_canales}
-                      \caption{Ecualización del histograma por canales.}
+                      \caption{Resultado de la ecualización por canales.}
                       \label{fig:ecualhist-por-canales}
                   \end{figure}
               \end{minipage}
@@ -1151,7 +1153,7 @@
                   \begin{figure}[H]
                       \centering
                       \includegraphics[width=0.7\linewidth]{figures/ecualizacion_entrada_2}
-                      \caption{Imagen de entrada.}
+                      \caption{Imagen de entrada (Ejemplo 2).}
                       \label{fig:ecualhist-entrada-2}
                   \end{figure}
               \end{minipage}
@@ -1161,7 +1163,7 @@
                   \begin{figure}[H]
                       \centering
                       \includegraphics[width=0.7\linewidth]{figures/ecualizacion_conjunta_2}
-                      \caption{Ecualización del histograma conjunta (2).}
+                      \caption{Resultado de la ecualización conjunta (Ejemplo 2).}
                       \label{fig:ecualhist-conjunta-2}
                   \end{figure}
               \end{minipage}
@@ -1247,7 +1249,7 @@
           soportados para convertir, junto con el prototipo de la función que contendrá
           la lógica de conversión:
 
-          \begin{lstlisting}[style=CppQtStyle, caption={Declaracion de enum \texttt{modelo\_color}.}, label={lst:imagenes-mc}]
+          \begin{lstlisting}[style=CppQtStyle, caption={Declaración del enum \texttt{modelo\_color} en \texttt{imagenes.h}.}, label={lst:imagenes-mc}]
     enum modelo_color {
         MC_RGB,     // Rojo, Verde, Azul
         MC_HSV,     // Matiz, Saturación, Valor
@@ -1269,7 +1271,7 @@
           \texttt{cvtColor()} de OpenCV. Para consultar el código completo, se remite al
           anexo de la implementación del método~\ref{sec:anexo-convertir-a-modelo}.
 
-          \begin{lstlisting}[style=CppQtStyle, caption={Declaracion de enum \texttt{modelo\_color}.}, label={lst:imagenes-mc}]
+          \begin{lstlisting}[style=CppQtStyle, caption={Implementación de la función \texttt{convertir\_a\_modelo} en \texttt{imagenes.cpp} (selección de \texttt{cvtColor}).}, label={lst:imagenes-mc}]
           // imagenes.cpp
           void convertir_a_modelo(int nfoto, int nres, modelo_color mc) {
                ...
@@ -1310,7 +1312,7 @@
                   \begin{figure}[H]
                       \centering
                       \includegraphics[width=0.7\linewidth]{figures/mc_yuv_entrada}
-                      \caption{Imagen de entrada.}
+                      \caption{Imagen de entrada (conversión a YUV).}
                       \label{fig:yuv-entrada}
                   \end{figure}
               \end{minipage}
@@ -1320,7 +1322,7 @@
                   \begin{figure}[H]
                       \centering
                       \includegraphics[width=0.7\linewidth]{figures/mc_yuv_y}
-                      \caption{Canal Y (Luminancia/Brillo).}
+                      \caption{Canal Y (luminancia / brillo).}
                       \label{fig:yuv-canal-y}
                   \end{figure}
               \end{minipage}
@@ -1332,7 +1334,7 @@
                   \begin{figure}[H]
                       \centering
                       \includegraphics[width=0.7\linewidth]{figures/mc_yuv_u}
-                      \caption{Canal U (Crominancia Azul).}
+                      \caption{Canal U (crominancia azul).}
                       \label{fig:yuv-canal-u}
                   \end{figure}
               \end{minipage}
@@ -1342,7 +1344,7 @@
                   \begin{figure}[H]
                       \centering
                       \includegraphics[width=0.7\linewidth]{figures/mc_yuv_v}
-                      \caption{Canal V (Crominancia Roja).}
+                      \caption{Canal V (crominancia roja).}
                       \label{fig:yuv-canal-v}
                   \end{figure}
               \end{minipage}
@@ -1354,7 +1356,7 @@
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.25\linewidth]{figures/mc_cmyk_entrada}
-                  \caption{Imagen de entrada.}
+                  \caption{Imagen de entrada (conversión a CMYK).}
                   \label{fig:cmyk-entrada}
               \end{figure}
 
@@ -1363,7 +1365,7 @@
                   \begin{figure}[H]
                       \centering
                       \includegraphics[width=0.5\linewidth]{figures/mc_cmyk_c}
-                      \caption{Canal Cian.}
+                      \caption{Canal Cian (C).}
                       \label{fig:cmyk-canal-c}
                   \end{figure}
               \end{minipage}
@@ -1373,7 +1375,7 @@
                   \begin{figure}[H]
                       \centering
                       \includegraphics[width=0.5\linewidth]{figures/mc_cmyk_m}
-                      \caption{Canal Magenta.}
+                      \caption{Canal Magenta (M).}
                       \label{fig:cmyk-canal-m}
                   \end{figure}
               \end{minipage}
@@ -1385,7 +1387,7 @@
                   \begin{figure}[H]
                       \centering
                       \includegraphics[width=0.5\linewidth]{figures/mc_cmyk_y}
-                      \caption{Canal Amarillo.}
+                      \caption{Canal Amarillo (Y).}
                       \label{fig:cmyk-canal-y}
                   \end{figure}
               \end{minipage}
@@ -1471,7 +1473,7 @@
               \item \textbf{Cálculo de la laplaciana con signo:}
                     Como se ha mencionado, el operador laplaciano busca cambios bruscos entre los valores de los píxeles (bordes). Sin embargo, en QFotoPaint6 trabajamos por defecto con el formato \texttt{CV\_8U} de OpenCV, es decir, enteros sin signo o \textit{unsigned}. No podemos calcular la laplaciana sobre este formato ya que los valores negativos se truncarían a 0, por lo que realizamos un cambio de tipo para trabajar sobre una profundidad de 16 bits con signo:
 
-                    \begin{lstlisting}[style=CppQtStyle, caption={Declaracion de enum \texttt{modelo\_color}.}, label={lst:imagenes-mc}]
+                    \begin{lstlisting}[style=CppQtStyle, caption={Cálculo de la Laplaciana y conversión a \texttt{CV\_16S} (fragmento).}, label={lst:imagenes-mc}]
     Laplacian(img, lap, CV_16S, ksize);
     img.convertTo(img16, CV_16S);
 \end{lstlisting}
@@ -1479,7 +1481,7 @@
               \item \textbf{Operación aritmética:}
                     Para realizar la resta $Img - c \cdot Lap$, la imagen original también debe convertirse temporalmente a 16 bits (\texttt{CV\_16S}) para evitar desbordamientos, aunque al final se vuelve al formato de origen \texttt{CV\_8U}.
 
-                    \begin{lstlisting}[style=CppQtStyle, caption={Declaracion de enum \texttt{modelo\_color}.}, label={lst:imagenes-mc}]
+                    \begin{lstlisting}[style=CppQtStyle, caption={Conversión a \texttt{CV\_16S} y suma aritmética para evitar desbordamientos (fragmento).}, label={lst:imagenes-mc}]
     img.convertTo(img16, CV_16S);
     double factor = porcentaje / 100.0;
     suma = img16 - (factor * lap);
@@ -1498,7 +1500,7 @@
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.7\linewidth]{figures/bateria_cenizas}
-                  \caption{Imagen de entrada.}
+                  \caption{Imagen de entrada (perfilado).}
                   \label{fig:perfilado-entrada}
               \end{figure}
           \end{minipage}
@@ -1508,7 +1510,7 @@
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.7\linewidth]{figures/perfilado_1x1_80}
-                  \caption{Perfilado de imagen con kernel \( 1\times 1\) y 80\%.}
+                  \caption{Resultado del perfilado con kernel \(1\times1\) y 80\%.}
                   \label{fig:perfilado-1x1-80}
               \end{figure}
           \end{minipage}
@@ -1518,7 +1520,7 @@
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.7\linewidth]{figures/perfilado_2x2_50}
-                  \caption{Perfilado de imagen con kernel \( 2\times 2\) y 50\%.}
+                  \caption{Resultado del perfilado con kernel \(2\times2\) y 50\%.}
                   \label{fig:perfilado-2x2-50}
               \end{figure}
           \end{minipage}
@@ -1528,7 +1530,7 @@
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.7\linewidth]{figures/perfilado_3x3_15}
-                  \caption{Perfilado de imagen con kernel \( 3\times 3\) y 15\%.}
+                  \caption{Resultado del perfilado con kernel \(3\times3\) y 15\%.}
                   \label{fig:perfilado-3x3-15}
               \end{figure}
           \end{minipage}
@@ -1633,7 +1635,7 @@
                   \begin{figure}[H]
                       \centering
                       \includegraphics[width=0.7\linewidth]{figures/desierto}
-                      \caption*{Imagen de entrada.}
+                      \caption*{Imagen de entrada (ajuste RGB).}
                       \label{fig:rgb-entrada}
                   \end{figure}
               \end{minipage}
@@ -1644,7 +1646,7 @@
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.7\linewidth]{figures/rgb_r_m0_g_m3_b_m3}
-                  \caption{\centering Ajuste de canales RGB \newline(R: \(\alpha=0, \beta=-255\); G: \(\alpha=3, \beta=75\);\newline B: \(\alpha=3, \beta=50\)).}
+                  \caption{\centering Ajuste de canales RGB (R: \(\alpha=0, \beta=-255\); G: \(\alpha=3, \beta=75\); B: \(\alpha=3, \beta=50\)).}
                   \label{fig:rgb-m0-m3-m3}
               \end{figure}
           \end{minipage}
@@ -1654,7 +1656,7 @@
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.7\linewidth]{figures/rgb_r_m2_g_m0_b_m2}
-                  \caption{\centering Ajuste de canales RGB \newline(R: \(\alpha=2, \beta=-255\); G: \(\alpha=0, \beta=75\);\newline B: \(\alpha=2, \beta=50\)).}
+                  \caption{\centering Ajuste de canales RGB (R: \(\alpha=2, \beta=-255\); G: \(\alpha=0, \beta=75\); B: \(\alpha=2, \beta=50\)).}
                   \label{fig:rgb-m2-m0-m2}
               \end{figure}
           \end{minipage}
@@ -1702,7 +1704,7 @@ void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.7\linewidth]{figures/pinguinos}
-                  \caption{Imagen de entrada.}
+                  \caption{Imagen de entrada: pingüinos.}
                   \label{fig:color-falso-entrada}
               \end{figure}
           \end{minipage}
@@ -1712,7 +1714,7 @@ void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.7\linewidth]{figures/color_falso_hueso}
-                  \caption{Color falso con mapa ``Hueso''.}
+                  \caption{Color falso con el mapa \texttt{COLORMAP\_BONE} ("Hueso").}
                   \label{fig:color-falso-hueso}
               \end{figure}
           \end{minipage}
@@ -1722,7 +1724,7 @@ void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.7\linewidth]{figures/color_falso_invierno}
-                  \caption{Color falso con mapa ``Invierno''.}
+                  \caption{Color falso con el mapa \texttt{COLORMAP\_WINTER} ("Invierno").}
                   \label{fig:color-falso-invierno}
               \end{figure}
           \end{minipage}
@@ -1732,7 +1734,7 @@ void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.7\linewidth]{figures/color_falso_inferno}
-                  \caption{Color falso con mapa ``Inferno''.}
+                  \caption{Color falso con el mapa \texttt{COLORMAP\_INFERNO} ("Inferno").}
                   \label{fig:color-falso-inferno}
               \end{figure}
           \end{minipage}
@@ -1845,7 +1847,7 @@ void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.6\linewidth]{figures/saint_vincent_paul_chapel}
-                  \caption{\centering Imagen de entrada: Capilla de San Vicente de Paúl de París.}
+                  \caption{\centering Imagen de entrada: Capilla de Saint Vincent de Paul (París).}
                   \label{fig:wb-entrada}
               \end{figure}
           \end{minipage}
@@ -1855,7 +1857,7 @@ void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.6\linewidth]{figures/wb_desplazamiento_yuv}
-                  \caption{\centering Balance de blancos por desplazamiento YUV.}
+                  \caption{\centering Balance de blancos mediante desplazamiento de crominancia en YUV.}
                   \label{fig:wb-desplazamiento-yuv}
               \end{figure}
           \end{minipage}
@@ -1913,26 +1915,26 @@ void aplicar_mapa_color(int nfoto, int id_mapa, bool guardar) {
           correcto en los bordes de la imagen.
 
           \begin{lstlisting}[style=CppQtStyle]
-void cb_suavizar (int factual, int x, int y) {
-    Mat &im = foto[factual].img;
+    void cb_suavizar (int factual, int x, int y) {
+        Mat &im = foto[factual].img;
 
-    if (difum_pincel < 1) return;
+        if (difum_pincel < 1) return;
 
-    /* cálculo de ROI como en punto... */
-     ...
+        /* cálculo de ROI como en punto... */
+         ...
 
-    Mat trozo = im(roi);
+        Mat trozo = im(roi);
 
-    Mat borrosa;
-    medianBlur(trozo, borrosa, difum_pincel*2+1);
-    Mat mask(roi.size(), CV_8UC1, Scalar(0));
-    circle(mask, Point(posx, posy), radio_pincel, Scalar(255), -1);
+        Mat borrosa;
+        medianBlur(trozo, borrosa, difum_pincel*2+1);
+        Mat mask(roi.size(), CV_8UC1, Scalar(0));
+        circle(mask, Point(posx, posy), radio_pincel, Scalar(255), -1);
 
-    borrosa.copyTo(trozo, mask);
+        borrosa.copyTo(trozo, mask);
 
-    imshow(foto[factual].nombre, im);
-    foto[factual].modificada = true;
-}
+        imshow(foto[factual].nombre, im);
+        foto[factual].modificada = true;
+    }
 \end{lstlisting}
 
           Para ver el código completo de estas dos funciones, se remite al
@@ -1948,7 +1950,7 @@ void cb_suavizar (int factual, int x, int y) {
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.8\linewidth]{figures/lupa}
-                  \caption{Imagen de entrada}
+                  \caption{Imagen de entrada: vista original para el ejemplo de suavizado.}
                   \label{fig:suavizado-entrada}
               \end{figure}
           \end{minipage}
@@ -1958,7 +1960,7 @@ void cb_suavizar (int factual, int x, int y) {
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.8\linewidth]{figures/suavizado}
-                  \caption{Suavizado del fondo de la imagen}
+                  \caption{Resultado: suavizado local aplicado al fondo de la imagen.}
                   \label{fig:suavizado}
               \end{figure}
           \end{minipage}
@@ -2061,8 +2063,7 @@ void cb_suavizar (int factual, int x, int y) {
 
           \begin{lstlisting}[style=CppQtStyle]
     // imagenes.cpp
-    void morfologia(int nfoto, op_morfologia modo, int iteraciones, bool guardar)
-    {
+    void morfologia(int nfoto, op_morfologia modo, int iteraciones, bool guardar) {
         Mat img = foto[nfoto].img;
         Mat imres;
 
@@ -2071,7 +2072,7 @@ void cb_suavizar (int factual, int x, int y) {
 
         // aplicar operación
         morphologyEx(img, imres, (int)modo, kernel, Point(-1, -1), iteraciones);
-        ...
+         ...
     }
 \end{lstlisting}
 
@@ -2085,7 +2086,7 @@ void cb_suavizar (int factual, int x, int y) {
                   \begin{figure}[H]
                       \centering
                       \includegraphics[width=0.4\linewidth]{figures/mm_entrada}
-                      \caption*{Imagen de entrada.}
+                      \caption*{Imagen de entrada: ejemplo para morfología matemática.}
                       \label{fig:mm-entrada}
                   \end{figure}
               \end{minipage}
@@ -2096,7 +2097,7 @@ void cb_suavizar (int factual, int x, int y) {
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.4\linewidth]{figures/mm_erosion_it6}
-                  \caption{\centering Erosión con kernel \(3 \times 3\) e \(it=6\)}
+                  \caption{\centering Erosión con kernel \(3\times3\) y 6 iteraciones.}
                   \label{fig:mm-erosion}
               \end{figure}
           \end{minipage}
@@ -2106,7 +2107,7 @@ void cb_suavizar (int factual, int x, int y) {
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.4\linewidth]{figures/mm_dilatacion_it2}
-                  \caption{\centering Dilatación con kernel \(3 \times 3\) e \(it=2\)}
+                  \caption{\centering Dilatación con kernel \(3\times3\) y 2 iteraciones.}
                   \label{fig:mm-dilatacion}
               \end{figure}
           \end{minipage}
@@ -2116,7 +2117,7 @@ void cb_suavizar (int factual, int x, int y) {
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.4\linewidth]{figures/mm_apertura_it3}
-                  \caption{\centering Apertura con kernel \(3 \times 3\) e \(it=3\)}
+                  \caption{\centering Apertura con kernel \(3\times3\) y 3 iteraciones.}
                   \label{fig:mm-apertura}
               \end{figure}
           \end{minipage}
@@ -2126,7 +2127,7 @@ void cb_suavizar (int factual, int x, int y) {
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.4\linewidth]{figures/mm_cierre_it6}
-                  \caption{\centering Cierre con kernel \(3 \times 3\) e \(it=6\)}
+                  \caption{\centering Cierre con kernel \(3\times3\) y 6 iteraciones.}
                   \label{fig:mm-cierre}
               \end{figure}
           \end{minipage}
@@ -2215,7 +2216,7 @@ void cb_suavizar (int factual, int x, int y) {
           \begin{figure}[H]
               \centering
               \includegraphics[width=0.6\textwidth]{figures/ventana_redo}
-              \caption{Actualización de la estructura ventana con un vector \texttt{undo\_hist}.}
+              \caption{Estructura \texttt{ventana} actualizada: inclusión de \texttt{undo\_hist} para rehacer.}
               \label{fig:ventana-redo}
           \end{figure}
 
@@ -2224,7 +2225,7 @@ void cb_suavizar (int factual, int x, int y) {
           \noindent
           A nivel de código:
 
-          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+          \begin{lstlisting}[style=CppQtStyle, caption={Definición de \texttt{struct ventana} en \texttt{imagenes.h}.}]
     // imagenes.h
     #define MAX_HIST_IMG 20     // Tamaño del historial para deshacer/rehacer
      ...
@@ -2246,7 +2247,7 @@ void cb_suavizar (int factual, int x, int y) {
           \noindent
           Actualizamos la operación deshacer para que, en cada cambio de estado, se guarde la imagen actual. Así, la imagen no se pierde y se guarda en la nueva pila. Es necesario definir una nueva operación \texttt{rehacer()}.
 
-          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+          \begin{lstlisting}[style=CppQtStyle, caption={Implementación de \texttt{deshacer()} y \texttt{rehacer()} en \texttt{imagenes.cpp}.}]
     // imagenes.cpp
     void deshacer (int nfoto) {
         ventana& v = foto[nfoto];
@@ -2409,7 +2410,7 @@ void cb_suavizar (int factual, int x, int y) {
           \noindent
           Reutilizamos la función prototipo usada anteriormente añadiendo un nuevo parámetro, \texttt{modo} (0: desplazamiento YUV, 1: aproximación von Kries).
 
-          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+          \begin{lstlisting}[style=CppQtStyle, caption={Prototipo de \texttt{balance\_blancos(int nfoto, int nres, int modo)}.}]
     void balance_blancos(int nfoto, int nres, int modo);
 \end{lstlisting}
 
@@ -2418,7 +2419,7 @@ void cb_suavizar (int factual, int x, int y) {
           la técnica, es necesario realizar una conversión al espacio LMS, pasando
           primero al modelo XYZ:
 
-          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+          \begin{lstlisting}[style=CppQtStyle, caption={Conversión RGB (BGR) -> XYZ y definición de \texttt{M\_XYZ2LMS}.}]
     // RGB (BGR) -> XYZ
     Mat xyz;
     cvtColor(img32, xyz, COLOR_BGR2XYZ);
@@ -2436,7 +2437,7 @@ void cb_suavizar (int factual, int x, int y) {
           \noindent
           Calculamos \(\bar{L}\), \(\bar{M}\) y \(\bar{S}\); a continuación hallamos el valor de \(E\);
 
-          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+          \begin{lstlisting}[style=CppQtStyle, caption={Cálculo de medias en espacio LMS y referencia gris (\texttt{gray\_ref}).}]
     // medias en espacio LMS y referencia gris
     Scalar medias = mean(lms);
     double l_mean = medias[0];
@@ -2450,7 +2451,7 @@ void cb_suavizar (int factual, int x, int y) {
           \noindent
           Calculamos las ganancias y realizamos la transformación de von Kries:
 
-          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+          \begin{lstlisting}[style=CppQtStyle, caption={Cálculo de ganancias y aplicación de la matriz de ganancia (aprox. von Kries).}]
     // ganancias (evitando división por cero)
     double k_l = gray_ref / (l_mean + 1e-5);
     double k_m = gray_ref / (m_mean + 1e-5);
@@ -2464,7 +2465,7 @@ void cb_suavizar (int factual, int x, int y) {
           \noindent
           Finalizando, volvemos a convertir al espacio RGB, usando primero \(\mathbf{M}^{-1}\) para pasar por el modelo XYZ.
 
-          \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
+          \begin{lstlisting}[style=CppQtStyle, caption={Conversión de espacio LMS -> XYZ -> BGR aplicando la matriz inversa (M\^{-1}).}]
     // LMS -> XYZ -> BGR
     Mat M_LMS2XYZ = M_XYZ2LMS.inv();
     transform(lms, xyz, M_LMS2XYZ);
@@ -2480,7 +2481,7 @@ void cb_suavizar (int factual, int x, int y) {
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.6\linewidth]{figures/saint_vincent_paul_chapel}
-                  \caption*{\centering Imagen de entrada: Capilla de San Vicente de Paúl de París.}
+                  \caption*{\centering Imagen de entrada: Capilla de Saint Vincent de Paul (París).}
                   \label{fig:wb-von-kries-entrada}
               \end{figure}
           \end{minipage}
@@ -2490,7 +2491,7 @@ void cb_suavizar (int factual, int x, int y) {
               \begin{figure}[H]
                   \centering
                   \includegraphics[width=0.6\linewidth]{figures/wb_von_kries}
-                  \caption{\centering Balance de blancos por aproximación von Kries.}
+                  \caption{\centering Balance de blancos mediante la aproximación de von Kries.}
                   \label{fig:wb-von-kries}
               \end{figure}
           \end{minipage}
@@ -2545,8 +2546,7 @@ void cb_suavizar (int factual, int x, int y) {
           \textbf{Total}         & \textbf{18 horas}               & \textbf{24 horas}         \\
           \hline                                                                               \\
       \end{tabular}
-      \caption{Distribución de horas entre actividades presenciales y trabajo
-          autónomo.}
+      \caption{Distribución de horas entre actividades presenciales y trabajo autónomo.}
       \label{tab:distribucion-horas}
   \end{table}
 
@@ -2564,91 +2564,91 @@ void cb_suavizar (int factual, int x, int y) {
   \subsection{Código de la implementación de Información Multimedia}
       \label{sec:anexo-im}
 
-      \lstinputlisting[style=CppQtStyle, caption={Código de \texttt{informacionmultimedia.cpp}}]{../informacionmultimedia.cpp}
+      \lstinputlisting[style=CppQtStyle, caption={Código fuente de \texttt{informacionmultimedia.cpp}}]{../informacionmultimedia.cpp}
 
       \clearpage
 
   \subsection{Código de la implementación de convertir\_a\_modelo()}
       \label{sec:anexo-convertir-a-modelo}
 
-      \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
-           // imagenes.cpp
-           void convertir_a_modelo(int nfoto, int nres, modelo_color mc)
-           {
-               Mat img = foto[nfoto].img;
-               Mat res;
+      \begin{lstlisting}[style=CppQtStyle, caption={Implementación de \texttt{convertir\_a\_modelo()} en \texttt{imagenes.cpp}.}]
+    // imagenes.cpp
+    void convertir_a_modelo(int nfoto, int nres, modelo_color mc)
+    {
+       Mat img = foto[nfoto].img;
+       Mat res;
 
-               switch (mc) {
-               case MC_RGB:
-                   cvtColor(img, res, COLOR_BGR2RGB);
-                   break;
+       switch (mc) {
+       case MC_RGB:
+           cvtColor(img, res, COLOR_BGR2RGB);
+           break;
 
-               case MC_HSV:
-                   cvtColor(img, res, COLOR_BGR2HSV);
-                   break;
+       case MC_HSV:
+           cvtColor(img, res, COLOR_BGR2HSV);
+           break;
 
-               case MC_HLS:
-                   cvtColor(img, res, COLOR_BGR2HLS);
-                   break;
+       case MC_HLS:
+           cvtColor(img, res, COLOR_BGR2HLS);
+           break;
 
-               case MC_XYZ:
-                   cvtColor(img, res, COLOR_BGR2XYZ);
-                   break;
+       case MC_XYZ:
+           cvtColor(img, res, COLOR_BGR2XYZ);
+           break;
 
-               case MC_YUV:
-                   cvtColor(img, res, COLOR_BGR2YUV);
-                   break;
+       case MC_YUV:
+           cvtColor(img, res, COLOR_BGR2YUV);
+           break;
 
-               case MC_YCrCb:
-                   cvtColor(img, res, COLOR_BGR2YCrCb);
-                   break;
+       case MC_YCrCb:
+           cvtColor(img, res, COLOR_BGR2YCrCb);
+           break;
 
-               case MC_CMYK:
-               {
-                   Mat f;
-                   img.convertTo(f, CV_32F, 1.0/255.0);
+       case MC_CMYK:
+       {
+           Mat f;
+           img.convertTo(f, CV_32F, 1.0/255.0);
 
-                   // paso intermedio BGR -> CMYK
-                   Mat cmy = Scalar(1.0, 1.0, 1.0) - f;
+           // paso intermedio BGR -> CMYK
+           Mat cmy = Scalar(1.0, 1.0, 1.0) - f;
 
-                   vector<Mat> p;
-                   split(cmy, p);
+           vector<Mat> p;
+           split(cmy, p);
 
-                   // K = min(C', M', Y')
-                   Mat K;
-                   min(p[2], p[1], K);
-                   min(K, p[0], K);
+           // K = min(C', M', Y')
+           Mat K;
+           min(p[2], p[1], K);
+           min(K, p[0], K);
 
-                   // CMY -> CMYK
-                   Mat k_diff = 1.0 - K + 1e-4;
+           // CMY -> CMYK
+           Mat k_diff = 1.0 - K + 1e-4;
 
-                   vector<Mat> cmyk = {
-                       (p[2] - K) / k_diff * 255.0, // C = (C' - K) / (1-K)
-                       (p[1] - K) / k_diff * 255.0, // M = (M' - K) / (1-K)
-                       (p[0] - K) / k_diff * 255.0, // Y = (Y' - K) / (1-K)
-                       K * 255.0
-                   };
+           vector<Mat> cmyk = {
+               (p[2] - K) / k_diff * 255.0, // C = (C' - K) / (1-K)
+               (p[1] - K) / k_diff * 255.0, // M = (M' - K) / (1-K)
+               (p[0] - K) / k_diff * 255.0, // Y = (Y' - K) / (1-K)
+               K * 255.0
+           };
 
-                   merge(cmyk, res);
-                   res.convertTo(res, CV_8U);
-                   break;
-               }
+           merge(cmyk, res);
+           res.convertTo(res, CV_8U);
+           break;
+       }
 
 
-               default:
-                   res = img.clone();
-                   break;
-               }
+       default:
+           res = img.clone();
+           break;
+       }
 
-               // separar canales
-               vector<Mat> canales;
-               split(res, canales);
+       // separar canales
+       vector<Mat> canales;
+       split(res, canales);
 
-               // crear las nuevas imágenes
-               for (size_t i = 0; i < canales.size(); ++i) {
-                   crear_nueva(nres+i, canales[i]);
-               }
-           }
+       // crear las nuevas imágenes
+       for (size_t i = 0; i < canales.size(); ++i) {
+           crear_nueva(nres+i, canales[i]);
+       }
+    }
        \end{lstlisting}
 
       \clearpage
@@ -2656,70 +2656,70 @@ void cb_suavizar (int factual, int x, int y) {
   \subsection{Código de la implementación de perfilado()}
       \label{sec:anexo-perfilado}
 
-      \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
-                 // imagenes.cpp
-                 void perfilado(int nfoto, int radio, double porcentaje, bool guardar)
-                 {
-                     Mat img = foto[nfoto].img;
-                     Mat res;
+      \begin{lstlisting}[style=CppQtStyle, caption={Implementación de \texttt{perfilado()} en \texttt{imagenes.cpp}.}]
+    // imagenes.cpp
+    void perfilado(int nfoto, int radio, double porcentaje, bool guardar)
+    {
+        Mat img = foto[nfoto].img;
+        Mat res;
 
-                     Mat lap, img16, suma;
+        Mat lap, img16, suma;
 
-                     // tamaño del kernel
-                     int ksize = 2 * radio + 1;
+        // tamaño del kernel
+        int ksize = 2 * radio + 1;
 
-                     // calcular laplaciana
-                     Laplacian(img, lap, CV_16S, ksize);
+        // calcular laplaciana
+        Laplacian(img, lap, CV_16S, ksize);
 
-                     img.convertTo(img16, CV_16S);
+        img.convertTo(img16, CV_16S);
 
-                     double factor = porcentaje / 100.0;
+        double factor = porcentaje / 100.0;
 
-                     suma = img16 - (factor * lap);
+        suma = img16 - (factor * lap);
 
-                     suma.convertTo(res, CV_8U);
+        suma.convertTo(res, CV_8U);
 
-                     imshow(foto[nfoto].nombre, res);
+        imshow(foto[nfoto].nombre, res);
 
-                     if (guardar) {
-                         guardar_estado(nfoto);
-                         res.copyTo(img);
-                         foto[nfoto].modificada = true;
-                     }
-                 }
-             \end{lstlisting}
+        if (guardar) {
+         guardar_estado(nfoto);
+         res.copyTo(img);
+         foto[nfoto].modificada = true;
+        }
+    }
+\end{lstlisting}
 
       \clearpage
 
   \subsection{Código de la implementación de ver\_rojoverdeazul()}
       \label{sec:anexo-ver-rojoverdeazul}
 
-      \begin{lstlisting}[style=CppQtStyle, caption={Modificación del \texttt{struct ventana}.}]
-                            // imagenes.cpp
-                            void ver_rojoverdeazul(int nfoto, double r_mul, double r_add,
-                                                   double g_mul, double g_add,
-                                                   double b_mul, double b_add,
-                                                   bool guardar)
-                            {
-                                Mat canales[3];
-                                split(foto[nfoto].img, canales);
+      \begin{lstlisting}[style=CppQtStyle, caption={Implementación de \texttt{ver\_rojoverdeazul()} en \texttt{imagenes.cpp}.}]
+    // imagenes.cpp
+    void ver_rojoverdeazul(int nfoto, double r_mul, double r_add,
+                           double g_mul, double g_add,
+                           double b_mul, double b_add,
+                           bool guardar)
+    {
+        Mat canales[3];
+        split(foto[nfoto].img, canales);
 
-                                canales[0].convertTo(canales[0], -1, b_mul, b_add);
-                                canales[1].convertTo(canales[1], -1, g_mul, g_add);
-                                canales[2].convertTo(canales[2], -1, r_mul, r_add);
+        canales[0].convertTo(canales[0], -1, b_mul, b_add);
+        canales[1].convertTo(canales[1], -1, g_mul, g_add);
+        canales[2].convertTo(canales[2], -1, r_mul, r_add);
 
-                                Mat res;
-                                merge(canales, 3, res);
+        Mat res;
+        merge(canales, 3, res);
 
-                                imshow(foto[nfoto].nombre, res);
+        imshow(foto[nfoto].nombre, res);
 
-                                if (guardar) {
-                                    guardar_estado(nfoto);
-                                    res.copyTo(foto[nfoto].img);
-                                    foto[nfoto].modificada = true;
-                                }
-                            }
-                        \end{lstlisting}
+        if (guardar) {
+            guardar_estado(nfoto);
+            res.copyTo(foto[nfoto].img);
+            foto[nfoto].modificada = true;
+        }
+    }
+\end{lstlisting}
 
       \clearpage
 
@@ -2729,60 +2729,12 @@ void cb_suavizar (int factual, int x, int y) {
       \subsubsection{Código de la implementación de cb\_suavizar()}
 
           \begin{lstlisting}[style=CppQtStyle, caption={Código de la implementación de \texttt{cb\_suavizar()}.}]
-void cb_suavizar (int factual, int x, int y)
-{
-    Mat &im = foto[factual].img;
+    void cb_suavizar (int factual, int x, int y)
+    {
+        Mat &im = foto[factual].img;
 
-    if (difum_pincel < 1) return;
+        if (difum_pincel < 1) return;
 
-    int t = radio_pincel;
-    int posx = t, posy = t;
-    Rect roi(x-t, y-t, 2*t+1, 2*t+1);
-
-    if (roi.x < 0) {
-        roi.width += roi.x;
-        posx += roi.x;
-        roi.x = 0;
-    }
-    if (roi.y < 0) {
-        roi.height += roi.y;
-        posy += roi.y;
-        roi.y = 0;
-    }
-    if (roi.x + roi.width > im.cols) {
-        roi.width = im.cols - roi.x;
-    }
-    if (roi.y + roi.height > im.rows) {
-        roi.height = im.rows - roi.y;
-    }
-
-    if (roi.width <= 0 || roi.height <= 0) return;
-
-    Mat trozo = im(roi);
-
-    Mat borrosa;
-    medianBlur(trozo, borrosa, difum_pincel*2+1);
-
-    Mat mask(roi.size(), CV_8UC1, Scalar(0));
-    circle(mask, Point(posx, posy), radio_pincel, Scalar(255), -1);
-
-    borrosa.copyTo(trozo, mask);
-
-    imshow(foto[factual].nombre, im);
-    foto[factual].modificada = true;
-}
-\end{lstlisting}
-
-          \clearpage
-
-      \subsubsection{Código de la implementación de cb\_ver\_suavizado()}
-
-          \begin{lstlisting}[style=CppQtStyle, caption={Código de la implementación de \texttt{cb\_ver\_suavizado()}.}]
-void cb_ver_suavizado (int factual, int x, int y)
-{
-    Mat res = foto[factual].img.clone();
-
-    if (difum_pincel > 0) {
         int t = radio_pincel;
         int posx = t, posy = t;
         Rect roi(x-t, y-t, 2*t+1, 2*t+1);
@@ -2797,29 +2749,77 @@ void cb_ver_suavizado (int factual, int x, int y)
             posy += roi.y;
             roi.y = 0;
         }
-        if (roi.x + roi.width > res.cols) {
-            roi.width = res.cols - roi.x;
+        if (roi.x + roi.width > im.cols) {
+            roi.width = im.cols - roi.x;
         }
-        if (roi.y + roi.height > res.rows) {
-            roi.height = res.rows - roi.y;
+        if (roi.y + roi.height > im.rows) {
+            roi.height = im.rows - roi.y;
         }
 
-        if (roi.width > 0 && roi.height > 0) {
-            Mat trozo = res(roi);
+        if (roi.width <= 0 || roi.height <= 0) return;
 
-            Mat borrosa;
-            medianBlur(trozo, borrosa, difum_pincel*2+1);
+        Mat trozo = im(roi);
 
-            Mat mask(roi.size(), CV_8UC1, Scalar(0));
-            circle(mask, Point(posx, posy), radio_pincel, Scalar(255), -1);
+        Mat borrosa;
+        medianBlur(trozo, borrosa, difum_pincel*2+1);
 
-            borrosa.copyTo(trozo, mask);
-        }
+        Mat mask(roi.size(), CV_8UC1, Scalar(0));
+        circle(mask, Point(posx, posy), radio_pincel, Scalar(255), -1);
+
+        borrosa.copyTo(trozo, mask);
+
+        imshow(foto[factual].nombre, im);
+        foto[factual].modificada = true;
     }
+\end{lstlisting}
 
-    circle(res, Point(x, y), radio_pincel, CV_RGB(200, 200, 200), 1);
-    imshow(foto[factual].nombre, res);
-}
+          \clearpage
+
+      \subsubsection{Código de la implementación de cb\_ver\_suavizado()}
+
+          \begin{lstlisting}[style=CppQtStyle, caption={Código de la implementación de \texttt{cb\_ver\_suavizado()}.}]
+    void cb_ver_suavizado (int factual, int x, int y)
+    {
+        Mat res = foto[factual].img.clone();
+
+        if (difum_pincel > 0) {
+            int t = radio_pincel;
+            int posx = t, posy = t;
+            Rect roi(x-t, y-t, 2*t+1, 2*t+1);
+
+            if (roi.x < 0) {
+                roi.width += roi.x;
+                posx += roi.x;
+                roi.x = 0;
+            }
+            if (roi.y < 0) {
+                roi.height += roi.y;
+                posy += roi.y;
+                roi.y = 0;
+            }
+            if (roi.x + roi.width > res.cols) {
+                roi.width = res.cols - roi.x;
+            }
+            if (roi.y + roi.height > res.rows) {
+                roi.height = res.rows - roi.y;
+            }
+
+            if (roi.width > 0 && roi.height > 0) {
+                Mat trozo = res(roi);
+
+                Mat borrosa;
+                medianBlur(trozo, borrosa, difum_pincel*2+1);
+
+                Mat mask(roi.size(), CV_8UC1, Scalar(0));
+                circle(mask, Point(posx, posy), radio_pincel, Scalar(255), -1);
+
+                borrosa.copyTo(trozo, mask);
+            }
+        }
+
+        circle(res, Point(x, y), radio_pincel, CV_RGB(200, 200, 200), 1);
+        imshow(foto[factual].nombre, res);
+    }
 \end{lstlisting}
 
 \end{document}
