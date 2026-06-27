@@ -14,79 +14,81 @@ TEMPLATE = app
 
 CONFIG += c++17
 
-SOURCES += main.cpp \
-    bajorrelieve.cpp \
-    capturadevideo.cpp \
-    ajustelineal.cpp \
-    colorfalso.cpp \
-    ecualizacionhistograma.cpp \
-    informacionmultimedia.cpp \
-    inpaint.cpp \
-    mainwindow.cpp \
-    imagenes.cpp \
-    dialognueva.cpp \
-    brillocontraste.cpp \
-    matsatlum.cpp \
-    morfologia.cpp \
-    perfilado.cpp \
-    perspectiva.cpp \
-    pincharestirar.cpp \
-    rojoverdeazul.cpp \
-    starwars.cpp \
-    suavizados.cpp \
-    video.cpp \
-    rotaravideo.cpp \
-    mediaponderada.cpp \
-    acercade.cpp \
-    mediadevideo.cpp
+SOURCES += src/main.cpp \
+    src/bajorrelieve.cpp \
+    src/capturadevideo.cpp \
+    src/ajustelineal.cpp \
+    src/colorfalso.cpp \
+    src/ecualizacionhistograma.cpp \
+    src/informacionmultimedia.cpp \
+    src/inpaint.cpp \
+    src/mainwindow.cpp \
+    src/imagenes.cpp \
+    src/dialognueva.cpp \
+    src/brillocontraste.cpp \
+    src/matsatlum.cpp \
+    src/morfologia.cpp \
+    src/perfilado.cpp \
+    src/perspectiva.cpp \
+    src/pincharestirar.cpp \
+    src/rojoverdeazul.cpp \
+    src/starwars.cpp \
+    src/suavizados.cpp \
+    src/video.cpp \
+    src/rotaravideo.cpp \
+    src/mediaponderada.cpp \
+    src/acercade.cpp \
+    src/mediadevideo.cpp
 
-HEADERS += mainwindow.h \
-    bajorrelieve.h \
-    capturadevideo.h \
-    ajustelineal.h \
-    colorfalso.h \
-    ecualizacionhistograma.h \
-    imagenes.h \
-    dialognueva.h \
-    brillocontraste.h \
-    informacionmultimedia.h \
-    inpaint.h \
-    matsatlum.h \
-    morfologia.h \
-    perfilado.h \
-    perspectiva.h \
-    pincharestirar.h \
-    rojoverdeazul.h \
-    starwars.h \
-    suavizados.h \
-    video.h \
-    rotaravideo.h \
-    mediaponderada.h \
-    acercade.h \
-    mediadevideo.h
+HEADERS += include/mainwindow.h \
+    include/bajorrelieve.h \
+    include/capturadevideo.h \
+    include/ajustelineal.h \
+    include/colorfalso.h \
+    include/ecualizacionhistograma.h \
+    include/imagenes.h \
+    include/dialognueva.h \
+    include/brillocontraste.h \
+    include/informacionmultimedia.h \
+    include/inpaint.h \
+    include/matsatlum.h \
+    include/morfologia.h \
+    include/perfilado.h \
+    include/perspectiva.h \
+    include/pincharestirar.h \
+    include/rojoverdeazul.h \
+    include/starwars.h \
+    include/suavizados.h \
+    include/video.h \
+    include/rotaravideo.h \
+    include/mediaponderada.h \
+    include/acercade.h \
+    include/mediadevideo.h
 
-FORMS += mainwindow.ui \
-    bajorrelieve.ui \
-    capturadevideo.ui \
-    ajustelineal.ui \
-    colorfalso.ui \
-    dialognueva.ui \
-    brillocontraste.ui \
-    ecualizacionhistograma.ui \
-    informacionmultimedia.ui \
-    inpaint.ui \
-    matsatlum.ui \
-    morfologia.ui \
-    perfilado.ui \
-    perspectiva.ui \
-    pincharestirar.ui \
-    rojoverdeazul.ui \
-    starwars.ui \
-    suavizados.ui \
-    rotaravideo.ui \
-    mediaponderada.ui \
-    acercade.ui \
-    mediadevideo.ui
+INCLUDEPATH += $$PWD/include
+
+FORMS += ui/mainwindow.ui \
+    ui/bajorrelieve.ui \
+    ui/capturadevideo.ui \
+    ui/ajustelineal.ui \
+    ui/colorfalso.ui \
+    ui/dialognueva.ui \
+    ui/brillocontraste.ui \
+    ui/ecualizacionhistograma.ui \
+    ui/informacionmultimedia.ui \
+    ui/inpaint.ui \
+    ui/matsatlum.ui \
+    ui/morfologia.ui \
+    ui/perfilado.ui \
+    ui/perspectiva.ui \
+    ui/pincharestirar.ui \
+    ui/rojoverdeazul.ui \
+    ui/starwars.ui \
+    ui/suavizados.ui \
+    ui/rotaravideo.ui \
+    ui/mediaponderada.ui \
+    ui/acercade.ui \
+    ui/mediadevideo.ui
 
 INCLUDEPATH += "C:\OpenCV\OpenCV4.10.0G\include"
 
